@@ -1,0 +1,20 @@
+/*Other Component*/
+
+
+.txt-left {
+	text-align: left !important;
+}
+/*END Other Component*/
+/*Start Footer*/
+.footer{
+	background-color: #fff;
+	 border-top: 1px solid #eee;
+}
+
+.footer a {
+	
+	color: #FB5A27 !important;
+	font-weight: bold;
+    text-decoration: none;
+}
+/*End Footer*/
