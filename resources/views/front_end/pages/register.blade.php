@@ -10,9 +10,11 @@
         <li><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=common/home"><i class="fa fa-home"></i></a></li>
         <li><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=account/account">Account</a></li>
         <li><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=account/register">Register</a></li>
-      </ul>
-    <div class="row">
-      <div id="content" class="col-sm-9">
+  </ul>
+  <div class="alert alert-success"><i class="fa fa-check-circle"></i> Success: You have modified your wish list!    <button type="button" class="close" data-dismiss="alert">×</button>
+  </div>
+  <div class="row">
+    <div id="content" class="col-sm-9">
       <h1>Register Account</h1>
       <p>If you already have an account with us, please login at the <block><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=account/login">login page</a></block>.</p>
       <form action="{{ route('registerUser') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
