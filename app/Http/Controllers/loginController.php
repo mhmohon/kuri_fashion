@@ -15,7 +15,7 @@ class loginController extends Controller
     //
     public function index()
     {
-        return view ('front_end.pages.login');
+        return view ('front_end.pages.account.login');
     }
     //Login to page
     public function store()
@@ -23,7 +23,7 @@ class loginController extends Controller
         //Check user credential and login them
         if(! auth()->attempt(request (['email','password']))){
 
-            return back()->withErrors([
+            return back()->withInput()->withErrors([
                 'message' => 'please check your credential'
             ]);
         }
@@ -34,7 +34,7 @@ class loginController extends Controller
     {
         auth()->logout();
 
-        return redirect('/register');
+        return redirect('/');
 
     }
 }

@@ -26911,8 +26911,7 @@ input[type="color"],
 .form-control,
 select {
     border-radius: 3px;
-    background-color: #eee;
-    border: none;
+    border: 1px solid #999;
     color: #3d3d3d;
     padding: 9px;
     font-size: 12px;
@@ -26957,7 +26956,8 @@ input[type="color"]:hover,
 .uneditable-input:hover {
     outline: 0;
     outline: thin dotted \9;
-    background-color: #e9e9e9
+    background-color: #e9e9e9;
+    border: 1px solid #000;
 }
 textarea {
     max-width: 100%

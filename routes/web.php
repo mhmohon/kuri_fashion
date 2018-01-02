@@ -15,15 +15,15 @@
 
 Route::get('/', 'PageController@home');
 
-Route::get('/register', 'RegistrationController@index');
+Route::get('/account/register', 'RegistrationController@index');
 
-Route::post('/register','RegistrationController@store')->name('registerUser');
+Route::post('/account/register','RegistrationController@store')->name('registerUser');
 
-Route::get('/login', 'loginController@index');
+Route::get('/account/login', 'loginController@index');
 
-Route::post('/login', 'loginController@store')->name('loginUser');
+Route::post('/account/login', 'loginController@store')->name('loginUser');
 
-Route::get('/logout', 'loginController@destroy');
+Route::get('/account/logout', 'loginController@destroy');
 
 Route::get('/single_product','HomeController@s_product');
 

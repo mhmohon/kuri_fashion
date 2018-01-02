@@ -1,6 +1,6 @@
 @extends ('front_end.layouts.master')
 
-@section ('page_title','Register')
+@section ('page_title','Account Register')
 
 @section ('main_content')
 
@@ -76,12 +76,12 @@
           </div>
         </fieldset>
         
-          <div class="buttons">
-          <div class="pull-right">
+        <div class="buttons">
+          <div class="pull-form">
             <input type="submit" value="Continue" class="btn btn-primary" />
           </div>
         </div>
-              </form>
+      </form>
       </div>
 </div>
 </div>

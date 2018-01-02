@@ -11,7 +11,7 @@ class RegistrationController extends Controller
     //
     public function index()
     {
-    	return view ('front_end.pages.register');
+    	return view ('front_end.pages.account.register');
     }
 
     public function store()

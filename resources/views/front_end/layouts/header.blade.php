@@ -6,22 +6,23 @@
 				<!-- If User is not log in -->
 				@guest	
 				<li class="account" id="my_account">
-					<a href="{{ url('login') }}" title="Login">
+					<a href="{{ url('/account/login') }}" title="Login">
 					<span>Login</span></a>
 				</li>
 				<li class="account" id="my_account">
-					<a href="{{ url('register') }}" title="Register">
+					<a href="{{ url('account/register') }}" title="Register">
 					<span>Register</span></a>
 				</li>
 				<!-- If User is log in -->
 				@else
-				Login As: <li class="account" id="my_account"> <a href="#" title="My Account" class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span> <span class="fa fa-angle-down"></span></a>
+				<span class="loginas">Login As:</span>
+				<li class="account" id="my_account"> <a href="#" title="My Account" class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span> <span class="fa fa-angle-down"></span></a>
 					<ul class="account dropdown-menu ">
 						<li><a href="#">My Account</a></li>
 						<li><a href="#">Order History</a></li>
 						<li><a href="#">Transactions</a></li>
 						<li><a href="#">Downloads</a></li>
-						<li class="wishlist"><a href="#" id="wishlist-total" class="top-link-wishlist" title="Wish List (0)"><span>Wish List (0)</span></a></li>
+						<li class="wishlist"><a href="#" id="wishlist-total" class="top-link-wishlist" title="Wish List"><span>Wish List (0)</span></a></li>
 						<li><a href="#">Logout</a></li>
 						
 					</ul>

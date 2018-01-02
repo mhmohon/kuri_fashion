@@ -1,3 +1,9 @@
+/*Start Full body Css*/
+
+.button, .btn:hover{
+	background: #ff5a01;
+}
+/*End Full body Css*/
 .row_left{
 	margin-left:7.6%
 }
@@ -32,7 +38,7 @@
 }
 /*slider*/
 
-/*Image hover*/
+/*Start Image hover Css*/
 .i-con{
 	position: relative;
     display: inline-block;
@@ -48,3 +54,31 @@
 .item-inner:hover .img_front {
     display: inline;
 }
+
+/*Start Top bar Css*/
+
+.loginas{
+	color: #FF5A01;
+    padding: 7px 0px 0px 35px;
+    float: left;
+    display: block;
+}
+/*End Top bar Css*/
+
+/*Start Login page Css*/
+
+.well-form{
+	background-color: #FFFFFF;
+	min-height: 395px;
+}
+
+/*End Login page Css*/
+
+
+/*Start Registration page Css*/
+
+.pull-form{
+	padding-left: 145px;
+}
+
+/*End Registration page Css*/
