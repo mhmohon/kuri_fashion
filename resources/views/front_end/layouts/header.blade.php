@@ -6,11 +6,11 @@
 				<!-- If User is not log in -->
 				@guest	
 				<li class="account" id="my_account">
-					<a href="{{ url('/account/login') }}" title="Login">
+					<a href="{{ route('login') }}" title="Login">
 					<span>Login</span></a>
 				</li>
 				<li class="account" id="my_account">
-					<a href="{{ url('account/register') }}" title="Register">
+					<a href="{{ route('register') }}" title="Register">
 					<span>Register</span></a>
 				</li>
 				<!-- If User is log in -->
@@ -23,7 +23,17 @@
 						<li><a href="#">Transactions</a></li>
 						<li><a href="#">Downloads</a></li>
 						<li class="wishlist"><a href="#" id="wishlist-total" class="top-link-wishlist" title="Wish List"><span>Wish List (0)</span></a></li>
-						<li><a href="#">Logout</a></li>
+						<li>
+							<a href="{{ route('logout') }}"
+	                            onclick="event.preventDefault();
+	                                     document.getElementById('logout-form').submit();">
+	                            Logout
+	                        </a>
+
+	                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+	                            {{ csrf_field() }}
+	                        </form>
+						</li>
 						
 					</ul>
 				</li>

@@ -37,3 +37,7 @@ require __DIR__ . '/web/dashboard.php';
 require __DIR__ . '/web/category.php';
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

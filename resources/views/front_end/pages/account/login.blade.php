@@ -7,9 +7,9 @@
 <div class="container">
 
   <ul class="breadcrumb">
-        <li><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=common/home"><i class="fa fa-home"></i></a></li>
-        <li><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=account/account">Account</a></li>
-        <li><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=account/register">Login</a></li>
+        <li><a href="#"><i class="fa fa-home"></i></a></li>
+        <li><a href="#">Account</a></li>
+        <li><a href="#">Login</a></li>
   </ul>
 
 
@@ -21,14 +21,14 @@
         
         <h2>Registered Customer</h2>
         <p><strong>I am a registered customer</strong></p>
-        <form action="{{ route('loginUser') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
 
           {{ csrf_field() }}
           
           <div class="form-group required {{ $errors->has('email') ? 'has-error' : ''}} ">
             <label class="control-label" for="input-email">E-Mail Address</label>
             
-              <input type="email" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" id="input-email" class="form-control" />
+              <input type="email" name="email" value="{{ old('email') }}" placeholder="E-Mail Address" id="input-email" class="form-control" required autofocus>
 
               @if ($errors->has('email'))
                   <span class="help-block">
@@ -50,13 +50,33 @@
               @endif
      
           </div>
+
+          <div class="form-group">
+        
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                </label>
+            </div>
+              
+          </div>
+
+          <div class="form-group">
+              
+              <button type="submit" class="btn btn-primary pull-left">
+                  Login
+              </button>
+
+              <a class="pull-right" href="{{ route('password.request') }}">
+                  Forgot Your Password?
+              </a>
+          
+          </div>
   
-            <input type="submit" value="Login" class="btn btn-primary pull-left">  
+              
     
         </form>
-          <div>
-            <a href="#">Forgotten Password</a>
-          </div>
+          
 
           <column id="column-login" class="col-sm-8 pull-right">
             <div class="row">
