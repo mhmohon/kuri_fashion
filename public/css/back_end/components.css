@@ -3880,4 +3880,4 @@ table.dataTable thead th.sorting_desc:after {
   display: inline-block;
 }
 /* Toast color */
-.jq-icon-info{background-color:#e20b0b;color:#fff}.jq-icon-success{background-color:#00c292;color:#fff}.jq-icon-error{background-color:#ed4040;color:#fff}.jq-icon-warning{background-color:#f1c411;color:#fff}
+.jq-icon-info{background-color:#e20b0b;color:#fff}.jq-icon-success{background-color:#4caf50;color:#fff}.jq-icon-error{background-color:#ed4040;color:#fff}.jq-icon-warning{background-color:#f1c411;color:#fff}

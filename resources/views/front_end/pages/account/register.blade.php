@@ -11,7 +11,8 @@
         <li><a href="#">Account</a></li>
         <li><a href="#">Register</a></li>
   </ul>
- 
+ <div class="alert alert-success fadeOut"><i class="fa fa-check-circle"></i> <a href="#">Adipisicing ground</a> added to <a href="#">shopping cart</a>! <button type="button" class="fa fa-close close" data-dismiss="alert"></button>
+ </div>
   <div class="row">
     <div id="content" class="col-sm-9">
       <h1>Register Account</h1>

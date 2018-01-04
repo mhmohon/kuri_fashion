@@ -52,7 +52,7 @@ if ( typeof Object.create !== 'function' ) {
             _toastContent += '<span class="jq-toast-loader"></span>';            
 
             if ( this.options.allowToastClose ) {
-                _toastContent += '<span class="close-jq-toast-single">&times;</span>';
+                _toastContent += '<span class="close-jq-toast-single"><i class="fa fa-close close"></i></span>';
             };
 
             if ( this.options.text instanceof Array ) {

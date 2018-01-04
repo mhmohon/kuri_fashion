@@ -19,7 +19,7 @@
             <div class="content-page">
                 <!-- Start content -->
                 <div class="content">
-                    <div class="container">
+                    <div class="container page_content">
 
         				<!-- layouts for main content -->
         				@yield ('main_content')

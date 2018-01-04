@@ -15,16 +15,6 @@
 
 Route::get('/', 'PageController@home');
 
-Route::get('/account/register', 'RegistrationController@index');
-
-Route::post('/account/register','RegistrationController@store')->name('registerUser');
-
-Route::get('/account/login', 'loginController@index');
-
-Route::post('/account/login', 'loginController@store')->name('loginUser');
-
-Route::get('/account/logout', 'loginController@destroy');
-
 Route::get('/single_product','HomeController@s_product');
 
 Route::get('/home', 'HomeController@index')->name('home');

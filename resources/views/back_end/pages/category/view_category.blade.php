@@ -84,16 +84,18 @@
 	@section ('scripts')
 		
 		<script type="text/javascript">
+
 	        $(document).ready(function () {
 	            $.toast({
-	                heading: 'Success'
+	                heading: 'Success: '
 	                , text: ("{{ session('msgsuccess') }}")
-	                , position: 'top-right'
+	                , position: 'top-left'
 	                , loaderBg: '#ff6849'
 	                , icon: 'success'
-	                , hideAfter: 8000
+	                , hideAfter: 990000
 	                , stack: 6
 	            })
+                $('.jq-toast-wrap').appendTo('.page_content');
 	        });
 	    </script>
 	   
