@@ -39,6 +39,10 @@
 </head>
 
 <body class="common-home ltr res layout-1">
+
+	<!-- layouts for Notificaiton -->
+	@include ('front_end.layouts.message')
+
 	<div id="wrapper" class="wrapper-full banners-effect-7">
 
 		<!-- layouts for header -->
@@ -54,5 +58,7 @@
 	<!-- MENU ON TOP CUSTOM -->
 		<div class="back-to-top"><i class="fa fa-angle-up"></i></div>
 	<!-- END-->
+
+	
 </body>
 </html>

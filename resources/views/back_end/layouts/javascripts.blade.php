@@ -31,7 +31,6 @@
 	<script src="{{ asset('js/back_end/jquery.core.js') }}"></script>
 	<script src="{{ asset('js/back_end/jquery.app.js') }}"></script>
 
-
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#datatable').DataTable();
@@ -40,6 +39,12 @@
 		// Select2
 		$(".select2").select2();
 	</script>
+	<script type="text/javascript">
+        window.setTimeout(function(){
+		  $('.alert').addClass("fadeOut");
+		}, 7000);
+	</script>
+
       
 
  

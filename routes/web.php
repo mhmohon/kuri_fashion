@@ -13,7 +13,7 @@
 
 
 
-Route::get('/', 'PageController@home');
+
 
 Route::get('/single_product','HomeController@s_product');
 
@@ -31,3 +31,5 @@ require __DIR__ . '/web/category.php';
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'PageController@home');

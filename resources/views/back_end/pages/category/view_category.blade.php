@@ -77,27 +77,3 @@
     </div>
 
 @endsection
-
-@if (Session::get('msgsuccess'))
-	
-
-	@section ('scripts')
-		
-		<script type="text/javascript">
-
-	        $(document).ready(function () {
-	            $.toast({
-	                heading: 'Success: '
-	                , text: ("{{ session('msgsuccess') }}")
-	                , position: 'top-left'
-	                , loaderBg: '#ff6849'
-	                , icon: 'success'
-	                , hideAfter: 990000
-	                , stack: 6
-	            })
-                $('.jq-toast-wrap').appendTo('.page_content');
-	        });
-	    </script>
-	   
-	@endsection
-@endif

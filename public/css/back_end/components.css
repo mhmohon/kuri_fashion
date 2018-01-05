@@ -1283,21 +1283,77 @@ input:focus {
 /* =============
    Alerts
 ============= */
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body>.alert,
+.container>.alert { 
+    z-index: 10004;
+    top: 31px;
+    width: 80%;
+    -webkit-animation: alert-anim 1s cubic-bezier(1, -.01, 0, .99);
+    -moz-animation: alert-anim 1s cubic-bezier(1, -.01, 0, .99);
+    animation: alert-anim 1s cubic-bezier(1, -.01, 0, .99)
+}
+body>.alert .alert,
+.container>.alert .alert {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%
+}
+
+body>.alert .alert.fadeOut,
+.container>.alert .alert.fadeOut {
+    top: -100%
+}
 .alert {
-  position: relative;
-  color: #ffffff !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+	position: fixed;
+	padding: 18px 40px 18px 65px;
+	z-index: 30;
+	color: #fff;
+	border-radius: 0;
+	min-height: 60px;
+	box-sizing: border-box;
+	border: none;
+	font-weight: 600;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
+	transition: 1s all cubic-bezier(1, -.01, 0, .99)
 }
-.alert .alert-link {
-  font-weight: 600;
-  color: #ffffff !important;
-  font-family: 'Hind Madurai', sans-serif;
+.alert button.close {
+    position: absolute;
+    top: 50%;
+    line-height: 1;
+    right: 15px;
+    color: #fff;
+    opacity: .7;
+    background: none;
+    border: none;
+    -moz-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%)
 }
-.alert .close {
-  opacity: 0.5;
+.alert button.close:hover,
+.alert button.close:focus {
+    opacity: 1;
+    color: #fff
 }
-.alert hr {
-  border-top-color: #ffffff !important;
+.alert.fadeOut {
+    -moz-transform: translate(0, -155%);
+    -ms-transform: translate(0, -155%);
+    -o-transform: translate(0, -155%);
+    -webkit-transform: translate(0, -155%);
+    transform: translate(0, -155%%)
+}
+.alert.fadeOut .alert {
+    top: -155%%
 }
 .alert-icon {
   padding-left: 50px;
@@ -1312,22 +1368,95 @@ input:focus {
   line-height: 50px;
   font-size: 22px;
 }
+
+.alert .fa {
+    font-size: 30px;
+    vertical-align: middle;
+    margin-right: 10px
+}
+
+.alert i {
+    position: absolute;
+    top: 22%;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    width: 60px;
+    font-size: 40px;
+    -webkit-animation: alert-icon-anim 1s;
+    -moz-animation: alert-icon-anim 1s;
+    -ms-animation: alert-icon-anim 1s;
+    -o-animation: alert-icon-anim 1s;
+    animation: alert-icon-anim 1s;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, .15);
+}
+@media (max-width:479px) {
+    .alert {
+        padding-right: 30px
+    }
+    
+    .alert button.close {
+        right: 5px
+    }
+}
 .alert-success {
-  background-color: #4bd396;
-  border-color: #4bd396;
+    background-color: #1bc579f0;
+	border-color: #4bd396;
+}
+
+.alert-success a,
+.alert-success a:visited,
+.alert-success a:focus,
+.alert-success a:hover {
+    color: #c8e6c9
+}
+
+.alert-danger {
+  background-color: #f5707a;
+  border-color: #f5707a;
+}
+
+.alert-danger a,
+.alert-danger a:visited,
+.alert-danger a:focus,
+.alert-danger a:hover {
+    color: #ffcdd2
 }
 .alert-info {
   background-color: #3ac9d6;
   border-color: #3ac9d6;
 }
+
+.alert-info a,
+.alert-info a:visited,
+.alert-info a:focus,
+.alert-info a:hover {
+    color: #b3e5fc
+}
 .alert-warning {
   background-color: #f9c851;
   border-color: #f9c851;
 }
-.alert-danger {
-  background-color: #f5707a;
-  border-color: #f5707a;
+
+.alert-warning a,
+.alert-warning a:visited,
+.alert-warning a:focus,
+.alert-warning a:hover {
+    color: #ffccbc
 }
+.alert .alert-link {
+  font-weight: 600;
+  color: #ffffff !important;
+  font-family: 'Hind Madurai', sans-serif;
+}
+.alert .close {
+  opacity: 0.5;
+}
+.alert hr {
+  border-top-color: #ffffff !important;
+}
+
+
 /* =============
    Carousel
 ============= */

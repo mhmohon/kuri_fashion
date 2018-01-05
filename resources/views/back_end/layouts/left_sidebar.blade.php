@@ -4,10 +4,10 @@
 
 			<!--- Sidemenu -->
 			<div id="sidebar-menu">  
-				<ul>
-
-					
-
+				<ul>				
+					<li class="has_sub">
+						<a href="{{ url('/home') }}" class="waves-effect"><i class="mdi mdi-home mdi-36px"></i> <span> Go to Page </span> </a>
+					</li>
 					<li class="has_sub">
 						<a href="{{ url('dashboard') }}" class="waves-effect"><i class="mdi mdi-home mdi-36px"></i> <span> Home </span> </a>
 					</li>

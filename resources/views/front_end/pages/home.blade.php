@@ -4,9 +4,10 @@
 
 @section ('main_content')
 		
-                            
-<div id="content">
 
+                    
+<div id="content">
+	
 	<div class= "container page-builder-ltr">
 		<div class="row row_tb0d box-content1 ">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_8k9a col-style">

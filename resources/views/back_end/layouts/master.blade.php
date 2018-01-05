@@ -6,6 +6,8 @@
 
     <body class="fixed-left" data-gr-c-s-loaded="true" style="overflow: visible;">
        
+       
+
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -20,7 +22,9 @@
                 <!-- Start content -->
                 <div class="content">
                     <div class="container page_content">
-
+                        
+                        <!-- layouts for Notificaiton -->
+                        @include ('back_end.layouts.message')
         				<!-- layouts for main content -->
         				@yield ('main_content')
 

@@ -18,11 +18,21 @@
 				<span class="loginas">Login As:</span>
 				<li class="account" id="my_account"> <a href="#" title="My Account" class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span> <span class="fa fa-angle-down"></span></a>
 					<ul class="account dropdown-menu ">
-						<li><a href="#">My Account</a></li>
-						<li><a href="#">Order History</a></li>
-						<li><a href="#">Transactions</a></li>
-						<li><a href="#">Downloads</a></li>
-						<li class="wishlist"><a href="#" id="wishlist-total" class="top-link-wishlist" title="Wish List"><span>Wish List (0)</span></a></li>
+						@if(checkPermission(['admin','superAdmin','staff']))
+
+							<li><a href= "{{ url('/dashboard') }}">Go To DashBoard</a></li>
+							<li><a href="#">My Account</a></li>
+							
+						@endif
+
+						@if(checkPermission(['customer']))
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">Order History</a></li>
+							<li><a href="#">Transactions</a></li>
+							<li><a href="#">Downloads</a></li>
+							<li class="wishlist"><a href="#" id="wishlist-total" class="top-link-wishlist" title="Wish List"><span>Wish List (0)</span></a></li>
+							
+						@endif
 						<li>
 							<a href="{{ route('logout') }}"
 	                            onclick="event.preventDefault();

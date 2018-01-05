@@ -4,16 +4,21 @@
 
 @section ('main_content')
 
-<div class="container">
+<div class="breadcrumbs">
+    <div class="container">
+        <h2 class="current-name">Register Account</h2>
 
-  <ul class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i></a></li>
+    </div>
+    <ul class="breadcrumb">
+        <li><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=common/home"><i class="fa fa-home"></i></a></li>
         <li><a href="#">Account</a></li>
         <li><a href="#">Register</a></li>
-  </ul>
- <div class="alert alert-success fadeOut"><i class="fa fa-check-circle"></i> <a href="#">Adipisicing ground</a> added to <a href="#">shopping cart</a>! <button type="button" class="fa fa-close close" data-dismiss="alert"></button>
- </div>
+    </ul>
+</div>
+<div class="container">
   <div class="row">
+    <!-- layouts for header -->
+    @include ('front_end.layouts.sidebar_account')
     <div id="content" class="col-sm-9">
       <h1>Register Account</h1>
       <p>If you already have an account with us, please login at the <block><a href="{{ url('account/login') }}">login page</a></block>.</p>
@@ -85,10 +90,9 @@
           </div>
         </div>
       </form>
-      </div>
-</div>
+    </div>
+  </div>
 </div>
 
-</div>
 
 @endsection

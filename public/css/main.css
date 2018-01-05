@@ -24293,7 +24293,7 @@ body.no-bgbody {
     border-radius: 0
 }
 .alert .fa {
-    font-size: 20px;
+    font-size: 30px;
     vertical-align: middle;
     margin-right: 10px
 }
@@ -25023,10 +25023,11 @@ body #so_sociallogin .block-popup-login .block-content .action.login:hover {
     background-color: #ff5a01
 }
 .breadcrumbs {
-    background: url(../../../../../catalog/view/theme/so-jenzo/images/bg-breadcrumb.jpg) no-repeat center top;
-    padding: 85px 0;
+    background: url(../images/bg-breadcrumb.jpg)  no-repeat center top;
+	background-size: cover;
+    padding: 35px 0;
     text-align: center;
-    margin-bottom: 80px
+    margin-bottom: 30px
 }
 .breadcrumbs .current-name {
     font-size: 26px;
