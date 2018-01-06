@@ -42,7 +42,7 @@
 						<li class="has_sub">
 							<a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-shopping"></i> <span> Product </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
-								<li><a href="http://lily-tms.herokuapp.com/orders/create">Add Product</a></li>
+								<li><a href="{{ route('productCreate') }}">Add Product</a></li>
 								<li><a href="http://lily-tms.herokuapp.com/orders">Products List</a></li>
 							</ul>
 						</li>
