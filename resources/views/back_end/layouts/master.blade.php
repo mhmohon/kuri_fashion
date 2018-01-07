@@ -24,7 +24,7 @@
                     <div class="container page_content">
                         
                         <!-- layouts for Notificaiton -->
-                        @include ('back_end.layouts.message')
+                        @include ('back_end.layouts.partial.message')
         				<!-- layouts for main content -->
         				@yield ('main_content')
 

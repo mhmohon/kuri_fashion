@@ -21,7 +21,8 @@ class CreateProductsTable extends Migration
             $table->text('pro_info');
             $table->string('pro_other_colors')->default('empty');
             $table->decimal('pro_price', 8, 2);
-            $table->enum('level', ['top', 'feature', 'trend','usual'])->default('usual');
+            $table->enum('pro_level', ['top', 'feature', 'trend','usual'])->default('usual');
+            $table->enum('pro_status', ['active','deactive'])->default('deactive');
             $table->unsignedInteger('cat_id');
             $table->timestamps();
 

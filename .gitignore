@@ -11,3 +11,4 @@ npm-debug.log
 yarn-error.log
 .env
 public/css/back_end/plugins/fa-check-square-o_600.png
+public/js/back_end/imageupload.js

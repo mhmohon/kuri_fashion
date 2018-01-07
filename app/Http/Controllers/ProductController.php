@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -23,7 +24,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('back_end.pages.product.create_product');
+        $categories = Category::latest()->get();
+
+        return view('back_end.pages.product.create_product', compact('categories'));
     }
 
     /**
@@ -34,7 +37,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Form Validation
+        $validate = $this->validate(request(),[
+            'product_code' => 'required|min:3|unique:tbl_products,pro_code',
+            'product_level' => 'required|min:3',
+            'product_price' => 'required',
+            'product_category' => 'required',
+            'product_description' => 'required',
+            'product_image' => 'required'
+
+        ]);
+
+        if($validate){
+
+        }else{
+            return back()->withInput();
+        }
     }
 
     /**

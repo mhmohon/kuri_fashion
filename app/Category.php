@@ -10,5 +10,5 @@ class Category extends Model
     protected $table = 'tbl_categories';
     
     //Declear fillable field
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['cat_name', 'cat_description'];
 }

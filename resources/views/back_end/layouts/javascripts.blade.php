@@ -1,10 +1,15 @@
 <script>
     var resizefunc = [];
 </script>
+	
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js'></script>
+	<script src='https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.js'></script>
 
 	<!-- jQuery -->
 	<script src="{{ asset('js/back_end/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/back_end/bootstrap.min.js') }}"></script>
+
 
 
 	<script src="{{ asset('js/back_end/detect.js') }}"></script>
@@ -13,8 +18,8 @@
 	<script src="{{ asset('js/back_end/waves.js') }}"></script>
 	<script src="{{ asset('js/back_end/jquery.slimscroll.js') }}"></script>
 	<script src="{{ asset('js/back_end/jquery.scrollTo.min.js') }}"></script>
-
-
+	
+	<script src="{{ asset('js/back_end/plugins/imageupload.js') }}"></script>
 
 	<script src="{{ asset('js/back_end/plugins/jquery.dataTables.min.js') }}"></script>
 	<script src="{{ asset('js/back_end/plugins/dataTables.bootstrap.js') }}"></script>

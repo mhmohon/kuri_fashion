@@ -20,10 +20,11 @@
 
     <link href="{{ asset('css/back_end/plugins/jquery.toast.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('css/back_end/plugins/select2.min.css') }}" rel="stylesheet" type="text/css"/>
-
+    <link rel='stylesheet prefetch' href='https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.css'>
     <!-- App css -->
     
     <link href="{{ asset('css/back_end/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/back_end/materialize.css') }}" rel="stylesheet">
     
     <link href="{{ asset('css/back_end/core.css') }}" rel="stylesheet">
     <link href="{{ asset('css/back_end/components.css') }}" rel="stylesheet">      

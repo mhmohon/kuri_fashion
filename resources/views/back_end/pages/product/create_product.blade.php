@@ -38,7 +38,7 @@
                 </div>
                 <div id="bg-default" class="panel-collapse collapse in">
                     <div class="portlet-body">                           
-	                   <form method="POST" action="{{ route('categoryStore') }}" accept-charset="UTF-8" class="form-horizontal m-b-30" enctype="multipart/form-data">
+	                   <form method="POST" action="{{ route('productStore') }}" accept-charset="UTF-8" class="form-horizontal m-b-30" enctype="multipart/form-data">
 	                       {{ csrf_field() }}
                         <div class='row'>
                             <div class="col-md-6"> 
@@ -53,8 +53,53 @@
                                             </span>
                                         @endif					
                              		 </div>
-                                </div>                          
-                                    
+                                </div>
+
+                                <div class="form-group {{ $errors->has('product_name') ? ' has-error' : '' }}">
+                                    <label for="product_name" class="col-md-12 control-label txt-left">Product Name</label>
+                                    <div class="col-md-12">
+                                         <input class="form-control" placeholder="Enter Product Name" required="required" name="product_name" type="text" value="{{ old('product_name') }}">
+
+                                         @if ($errors->has('product_name'))
+                                            <span class="text-danger help-block">
+                                                <block>{{ $errors->first('product_name') }}</block>
+                                            </span>
+                                        @endif                  
+                                     </div>
+                                </div> 
+
+                               <div class="row">                             
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-6">Prodcut Level</label>
+                                        
+                                        <div class="col-md-12">
+                                            <select id="level_id" name="product_level" class="form-control select" required="required" name="customer_id" tabindex="-1" aria-hidden="true">
+                                                <option>--- Select Product Level ---</option>
+                                                <option value="Top">Top</option>
+                                                <option value="feature">Feature</option>
+                                                <option value="trend">Trend</option>             
+                                                <option value="usual">Usual</option>             
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-switch">
+                                    <div class="form-group {{ $errors->has('product_price') ? ' has-error' : '' }}">
+                                        <label for="product_Status" class="col-md-12 control-label txt-left form-lbl">Product Status</label>
+                                        <div class="col-md-12">
+                                            <div class="switch">
+                                                <label>Deactive<input type="checkbox" name="product_status"><span class="lever"></span>Active</label>
+                                            </div>                
+                                        </div>
+                                    </div>  
+                                </div>
+                                </div>
+            
+                            </div>
+
+                            <div class="col-md-6"> 
+                                
                                  <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group {{ $errors->has('product_price') ? ' has-error' : '' }}">
@@ -70,39 +115,30 @@
                                             </div>
                                         </div>  
                                     </div>
+                                    <!-- Product Category -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="col-md-6">Category</label>
-                                            <a href="#" class="col-md-6" id="new_category" class="pull-right">
+                                            <a href="{{ url('dashboard/category/create') }}" class="col-md-6" id="new_category" class="pull-right">
                                                 <span class="glyphicon glyphicon-plus"></span> Add Category
                                             </a>
                                             <div class="col-md-12">
-                                                <select id="product_id" class="form-control select2 select2-hidden-accessible" required="required" name="customer_id" tabindex="-1" aria-hidden="true">
-                                                    <option value="0">--- Select Product Category ---</option>
-                                                    <option value="1">MD IMTIAZ MIZAN</option>
-                                                    <option value="2">a</option>
-                                                    <option value="3">sdsa</option>             
+                                                <select id="product_id" name="product_category" class="form-control select2 select2-hidden-accessible" required="required" name="customer_id" tabindex="-1" aria-hidden="true">
+                                                @if($categories)
+                                                    <option>--- Select Product Category ---</option>
+                                                    @foreach($categories as $cat)
+                                                    
+                                                        <option value="{{ $cat->id }}">{{ $cat->cat_name }}</option>
+                                                    @endforeach
+                                                @else
+                                                    <option value="0">No Category Found!!!</option>
+                                                @endif             
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-    
-                            </div>
-
-                            <div class="col-md-6"> 
-                                <div class="form-group {{ $errors->has('product_name') ? ' has-error' : '' }}">
-                                    <label for="product_name" class="col-md-12 control-label txt-left">Product Name</label>
-                                    <div class="col-md-12">
-                                         <input class="form-control" placeholder="Enter Product Name" required="required" name="product_name" type="text" value="{{ old('product_name') }}">
-
-                                         @if ($errors->has('product_name'))
-                                            <span class="text-danger help-block">
-                                                <block>{{ $errors->first('product_name') }}</block>
-                                            </span>
-                                        @endif                  
-                                     </div>
-                                </div>                          
+                     
                                     
                                <div class="form-group {{ $errors->has('product_description') ? 'has-error' : '' }} ">
                                     <label for="product_description" class="col-md-12 txt-left control-label">Product Description</label>
@@ -117,9 +153,16 @@
                                     </div>
                                 </div>  
 
-                               
+                            
                                 
                             </div>
+
+                            <div class="form-group col-md-8">
+
+                                @include ('back_end.layouts.partial.product_color')
+                                                       
+                            </div> 
+
                             <!-- Upload Image -->
                            
                             <div class="col-md-9 col-md-offset-1" data-bind="fileDrag: fileData">
@@ -131,7 +174,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="file" data-bind="fileInput: fileData, customFileInput: {
+                                        <input type="file" name="product_image" data-bind="fileInput: fileData, customFileInput: {
                                           buttonClass: 'btn btn-success',
                                           fileNameClass: 'disabled form-control',
                                           onClear: onClear,

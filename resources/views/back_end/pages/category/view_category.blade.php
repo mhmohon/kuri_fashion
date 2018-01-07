@@ -55,8 +55,8 @@
 								@foreach ($categories as $key => $cat)
                                     <tr>
                                         <td>{{ ($key+1) }}</td>
-                                        <td>{{ $cat->name }}</td>
-                                        <td>{{ $cat->description }}</td>
+                                        <td>{{ $cat->cat_name }}</td>
+                                        <td>{{ $cat->cat_description }}</td>
                                         
                                         <td class="text-center">
                                         	<a href="" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>

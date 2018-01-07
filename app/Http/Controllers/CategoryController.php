@@ -59,8 +59,8 @@ class CategoryController extends Controller
 
             //Insertion
             Category::create([
-                'name' => request ('category_name'),
-                'description' => request ('category_description')
+                'cat_name' => request ('category_name'),
+                'cat_description' => request ('category_description')
             ]);
 
             return redirect('/dashboard/category')->with('msgsuccess','Category created successfully');

@@ -12,9 +12,20 @@
 }
 
 .footer a {
-	
 	color: #FB5A27 !important;
 	font-weight: bold;
     text-decoration: none;
 }
 /*End Footer*/
+
+.form-lbl{
+	margin-bottom: 7px !important;
+}
+
+.form-ckbox{
+	padding-left:20px;
+}
+
+.form-switch{
+	padding-left:20px;
+}
