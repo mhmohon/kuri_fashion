@@ -117,7 +117,7 @@
                                     </div>
                                     <!-- Product Category -->
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group {{ $errors->has('product_category') ? ' has-error' : '' }}">
                                             <label class="col-md-6">Category</label>
                                             <a href="{{ url('dashboard/category/create') }}" class="col-md-6" id="new_category" class="pull-right">
                                                 <span class="glyphicon glyphicon-plus"></span> Add Category
@@ -134,6 +134,12 @@
                                                     <option value="0">No Category Found!!!</option>
                                                 @endif             
                                                 </select>
+                                                
+                                                @if ($errors->has('product_category'))
+                                                    <span class="text-danger help-block">
+                                                        <block>{{ $errors->first('product_category') }}</block>
+                                                    </span>
+                                                @endif  
                                             </div>
                                         </div>
                                     </div>

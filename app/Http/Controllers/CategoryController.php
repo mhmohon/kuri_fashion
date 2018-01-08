@@ -51,7 +51,7 @@ class CategoryController extends Controller
         //Validation
         $validate = $this->validate(request(),[
 
-            'category_name' => 'required|min:3|unique:tbl_categories,name',
+            'category_name' => 'required|min:3|unique:tbl_categories,cat_name',
             'category_description' => 'required|min:3'
         ]);
 
@@ -63,7 +63,7 @@ class CategoryController extends Controller
                 'cat_description' => request ('category_description')
             ]);
 
-            return redirect('/dashboard/category')->with('msgsuccess','Category created successfully');
+            return redirect('/dashboard/category')->withMsgsuccess('Category created successfully');
 
         }else{
             return back()->withInput();

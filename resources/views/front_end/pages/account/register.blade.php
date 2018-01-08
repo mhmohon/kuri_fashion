@@ -23,15 +23,15 @@
       <h1>Register Account</h1>
       <p>If you already have an account with us, please login at the <block><a href="{{ url('account/login') }}">login page</a></block>.</p>
 
-      <form action="{{ route('registerUser') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+      <form action="{{ route('registerUser') }}" method="post" id="registration-form" enctype="multipart/form-data" class="form-horizontal">
         {{ csrf_field() }}
         <fieldset id="account">
           <legend>Your Personal Details</legend>
-          
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-firstname">First Name</label>
             <div class="col-sm-10">
-              <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="First Name" id="input-firstname" class="form-control" />
+              <input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="First Name" id="input-firstname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" 
+             data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)"/>
             </div>
           </div>
           <div class="form-group required">
@@ -43,14 +43,15 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-email">E-Mail</label>
             <div class="col-sm-10">
-              <input type="email" name="email" value="{{ old('email') }}" placeholder="E-Mail" id="input-email" class="form-control" />
+              <input type="email" name="email" value="{{ old('email') }}" placeholder="E-Mail" id="input-email" class="form-control" data-validation="email"/>
             </div>
           </div>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-telephone">Phone Number</label>
             <div class="col-sm-10">
-              <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" id="input-telephone" class="form-control" />
+              <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" id="input-telephone" class="form-control" data-validation="length number" data-validation-length="min10"/>
             </div>
+              
           </div>
         
         <fieldset>
@@ -58,7 +59,7 @@
           <div class="form-group required {{ $errors->has('password') ? ' has-error' : '' }}">
             <label class="col-sm-2 control-label" for="input-password">Password</label>
             <div class="col-sm-10">
-              <input type="password" name="password" value="" placeholder="Password" id="input-password" class="form-control" />
+              <input type="password" name="password_confirmation" value="" placeholder="Password" id="input-password" class="form-control" data-validation="strength" data-validation-strength="2" data-validation-help="Som help info..."/>
 
               @if ($errors->has('password'))
                   <span class="help-block">
@@ -68,10 +69,11 @@
             </div>
               
           </div>
+          
           <div class="form-group required {{ $errors->has('password') ? ' has-error' : '' }}">
             <label class="col-sm-2 control-label" for="input-confirm">Password Confirm</label>
             <div class="col-sm-10">
-              <input type="password" name="password_confirmation" value="" placeholder="Password Confirm" id="input-confirm" class="form-control" />
+              <input type="password" name="password" value="" placeholder="Password Confirm" id="input-confirm" class="form-control" data-validation="confirmation"/>
 
               @if ($errors->has('password'))
                   <span class="help-block">
@@ -81,7 +83,7 @@
             </div>
           </div>
         </fieldset>
-        
+
         <div class="buttons">
           <div class="pull-form">
             <button type="submit" class="btn btn-primary">
@@ -95,4 +97,20 @@
 </div>
 
 
+@endsection
+
+@section('extra_scripts')
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
+  <script>
+
+    $.validate({
+       modules : 'location, date, security, file',
+     
+    
+  });
+        
+
+  </script>
 @endsection

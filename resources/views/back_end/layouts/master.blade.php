@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
-    <!-- Contain all css and header information -->
-    @include ('back_end.layouts.head')
+    <head>
+        <!-- Contain all css and header information -->
+        @include ('back_end.layouts.head')
+    </head>
 
     <body class="fixed-left" data-gr-c-s-loaded="true" style="overflow: visible;">
        
@@ -43,7 +44,7 @@
         <!-- Contain all Js information -->
         @include ('back_end.layouts.javascripts') 
 
-        <!-- layouts for all scripts -->
+        <!-- layouts for extra new scripts -->
         @yield ('scripts')
     </body>  
 </html>
