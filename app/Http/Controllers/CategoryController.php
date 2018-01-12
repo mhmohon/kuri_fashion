@@ -60,7 +60,8 @@ class CategoryController extends Controller
             //Insertion
             Category::create([
                 'cat_name' => request ('category_name'),
-                'cat_description' => request ('category_description')
+                'cat_description' => request ('category_description'),
+                'publication_status' => request ('category_status'),
             ]);
 
             return redirect('/dashboard/category')->withMsgsuccess('Category created successfully');
@@ -109,8 +110,9 @@ class CategoryController extends Controller
         //Update
         $catgoryUpdate = Category::find($id)->update([
 
-                            'name' => request ('category_name'),
-                            'description' => request ('category_description')
+                            'cat_name' => request ('category_name'),
+                            'cat_description' => request ('category_description'),
+                            'publication_status' => request ('category_status'),
 
                         ]);
 

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Category;
 use App\Product;
 
-class ProductController extends Controller
+class ProductBackEndController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        //Get All the latest product.
+        //$products = Product::latest()->get();
+
+        $products = DB::table('tbl_products')
+                        ->join('tbl_categories', 'tbl_products.cat_id', '=', 'tbl_categories.id')
+                        ->select('tbl_products.*', 'tbl_categories.cat_name')
+                        ->get();
+        
+
+        return view('back_end.pages.product.view_product', compact('products'));
     }
 
     /**
@@ -25,7 +35,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::latest()->get();
+        $categories = Category::published();
 
         return view('back_end.pages.product.create_product', compact('categories'));
     }
@@ -37,9 +47,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-       
-        
+    {       
         //Form Validation
         $validate = $this->validate(request(),[
             'product_code' => 'required|min:3|unique:tbl_products,pro_code',
@@ -51,40 +59,38 @@ class ProductController extends Controller
 
         ]);
 
-        $product_category = $request->get('product_category');
-        $product_level = $request->get('product_level');
-
         $product_colors = implode(",", $request->get('colors'));
-        $product_status = $request->get('product_status');
 
         $image = $request->file('product_image');
         $image_name = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/images/product');
 
-
         $image->move($destinationPath, $image_name);
         
-
-        
         if($validate){
-            Product::create([
-                'pro_code' => request('product_code'),
-                'pro_name' => request('product_name'),
-                'pro_info' => request('product_description'),
-                'pro_other_colors' => $product_colors,
-                'pro_price' => request('product_price'),
-                'pro_level' => $product_level,
-                'pro_image' => $image_name,
-                'pro_status' => $product_status,
-                'cat_id' => $product_category,     
-            ]);
-
+            
+            $this->saveProductInfo($request, $product_colors, $image_name);
             return redirect('/dashboard/products/')->withMsgsuccess('Category created successfully');
 
         }else{
 
             return back()->withInput();
         }
+    }
+    public function saveProductInfo(Request $request, $product_colors, $image_name)
+    {
+        Product::create([
+            'pro_code' => request('product_code'),
+            'pro_name' => request('product_name'),
+            'pro_info' => request('product_description'),
+            'pro_other_colors' => $product_colors,
+            'pro_price' => request('product_price'),
+            'pro_level' => request('product_level'),
+            'pro_image' => $image_name,
+            'pro_status' => request('product_status'),
+            'cat_id' => request('product_category'),     
+        ]);
+
     }
 
     /**
@@ -106,7 +112,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $categories = Category::published();
+        return view('back_end.pages.product.edit_product', compact('product','categories'));
     }
 
     /**

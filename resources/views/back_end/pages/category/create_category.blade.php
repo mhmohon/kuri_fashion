@@ -66,7 +66,18 @@
                                                 </span>
                                             @endif  				
 	                                    </div>
-	                                </div>   
+	                                </div>
+                                   <div class="form-group {{ $errors->has('category_description') ? 'has-error' : '' }} ">
+                                        <label for="category_name" class="col-md-12 txt-left control-label">Publication Status</label>
+                                        <div class="col-md-12">
+                                            <select id="level_id" name="category_status" class="form-control select" required="required" name="customer_id" tabindex="-1" aria-hidden="true">
+                                                <option>--- Select Publication Status ---</option>
+                                                <option value="1">Published</option>
+                                                <option value="0">Unpublished</option>
+                                                           
+                                            </select>
+                                        </div>
+                                    </div> 
 				                    <input class="btn btn-danger waves-light" type="submit" value="Submit">
 				                </form>
                                 

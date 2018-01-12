@@ -43,9 +43,10 @@
                             <table id="datatable" class="table table-striped table-hover">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>ID</th>
+                                        <th>No.</th>
                                         <th>Category Title</th>
-                                        <th>Category Description</th>                                        
+                                        <th>Category Description</th>                      
+                                        <th>Publication Status</th>                                        
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -57,6 +58,7 @@
                                         <td>{{ ($key+1) }}</td>
                                         <td>{{ $cat->cat_name }}</td>
                                         <td>{{ $cat->cat_description }}</td>
+                                        <td>{{ $cat->publication_status == 1 ? 'Published':'Unpublished' }}</td>
                                         
                                         <td class="text-center">
                                         	<a href="" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>

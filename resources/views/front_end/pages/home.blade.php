@@ -99,16 +99,17 @@
 		<div class="extraslider-inner products-list grid" data-effect="none">
 
 			
-
+		@if($products)
+			@foreach($products as $product)
 			<div class="item ">
 				<div class="product-layout  style1">
 					<div class="product-item-container">
 						<div class="left-block">
-							<div class="label-stock label label-success 2-3 Days">NEW</div> 
-
+							<div class="label-stock label label-success 2-3 Days">NEW</div>
+						
 							<div class="product-image-container ">
 								<a class="link-block" href="#" title=" Swine shankle" target="_self" >
-									<img src="images/" alt=" Swine shankle" height="330" width="270">
+									<img src="images/product/{{ $product->pro_image }}" alt=" Swine shankle" height="330" width="270">
 								</a>									
 							</div>
 					
@@ -132,6 +133,7 @@
 								
 		
 							</div>
+							
 						</div>
 						  		
 						<div class="right-block">
@@ -147,8 +149,7 @@
 							<div class="caption">
 								<div  class="price">
 									
-									<span class="price-new">৳</span>&nbsp;&nbsp;
-									<span class="price-percent-reduction hidden">Ex Tax: 38.50€</span>
+									<span class="price-new">{{ $product->pro_price }}৳</span>
 									
 								</div>								
 							</div>
@@ -161,7 +162,8 @@
 				<!-- End item-wrap -->
 				
 			</div>
-			
+			@endforeach
+		@endif
 							
 		</div>
 		<!--End extraslider-inner -->

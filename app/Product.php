@@ -2,7 +2,9 @@
 
 namespace App;
 
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Product extends Model
 {
@@ -18,4 +20,9 @@ class Product extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
 }

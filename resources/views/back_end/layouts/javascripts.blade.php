@@ -39,6 +39,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#datatable').DataTable();
+			$('#datatable-1').DataTable();
 		});
 
 		// Select2
