@@ -143,6 +143,33 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Product Category -->
+                                <div class="col-md-6">
+                                    <div class="form-group {{ $errors->has('product_category') ? ' has-error' : '' }}">
+                                        <label class="col-md-6">Category</label>
+                                        <a href="{{ url('dashboard/category/create') }}" class="col-md-6" id="new_category" class="pull-right">
+                                            <span class="glyphicon glyphicon-plus"></span> Add Category
+                                        </a>
+                                        <div class="col-md-12">
+                                            <select id="product_id" name="product_category" class="form-control select2 select2-hidden-accessible" required="required" tabindex="-1" aria-hidden="true">                                          
+                                                <option>--- Select Product Category ---</option>
+                                                @foreach($categories as $cat)
+                                                
+                                                    <option value="{{ $cat->id }}">{{ $cat->cat_name }}</option>
+                                                @endforeach  
+                                                 
+                                            </select>
+                                            
+                                            @if ($errors->has('product_category'))
+                                                <span class="text-danger help-block">
+                                                    <block>{{ $errors->first('product_category') }}</block>
+                                                </span>
+                                            @endif  
+                                        </div>
+                                    </div>
+                                </div>
+
                      
                                     
                                <div class="form-group {{ $errors->has('product_description') ? 'has-error' : '' }} ">

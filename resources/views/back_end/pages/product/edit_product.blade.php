@@ -41,7 +41,7 @@
                 </div>
                 <div id="bg-default" class="panel-collapse collapse in">
                     <div class="portlet-body">                           
-	                   <form method="POST" action="{{ route('productStore') }}" name="editProductForm"accept-charset="UTF-8" class="form-horizontal m-b-30" enctype="multipart/form-data">
+	                   <form method="POST" action="{{ route('productUpdate', $product->id) }}" name="editProductForm"accept-charset="UTF-8" class="form-horizontal m-b-30" enctype="multipart/form-data">
 	                       {{ csrf_field() }}
                         <div class='row'>
                             <!-- Left Side -->
@@ -208,9 +208,30 @@
                                                    
                         </div> 
 
+                            <!-- Upload Image Radio Button -->
+                            <div class="form-group col-md-8">
+                                <label for="upload_image" class="col-md-12 txt-left control-label form-lbl">Image Upload</label>
+                                <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="radio radio-info radio-inline">
+                                            <input type="radio" name="image" id="inlineCheckbox0" checked onclick="hidediv()">
+                                            
+                                            <label for="inlineCheckbox0"> Continue With Current Picture </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="radio radio-info radio-inline">
+                                            <input type="radio" name="image" id="inlineCheckbox1"onclick="showdiv()">
+                                            <label for="inlineCheckbox1"> Upload New Picture </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
                             <!-- Upload Image -->
-                           
-                            <div class="col-md-9 col-md-offset-1" data-bind="fileDrag: fileData">
+                            <div id="upload_img" class="col-md-9 col-md-offset-1" data-bind="fileDrag: fileData">
                                 <div class="form-group row">
                                     <div class="col-md-4">
                                         <img style="height: 150px;" class="img-rounded  thumb" data-bind="attr: { src: fileData().dataURL }, visible: fileData().dataURL">
@@ -247,6 +268,17 @@
         document.forms['editProductForm'].elements['product_category'].value="{{ $product->cat_id }}";
         
         document.forms['editProductForm'].elements['product_status'].value="{{ $product->pro_status  }}";
+
+        window.onload = function() {
+            document.getElementById('upload_img').style.display = 'none';
+        }
+        function hidediv(){
+            document.getElementById('upload_img').style.display = 'none';
+        }
+        function showdiv(){
+            document.getElementById('upload_img').style.display = 'block';
+        }
+
     </script>
 
 @endsection

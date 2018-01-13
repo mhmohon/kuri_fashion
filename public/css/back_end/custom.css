@@ -8,7 +8,7 @@
 /*Start Footer*/
 .footer{
 	background-color: #fff;
-	 border-top: 1px solid #eee;
+	border-top: 1px solid #eee;
 }
 
 .footer a {
@@ -28,4 +28,11 @@
 
 .form-switch{
 	padding-left:20px;
+}
+
+/*Radio button*/
+
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+	padding-left: 15px;
+	font-size: 14px;
 }
