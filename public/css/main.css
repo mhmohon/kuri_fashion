@@ -29030,6 +29030,7 @@ left-content-product.product-view .flexslider-thumb.not_full_slider {
 .product-view .content-product-right .short_description {
     display: block;
     padding-top: 20px;
+	padding-bottom: 50px;
     clear: both
 }
 .product-view .content-product-right .short_description h3 {

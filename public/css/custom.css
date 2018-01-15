@@ -82,3 +82,9 @@
 }
 
 /*End Registration page Css*/
+
+/*Start Single product page Css*/
+.btn_visible{
+	visibility: visible !important; 
+}
+/*End Single product page Css*/

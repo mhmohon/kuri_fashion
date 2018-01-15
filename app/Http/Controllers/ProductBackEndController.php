@@ -30,7 +30,7 @@ class ProductBackEndController extends Controller
      */
     public function create()
     {
-        $categories = Category::published();
+        $categories = Category::published()->pluck('cat_name','id');
 
         return view('back_end.pages.product.create_product', compact('categories'));
     }
@@ -54,8 +54,8 @@ class ProductBackEndController extends Controller
 
         ]);
 
-        $product_colors = implode(",", $request->get('colors'));
-        $product_size = implode(",",  $request->get('size'));
+        $product_colors = implode(", ", $request->get('colors'));
+        $product_size = implode(", ",  $request->get('size'));
 
         $image = $request->file('product_image');
         $image_name = time().'.'.$image->getClientOriginalExtension();
@@ -117,9 +117,10 @@ class ProductBackEndController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $product_colors = explode(",", $product->productDetail->pro_other_colors);
-        $product_sizes = explode(",", $product->productDetail->pro_size);
-        $categories = Category::published();
+        $product_colors = explode(", ", $product->productDetail->pro_other_colors);
+        $product_sizes = explode(", ", $product->productDetail->pro_size);
+        
+        $categories = Category::published()->pluck('cat_name','id');
         return view('back_end.pages.product.edit_product', compact('product','categories','product_colors','product_sizes'));
     }
 
@@ -144,7 +145,9 @@ class ProductBackEndController extends Controller
         if($validate){
 
             $product = Product::find($id);
-            $product_colors = implode(",", $request->get('colors'));
+            $product_colors = implode(", ", $request->get('colors'));
+            $product_size = implode(", ",  $request->get('size'));
+            
             
             if($request->hasFile('product_image')){
                 $image = $request->file('product_image');
@@ -152,22 +155,24 @@ class ProductBackEndController extends Controller
                 $destinationPath = public_path('/images/product');                 
                 $image->move($destinationPath, $image_name); 
                 //delete previous image.
-                $old_image = $product->pro_image;
+                $old_image = $product->productDetail->pro_image;
                 Storage::delete("product/$old_image");
-                $product->pro_image = $image_name;
+                $product->productDetail->pro_image = $image_name;
             }
 
             $product->pro_code = $request->product_code;
             $product->pro_name = $request->product_name;
-            $product->pro_info = $request->product_description;
-            $product->pro_other_colors = $product_colors;
-            $product->pro_price = $request->product_price;
-            $product->pro_level = $request->product_level;
-            $product->pro_status = $request->product_status;
-            $product->cat_id = $request->product_category;
+            $product->category_id = $request->product_category;
+            $product->productDetail->pro_info = $request->product_description;
+            $product->productDetail->pro_other_colors = $product_colors;
+            $product->productDetail->pro_price = $request->product_price;
+            $product->productDetail->pro_size = $product_size;
+            $product->productDetail->pro_level = $request->product_level;
+            $product->productDetail->pro_status = $request->product_status;
+            
             
             $product->save();
-            //dd($request->all());
+            $product->productDetail->save();
             
             return redirect('/dashboard/products')->withMsgsuccess('Product Updated Successfully');
             

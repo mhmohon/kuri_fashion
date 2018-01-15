@@ -54,14 +54,14 @@
                                   
                                 @foreach ($products as $key => $product)
 
-                                    @if($product->pro_level == 'top')
+                                    @if($product->productDetail->pro_level == 'top')
                                     <tr>
                                         <td>{{ ($key+1) }}</td>
                                         <td>{{ $product->pro_code }}</td>
-                                        <td>{{ $product->pro_price }}</td>
-                                        <td>{{ $product->pro_level }}</td>
-                                        <td>{{ $product->pro_other_colors }}</td>
-                                        <td>{{ $product->cat_name }}</td>
+                                        <td>{{ $product->productDetail->pro_price }}</td>
+                                        <td>{{ ucfirst($product->productDetail->pro_level) }}</td>
+                                        <td>{{ ucwords($product->productDetail->pro_other_colors) }}</td>
+                                        <td>{{ $product->category->cat_name }}</td>
 
                                         <td class="text-center">
                                             <a href="" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>

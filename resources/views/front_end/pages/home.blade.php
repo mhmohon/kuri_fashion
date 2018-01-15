@@ -38,38 +38,18 @@
 				</h3>
 				<div class="container">
 				<div class="row row_top">
+				@foreach($categories as $category)
 				  <div class="item col-lg-2 col-md-2 col-sm-4 col-xs-6">
 					<div class="item-inner">
+						
 					  <a href="#" title="">
 						<img src="image/cate1.png" alt="image"> 
-						<span>Clothing</span>
+						<span>{{ $category->cat_name }}</span>
 					  </a>
 					</div>
 				  </div>
-				  <div class="item col-lg-2 col-md-2 col-sm-4 col-xs-6">
-					<div class="item-inner">
-					  <a href="#" title="">
-						<img src="image/cate1.png" alt="image"> 
-						<span>Shoes</span>
-					  </a>
-					</div>
-				  </div>
-				  <div class="item col-lg-2 col-md-2 col-sm-4 col-xs-6">
-					<div class="item-inner">
-					  <a href="#" title="">
-						<img src="image/cate1.png" alt="image"> 
-						<span>Handbag</span>
-					  </a>
-					</div>
-				  </div>
-				  <div class="item col-lg-2 col-md-2 col-sm-4 col-xs-6">
-					<div class="item-inner">
-					  <a href="#" title="">
-						<img src="image/cate1.png" alt="image"> 
-						<span>Grooming</span>
-					  </a>
-					</div>
-				  </div>
+				  @endforeach
+				 
 				  
 				</div>
 				</div>
@@ -99,8 +79,9 @@
 		<div class="extraslider-inner products-list grid" data-effect="none">
 
 			
-		@if($products)
-			@foreach($products as $product)
+		@foreach($productDetails as $productDetail)
+
+			@if($productDetail->pro_level == 'top')
 			<div class="item ">
 				<div class="product-layout  style1">
 					<div class="product-item-container">
@@ -109,7 +90,7 @@
 						
 							<div class="product-image-container ">
 								<a class="link-block" href="#" title=" Swine shankle" target="_self" >
-									<img src="images/product/{{ $product->pro_image }}" alt=" Swine shankle" height="330" width="270">
+									<img src="images/product/{{ $productDetail->pro_image }}" alt=" Swine shankle" height="330" width="270">
 								</a>									
 							</div>
 					
@@ -149,7 +130,8 @@
 							<div class="caption">
 								<div  class="price">
 									
-									<span class="price-new">{{ $product->pro_price }}৳</span>
+									<span class="price-new">{{ $productDetail->pro_price }}৳</span>
+									
 									
 								</div>								
 							</div>
@@ -162,8 +144,8 @@
 				<!-- End item-wrap -->
 				
 			</div>
-			@endforeach
-		@endif
+			@endif
+		@endforeach
 							
 		</div>
 		<!--End extraslider-inner -->

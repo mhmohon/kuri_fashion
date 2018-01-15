@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return view('front_end.pages.home');
     }
+    public function singleProductDetails()
+    {
+         return view('front_end.pages.single_product');
+    }
 }

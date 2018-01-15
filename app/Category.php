@@ -11,7 +11,7 @@ class Category extends Model
 
     public static function published()
     {
-    	return static::where('publication_status', '1')->pluck('cat_name','id');
+    	return static::where('publication_status', 1);
     }
 
     public function product()
