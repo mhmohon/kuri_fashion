@@ -2,27 +2,18 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class Product extends Model
 {
-    protected $table = 'tbl_products';
-
-    protected $guarded = ['id'];
-
-     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $fillable = ['pro_code', 'pro_name', 'category_id'];
 
     public function category()
     {
-        return $this->belongsTo('App\Category');
+    	return $this->belongsTo(Category::class);
+    }
+    public function productDetail()
+    {
+    	return $this->hasOne(ProductDetail::class);
     }
 }

@@ -40,33 +40,32 @@
                     <div class="clearfix"></div>
                 </div>
                 <div id="bg-default" class="panel-collapse collapse in">
-                    <div class="portlet-body">                           
-	                   <form method="POST" action="{{ route('productUpdate', $product->id) }}" name="editProductForm"accept-charset="UTF-8" class="form-horizontal m-b-30" enctype="multipart/form-data">
-	                       {{ csrf_field() }}
+                    <div class="portlet-body">
+                        {!! Form::open(['route'=>['productUpdate',$product->id],'class'=>'form-horizontal m-b-30','files' => true,'name'=>'editProductForm']) !!}                            
+	                   
                         <div class='row'>
                             <!-- Left Side -->
                             <div class="col-md-6"> 
                             	<div class="form-group {{ $errors->has('product_code') ? ' has-error' : '' }}">
                                     <label for="product_code" class="col-md-12 control-label txt-left">Product Code</label>
                                     <div class="col-md-12">
-                                         <input class="form-control" placeholder="Enter Product Code" required="required" name="product_code" type="text" value="{{ $product->pro_code }}">
+                                        <input class="form-control" onkeydown="upperCaseF(this)" placeholder="Enter Product Code" required="required" name="product_code" type="text" value="{{ $product->pro_code }}" data-validation="length alphanumeric" data-validation-length="3-12" 
+                                        data-validation-error-msg="Product Code has to be an alphanumeric value (3-12 chars)">
 
-                                         @if ($errors->has('product_code'))
+                                        @if ($errors->has('product_code'))
                                             <span class="text-danger help-block">
                                                 <block>{{ $errors->first('product_code') }}</block>
                                             </span>
-                                        @endif					
+                                        @endif				
                              		 </div>
                                 </div>
 
                                 <div class="form-group {{ $errors->has('product_name') ? ' has-error' : '' }}">
                                     <label for="product_name" class="col-md-12 control-label txt-left">Product Name</label>
                                     <div class="col-md-12">
-                                         <input class="form-control" placeholder="Enter Product Name" required="required" name="product_name" type="text" value="{{ $product->pro_name }}">
+                                        <input class="form-control" placeholder="Enter Product Name" required="required" name="product_name" type="text" value="{{ $product->pro_name }}">
 
-
-
-                                         @if ($errors->has('product_name'))
+                                        @if ($errors->has('product_name'))
                                             <span class="text-danger help-block">
                                                 <block>{{ $errors->first('product_name') }}</block>
                                             </span>
@@ -76,31 +75,34 @@
 
                                <div class="row">                             
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="col-md-6">Prodcut Level</label>
+                                    <div class="form-group {{ $errors->has('product_level') ? ' has-error' : '' }}">
+                                        <label class="col-md-12 txt-left control-label">Prodcut Level</label>
                                         
                                         <div class="col-md-12">
-                                            <select id="level_id" name="product_level" class="form-control select" required="required" tabindex="-1" aria-hidden="true">
-                                                <option>--- Select Product Level ---</option>
-                                                <option value="top">Top</option>
-                                                <option value="feature">Feature</option>
-                                                <option value="trend">Trend</option>             
-                                                <option value="usual">Usual</option>             
-                                            </select>
+                                            {!! Form::select('product_level',['top'=>'Top','feature'=>'Feature','trend'=>'Trend','usual'=>'Usual'],$product->productDetail->pro_level,['class'=>'form-control select','required','placeholder'=>'--- Select Product Level ---','data-validation'=>'required']) !!}
+
+                                             @if ($errors->has('product_level'))
+                                                <span class="text-danger help-block">
+                                                    <block>{{ $errors->first('product_level') }}</block>
+                                                </span>
+                                            @endif 
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group {{ $errors->has('product_status') ? ' has-error' : '' }}">
-                                        <label for="product_Status" class="col-md-12 control-label txt-left">Product Status</label>
+                                        <label for="product_Status" class="col-md-12 txt-left control-label">Product Status</label>
                                         <div class="col-md-12">
-                                            <select id="level_id" name="product_status" class="form-control select" required="required" tabindex="-1" aria-hidden="true">
-                                                <option>--- Select Product Status ---</option>
-                                                <option value="1">Enable</option>
-                                                <option value="0">Disable</option>           
-                                            </select>
+                                        {!! Form::select('product_status',['1'=>'Enable','0'=>'Disable'],$product->productDetail->pro_status,['id'=>'level_id','class'=>'form-control select','required','data-validation'=>'required','placeholder'=>'--- Select Product Stataus ---']) !!}
+                                        @if ($errors->has('product_status'))
+                                            <span class="text-danger help-block">
+                                                <block>{{ $errors->first('product_status') }}</block>
+                                            </span>
+                                        @endif 
+                                            
                                         </div>
-                                    </div>  
+                                    </div>   
                                 </div>
                                 </div>
                             </div>
@@ -115,7 +117,7 @@
                                         <div class="form-group {{ $errors->has('product_price') ? ' has-error' : '' }}">
                                             <label for="product_price" class="col-md-12 control-label txt-left">Price</label>
                                             <div class="col-md-12">
-                                                <input class="form-control" placeholder="Enter Product Price" required="required" name="product_price" type="number" value="{{ $product->pro_price }}">
+                                                <input class="form-control" placeholder="Enter Product Price" required="required" name="product_price" type="number" value="{{ $product->productDetail->pro_price }}" data-validation="required number" data-validation-allowing="float">
 
                                                 @if ($errors->has('product_price'))
                                                     <span class="text-danger help-block">
@@ -133,15 +135,7 @@
                                                 <span class="glyphicon glyphicon-plus"></span> Add Category
                                             </a>
                                             <div class="col-md-12">
-                                                <select id="product_id" name="product_category" class="form-control select2 select2-hidden-accessible" required="required" tabindex="-1" aria-hidden="true">
-                                          
-                                                <option value="0">--- Select Product Category ---</option>
-                                                @foreach($categories as $cat)
-                                                
-                                                    <option value="{{ $cat->id }}">{{ $cat->cat_name }}</option>
-                                                @endforeach
-                                                                                   
-                                                </select>
+                                                {!! Form::select('product_category',$categories,$product->category_id,['class'=>'form-control select2','required','id'=>'product_id','placeholder'=>'--- Select Product Category ---','data-validation'=>'required']) !!}
                                                 
                                                 @if ($errors->has('product_category'))
                                                     <span class="text-danger help-block">
@@ -157,7 +151,7 @@
                                <div class="form-group {{ $errors->has('product_description') ? 'has-error' : '' }} ">
                                     <label for="product_description" class="col-md-12 txt-left control-label">Product Description</label>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" placeholder="Enter Product Description" required="required" name="product_description" type="text" >{{ $product->pro_info }}</textarea> 
+                                        <textarea class="form-control" placeholder="Enter Product Description" required="required" name="product_description" type="text" data-validation="required">{{ $product->productDetail->pro_info }}</textarea> 
 
                                         @if ($errors->has('product_description'))
                                             <span class="text-danger help-block">
@@ -170,38 +164,56 @@
                             </div>
                             <!-- /Right Side -->
 
-                        <!-- Product Others Colour -->
+                        <!-- Available Size -->
+                         <div class="form-group col-md-8">
 
+                            <label for="product_description" class="col-md-12 txt-left control-label form-lbl">Available Size</label>
+                            <div class="form-group form-ckbox">
+                                  <input type="checkbox" name="size[]" value="s" id="checkbox111" class="filled-in chk-col-blue" {{ in_array('s', $product_sizes) ? 'checked' : '' }}>
+                                  <label for="checkbox111">S</label>
+                      
+                                  <input type="checkbox" name="size[]" value="m" class="filled-in chk-col-blue" id="checkbox112" {{ in_array('m', $product_sizes) ? 'checked' : '' }}>
+                                  <label for="checkbox112">M</label>
+
+                                  <input type="checkbox" name="size[]" value="l" class="filled-in chk-col-blue" id="checkbox113" {{ in_array('l', $product_sizes) ? 'checked' : '' }}>
+                                  <label for="checkbox113">L</label>
+
+                                  <input type="checkbox" name="size[]" value="xl" class="filled-in chk-col-blue" id="checkbox114" {{ in_array('xl', $product_sizes) ? 'checked' : '' }}>
+                                  <label for="checkbox114">XL</label>
+
+                                  <input type="checkbox" name="size[]" value="xxl" class="filled-in chk-col-blue" id="checkbox115" {{ in_array('xxl', $product_sizes) ? 'checked' : '' }}>
+                                  <label for="checkbox115">XXL</label>
+
+                                  <input type="checkbox" name="size[]" value="xxxl" class="filled-in chk-col-blue" id="checkbox116" {{ in_array('xxxl', $product_sizes) ? 'checked' : '' }}>
+                                  <label for="checkbox116">XXXL</label>
+                            </div>  
+                                                   
+                        </div>
+
+                        <!-- Product Others Colour -->
                         <div class="form-group col-md-8">
 
                             <label for="product_description" class="col-md-12 txt-left control-label form-lbl">Available Colour</label>
                             <div class="form-group form-ckbox">
-                                <input type="checkbox" name="colors[]" value="red" id="checkbox101" class="filled-in chk-col-red"
-                                @if(strpos("{{ $product->pro_other_colors }}", 'red') == true) checked @endif> 
-                                <label for="checkbox101">Red</label>                   
+                                <input type="checkbox" name="colors[]" value="red" id="checkbox101" class="filled-in chk-col-red" {{ in_array('red', $product_colors) ? 'checked' : '' }}> 
+                                <label for="checkbox101">Red</label>          
                               
-                                <input type="checkbox" name="colors[]" value="blue" class="filled-in chk-col-blue" id="checkbox102"
-                                @if(strpos("{{ $product->pro_other_colors }}", 'blue') == true) checked @endif>       
+                                <input type="checkbox" name="colors[]" value="blue" class="filled-in chk-col-blue" id="checkbox102" {{ in_array('blue', $product_colors) ? 'checked' : '' }}>       
                                 <label for="checkbox102">Blue</label>
 
-                                <input type="checkbox" name="colors[]" value="yellow" class="filled-in chk-col-yellow" id="checkbox103"
-                                @if(strpos("{{ $product->pro_other_colors }}", 'yellow') == true) checked @endif>
+                                <input type="checkbox" name="colors[]" value="yellow" class="filled-in chk-col-yellow" id="checkbox103" {{ in_array('yellow', $product_colors) ? 'checked' : '' }}>
                                 <label for="checkbox103">Yellow</label>
 
-                                <input type="checkbox" name="colors[]" value="black" class="filled-in chk-col-black" id="checkbox104"
-                                @if(strpos("{{ $product->pro_other_colors }}", 'black') == true) checked @endif>
+                                <input type="checkbox" name="colors[]" value="black" class="filled-in chk-col-black" id="checkbox104" {{ in_array('black', $product_colors) ? 'checked' : '' }}>
                                 <label for="checkbox104">Black</label>
 
-                                <input type="checkbox" name="colors[]" value="purple" class="filled-in chk-col-purple" id="checkbox105"
-                                @if(strpos("{{ $product->pro_other_colors }}", 'purple') == true) checked @endif>
+                                <input type="checkbox" name="colors[]" value="purple" class="filled-in chk-col-purple" id="checkbox105" {{ in_array('purple', $product_colors) ? 'checked' : '' }}>
                                 <label for="checkbox105">Purple</label>
 
-                                <input type="checkbox" name="colors[]" value="brown" class="filled-in chk-col-brown" id="checkbox106"
-                                @if(strpos("{{ $product->pro_other_colors }}", 'brown') == true) checked @endif>
+                                <input type="checkbox" name="colors[]" value="brown" class="filled-in chk-col-brown" id="checkbox106" {{ in_array('brown', $product_colors) ? 'checked' : '' }}>
                                 <label for="checkbox106">Brown</label>
 
-                                <input type="checkbox" name="colors[]" value="lime" class="filled-in chk-col-lime" id="checkbox107"
-                                @if(strpos("{{ $product->pro_other_colors }}", 'lime') == true) checked @endif>
+                                <input type="checkbox" name="colors[]" value="lime" class="filled-in chk-col-lime" id="checkbox107" {{ in_array('lime', $product_colors) ? 'checked' : '' }}>
                                 <label for="checkbox107">Lime</label>
 
                             </div>  
@@ -240,11 +252,17 @@
                                         </div>
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="file" name="product_image" data-bind="fileInput: fileData, customFileInput: {
+                                        <input type="file" name="product_image" value="{{ old('product_image') }}" data-bind="fileInput: fileData, customFileInput: {
                                           buttonClass: 'btn btn-success',
                                           fileNameClass: 'disabled form-control',
                                           onClear: onClear,
                                         }" accept="image/*">
+
+                                        @if ($errors->has('product_image'))
+                                            <span class="text-danger help-block">
+                                                <block>{{ $errors->first('product_image') }}</block>
+                                            </span>
+                                        @endif   
                                     </div>
                                 </div>
                             </div>
@@ -264,11 +282,12 @@
 @section('scripts')
 
     <script>
-        document.forms['editProductForm'].elements['product_level'].value="{{ $product->pro_level }}";
-        document.forms['editProductForm'].elements['product_category'].value="{{ $product->cat_id }}";
-        
-        document.forms['editProductForm'].elements['product_status'].value="{{ $product->pro_status  }}";
-
+       
+        function upperCaseF(txt){
+            setTimeout(function(){
+                txt.value = txt.value.toUpperCase();
+            }, 400);
+        }
         window.onload = function() {
             document.getElementById('upload_img').style.display = 'none';
         }

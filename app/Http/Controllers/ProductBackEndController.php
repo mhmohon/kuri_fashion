@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Product;
+use App\ProductDetail;
 class ProductBackEndController extends Controller
 {
     /**
@@ -17,13 +18,7 @@ class ProductBackEndController extends Controller
     public function index()
     {
         //Get All the latest product.
-        //$products = Product::latest()->get();
-
-        $products = DB::table('tbl_products')
-                        ->join('tbl_categories', 'tbl_products.cat_id', '=', 'tbl_categories.id')
-                        ->select('tbl_products.*', 'tbl_categories.cat_name')
-                        ->get();
-        
+        $products = Product::latest()->get();    
 
         return view('back_end.pages.product.view_product', compact('products'));
     }
@@ -50,7 +45,7 @@ class ProductBackEndController extends Controller
     {       
         //Form Validation
         $validate = $this->validate(request(),[
-            'product_code' => 'required|min:3|unique:tbl_products,pro_code',
+            'product_code' => 'required|min:3|unique:products,pro_code',
             'product_level' => 'required',
             'product_price' => 'required',
             'product_category' => 'required',
@@ -60,6 +55,7 @@ class ProductBackEndController extends Controller
         ]);
 
         $product_colors = implode(",", $request->get('colors'));
+        $product_size = implode(",",  $request->get('size'));
 
         $image = $request->file('product_image');
         $image_name = time().'.'.$image->getClientOriginalExtension();
@@ -69,7 +65,7 @@ class ProductBackEndController extends Controller
         
         if($validate){
             
-            $this->saveProductInfo($request, $product_colors, $image_name);
+            $this->saveProductInfo($request, $product_colors, $product_size, $image_name);
             return redirect('/dashboard/products/')->withMsgsuccess('Category created successfully');
 
         }else{
@@ -77,20 +73,28 @@ class ProductBackEndController extends Controller
             return back()->withInput();
         }
     }
-    public function saveProductInfo(Request $request, $product_colors, $image_name)
+
+    public function saveProductInfo(Request $request, $product_colors, $product_size, $image_name)
     {
-        Product::create([
+        $product = Product::create([
             'pro_code' => request('product_code'),
-            'pro_name' => request('product_name'),
+            'pro_name' => request('product_name'),  
+            'category_id' => request('product_category'),     
+        ]);
+        $productDetail = ProductDetail::create([
             'pro_info' => request('product_description'),
-            'pro_other_colors' => $product_colors,
             'pro_price' => request('product_price'),
             'pro_level' => request('product_level'),
             'pro_image' => $image_name,
             'pro_status' => request('product_status'),
-            'cat_id' => request('product_category'),     
+            'pro_size' => $product_size,
+            'pro_other_colors' => $product_colors,
+            'product_id' => $product->id, 
         ]);
 
+        if($product && $productDetail){
+            return true;
+        }
     }
 
     /**
@@ -113,8 +117,10 @@ class ProductBackEndController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
+        $product_colors = explode(",", $product->productDetail->pro_other_colors);
+        $product_sizes = explode(",", $product->productDetail->pro_size);
         $categories = Category::published();
-        return view('back_end.pages.product.edit_product', compact('product','categories'));
+        return view('back_end.pages.product.edit_product', compact('product','categories','product_colors','product_sizes'));
     }
 
     /**
@@ -127,7 +133,7 @@ class ProductBackEndController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $this->validate(request(),[
-            'product_code' => 'required|min:3|unique:tbl_products,pro_code,'.$id,
+            'product_code' => 'required|min:3|unique:products,pro_code,'.$id,
             'product_level' => 'required',
             'product_price' => 'required',
             'product_category' => 'required',

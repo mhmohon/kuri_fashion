@@ -20,6 +20,7 @@
 <link href="{{ asset('css/back_end/plugins/jquery.toast.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('css/back_end/plugins/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 <link rel='stylesheet prefetch' href='https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.77/theme-default.css"/>
 <!-- App css -->
 
 <link href="{{ asset('css/back_end/bootstrap.min.css') }}" rel="stylesheet">

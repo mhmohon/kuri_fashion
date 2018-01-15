@@ -39,9 +39,9 @@
                 <div id="bg-default" class="panel-collapse collapse in">
                     <div class="portlet-body">                           
                     	<div class='row'>
-                    		<div class="col-md-6 col-md-offset-3"> 
-	                            <form method="POST" action="{{ route('categoryStore') }}" accept-charset="UTF-8" class="form-horizontal m-b-30">
-	                            	{{ csrf_field() }}
+                    		<div class="col-md-6 col-md-offset-3">
+                                {!! Form::open(['route'=>'categoryStore','class'=>'form-horizontal m-b-30']) !!}
+	                            
 	                            	<div class="form-group {{ $errors->has('category_name') ? ' has-error' : '' }}">
 	                                    <label for="category_name" class="col-md-12 control-label txt-left">Category Name</label>
 	                                    <div class="col-md-12">
@@ -70,16 +70,15 @@
                                    <div class="form-group {{ $errors->has('category_description') ? 'has-error' : '' }} ">
                                         <label for="category_name" class="col-md-12 txt-left control-label">Publication Status</label>
                                         <div class="col-md-12">
-                                            <select id="level_id" name="category_status" class="form-control select" required="required" name="customer_id" tabindex="-1" aria-hidden="true">
-                                                <option>--- Select Publication Status ---</option>
-                                                <option value="1">Published</option>
-                                                <option value="0">Unpublished</option>
-                                                           
-                                            </select>
+
+                                        {!! Form::select('category_status',['1'=>'Published','0'=>'Unpublished'], null, ['class'=>'form-control select','required','placeholder'=>'--Select Publication Status--']) !!}
+                                            
                                         </div>
                                     </div> 
 				                    <input class="btn btn-danger waves-light" type="submit" value="Submit">
-				                </form>
+
+                                {!! Form::close() !!}
+				               
                                 
 				            </div>
 			            </div>

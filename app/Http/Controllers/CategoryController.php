@@ -51,7 +51,7 @@ class CategoryController extends Controller
         //Validation
         $validate = $this->validate(request(),[
 
-            'category_name' => 'required|min:3|unique:tbl_categories,cat_name',
+            'category_name' => 'required|min:3|unique:categories,cat_name',
             'category_description' => 'required|min:3'
         ]);
 
