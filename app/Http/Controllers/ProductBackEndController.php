@@ -117,6 +117,7 @@ class ProductBackEndController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
+        
         $product_colors = explode(", ", $product->productDetail->pro_other_colors);
         $product_sizes = explode(", ", $product->productDetail->pro_size);
         

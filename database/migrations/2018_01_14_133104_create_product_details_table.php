@@ -18,7 +18,7 @@ class CreateProductDetailsTable extends Migration
             $table->string('pro_image');
             $table->text('pro_info');
             $table->string('pro_other_colors')->default('empty');
-            $table->decimal('pro_price', 8, 2);
+            $table->integer('pro_price');
             $table->string('pro_size');
             $table->enum('pro_level', ['top', 'feature', 'trend','usual'])->default('usual');
             $table->string('pro_status')->default('0');

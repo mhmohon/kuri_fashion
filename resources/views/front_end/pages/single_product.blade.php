@@ -27,7 +27,9 @@
 			<div class="content-product-left  class-honizol col-md-5 col-sm-12 col-xs-12 ">
 				                                      
 				<div class="large-image">
-					<img itemprop="image" class="drift-demo-trigger" src="http://opencart.opencartworks.com/themes/so_jenzo/image/cache/catalog/product/1-675x825.jpg"  data-zoom="http://opencart.opencartworks.com/themes/so_jenzo/image/cache/catalog/product/1-675x825.jpg" title=" Swine shankle" alt=" Swine shankle" />
+					
+
+					<img itemprop="image" class="drift-demo-trigger" src="{{URL::asset('images/product/'.$product->productDetail->pro_image)}}"  data-zoom="{{URL::asset('images/product/'.$product->productDetail->pro_image)}}" title=" Swine shankle" alt=" Swine shankle" height="420" width="345"/>
 					<div class="box-label">
 						<!--New Label-->
 																																		
@@ -39,23 +41,60 @@
 			
 			<div class="content-product-right info-right col-md-7 col-sm-12 col-xs-12">
 				<div class="title-product font-title">
-					<h1 itemprop="name"> Swine shankle</h1>
+					<h1 itemprop="name">{{ $product->pro_name }}</h1>
 				</div>
 				 <!-- Review -->
 				<div class="product-label">
 					<div class="product_page_price price" itemprop="offers">											 
-				        Price: <span class="price-new"><span itemprop="price" id="price-special" content="45.0000">38.50€</span><meta itemprop="priceCurrency" content="EUR" /></span>
+				        Price: <span class="price-new"><span itemprop="price" id="price-special">৳ {{ $product->productDetail->pro_price }}</span></span>
 					</div>										
 				</div>
 
 				<div class="product-box-desc">
-					<div class="model"><span>Product Code:</span> p38</div>
-					<div class="stock"><span> Stock </span> <i class="fa fa-check-square-o"></i> 753</div>			
+					<div class="model"><span>Product Code:</span> {{ $product->pro_code }}</div>
+					<div class="stock"><span> Stock: </span> <i class="fa fa-check-square-o"></i> 753</div>			
 				</div>
 				
 				
 				<div class="short_description form-group" itemprop="description">
-                    <h3>Overview</h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori...
+                   	<h3><span>*<span>Available Colour:</h3>
+                   	
+                   	<div class="row row_bottom">
+	                   	<div class="col-md-2">
+		                   	<div class="radio radio-info radio-inline">
+									<input type="radio" name="product_color" id="current" checked>
+		                                            
+		                            <label for="current"> Current</label>
+							</div>
+						</div>
+
+	                   	@foreach($product_colors as $product_color)
+
+	                   		<div class="col-md-2">
+								<div class="radio radio-info radio-inline">
+									<input type="radio" name="product_color" id="{{ $product_color }}">
+		                                            
+		                            <label for="{{ $product_color }}"> {{ ucfirst($product_color) }} </label>
+								</div>
+							</div>
+	                   		
+	                   	@endforeach
+
+                   	</div>
+					
+                   	<h3><span>*<span>Available Size:</h3>
+					<div class="row">
+	                   	@foreach($product_sizes as $product_size)
+
+	                   		<div class="col-md-2">
+								<div class="radio radio-info radio-inline">
+									<input type="radio" name="product_size" id="{{ $product_size }}">
+		                                            
+		                            <label for="{{ $product_size }}"> {{ ucfirst($product_size) }} </label>
+								</div>
+							</div>
+	                   	@endforeach
+                   </div>
                 </div>
 				
 				<div id="product">					
@@ -125,15 +164,7 @@
 											
 						<div class="tab-content  col-xs-12">
 							<div id="tab-1" class="tab-pane fade active in">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-								<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-								<p><strong>Nemo enim ipsam voluptatem</strong></p>
-								<ul>
-								<li>100% Brand New.</li>
-								<li>Contains 1 PCS</li>
-								<li>Simple and easy</li>
-								</ul>
-								<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+								{!! $product->productDetail->pro_info  !!}
 							</div>
 						<div id="tab-review" class="tab-pane fade in">
 							
@@ -163,25 +194,56 @@
 						        <div class="contacts-form">
 						            <div class="form-group">
 						                <span class="icon icon-user"></span>
-						                <input type="text" name="name" class="form-control" value="Your Name" onblur="if (this.value == '') {this.value = 'Your Name';}" onfocus="if(this.value == 'Your Name') {this.value = '';}">
+						                <input type="text" name="name" class="form-control" value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}">
 						            </div>
 						            <div class="form-group">
 						                <span class="icon icon-bubbles-2"></span>
-						                <textarea class="form-control" name="text">Your Review</textarea>
+						                <textarea class="form-control" name="text"></textarea>
 						                
 						            </div>
-						            <div class="form-group has-error">
+						            <div class="form-group col-md-12">
 						                
-						               
-						                <br>
-						                <b>Rating</b> <span>Bad</span>&nbsp;
-						                <input type="radio" name="rating" value="1"> &nbsp;
-						                <input type="radio" name="rating" value="2"> &nbsp;
-						                <input type="radio" name="rating" value="3"> &nbsp;
-						                <input type="radio" name="rating" value="4"> &nbsp;
-						                <input type="radio" name="rating" value="5"> &nbsp;
-						                <span>Good</span>
-						                <br>
+						                <div class="col-md-2">
+							                <br>
+							                <span class="row_top"><b>Rating: </b></span>
+						            	</div>
+										<div class="col-md-10">
+							                <div class="col-md-2">
+												<div class="radio radio-info radio-inline">
+													<input type="radio" name="product_size" value="1" id="1">
+						                                            
+						                            <label for="1"> Poor </label>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="radio radio-info radio-inline">
+													<input type="radio" name="product_size" value="1" id="2">
+						                                            
+						                            <label for="2"> Bad </label>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="radio radio-info radio-inline">
+													<input type="radio" name="product_size" value="1" id="3">
+						                                            
+						                            <label for="3"> Good </label>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="radio radio-info radio-inline">
+													<input type="radio" name="product_size" value="1" id="4">
+						                                            
+						                            <label for="4"> Great </label>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="radio radio-info radio-inline">
+													<input type="radio" name="product_size" value="1" id="5">
+						                                            
+						                            <label for="5"> Excellent </label>
+												</div>
+											</div>
+										</div>
 						            </div>
 						            <div class="buttons clearfix btn_visible"><a id="button-review" class="btn btn-info">Continue</a></div>
 

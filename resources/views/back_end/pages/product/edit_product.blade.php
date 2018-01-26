@@ -72,39 +72,6 @@
                                         @endif                  
                                      </div>
                                 </div> 
-
-                               <div class="row">                             
-                                <div class="col-md-6">
-                                    <div class="form-group {{ $errors->has('product_level') ? ' has-error' : '' }}">
-                                        <label class="col-md-12 txt-left control-label">Prodcut Level</label>
-                                        
-                                        <div class="col-md-12">
-                                            {!! Form::select('product_level',['top'=>'Top','feature'=>'Feature','trend'=>'Trend','usual'=>'Usual'],$product->productDetail->pro_level,['class'=>'form-control select','required','placeholder'=>'--- Select Product Level ---','data-validation'=>'required']) !!}
-
-                                             @if ($errors->has('product_level'))
-                                                <span class="text-danger help-block">
-                                                    <block>{{ $errors->first('product_level') }}</block>
-                                                </span>
-                                            @endif 
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group {{ $errors->has('product_status') ? ' has-error' : '' }}">
-                                        <label for="product_Status" class="col-md-12 txt-left control-label">Product Status</label>
-                                        <div class="col-md-12">
-                                        {!! Form::select('product_status',['1'=>'Enable','0'=>'Disable'],$product->productDetail->pro_status,['id'=>'level_id','class'=>'form-control select','required','data-validation'=>'required','placeholder'=>'--- Select Product Stataus ---']) !!}
-                                        @if ($errors->has('product_status'))
-                                            <span class="text-danger help-block">
-                                                <block>{{ $errors->first('product_status') }}</block>
-                                            </span>
-                                        @endif 
-                                            
-                                        </div>
-                                    </div>   
-                                </div>
-                                </div>
                             </div>
                         <!-- /Left Side -->
 
@@ -146,23 +113,56 @@
                                         </div>
                                     </div>
                                 </div>
-                     
-                                    
-                               <div class="form-group {{ $errors->has('product_description') ? 'has-error' : '' }} ">
-                                    <label for="product_description" class="col-md-12 txt-left control-label">Product Description</label>
-                                    <div class="col-md-12">
-                                        <textarea class="form-control" placeholder="Enter Product Description" required="required" name="product_description" type="text" data-validation="required">{{ $product->productDetail->pro_info }}</textarea> 
 
-                                        @if ($errors->has('product_description'))
-                                            <span class="text-danger help-block">
-                                                <block>{{ $errors->first('product_description') }}</block>
-                                            </span>
-                                        @endif                  
+                                <div class="row">                             
+                                <div class="col-md-6">
+                                    <div class="form-group {{ $errors->has('product_level') ? ' has-error' : '' }}">
+                                        <label class="col-md-12 txt-left control-label">Prodcut Level</label>
+                                        
+                                        <div class="col-md-12">
+                                            {!! Form::select('product_level',['top'=>'Top','feature'=>'Feature','trend'=>'Trend','usual'=>'Usual'],$product->productDetail->pro_level,['class'=>'form-control select','required','placeholder'=>'--- Select Product Level ---','data-validation'=>'required']) !!}
+
+                                             @if ($errors->has('product_level'))
+                                                <span class="text-danger help-block">
+                                                    <block>{{ $errors->first('product_level') }}</block>
+                                                </span>
+                                            @endif 
+                                        </div>
                                     </div>
-                                </div>  
-            
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group {{ $errors->has('product_status') ? ' has-error' : '' }}">
+                                        <label for="product_Status" class="col-md-12 txt-left control-label">Product Status</label>
+                                        <div class="col-md-12">
+                                        {!! Form::select('product_status',['1'=>'Enable','0'=>'Disable'],$product->productDetail->pro_status,['id'=>'level_id','class'=>'form-control select','required','data-validation'=>'required','placeholder'=>'--- Select Product Stataus ---']) !!}
+                                        @if ($errors->has('product_status'))
+                                            <span class="text-danger help-block">
+                                                <block>{{ $errors->first('product_status') }}</block>
+                                            </span>
+                                        @endif 
+                                            
+                                        </div>
+                                    </div>   
+                                </div>
+                                </div>
+                     
                             </div>
                             <!-- /Right Side -->
+
+                        <!-- Product Description -->  
+                           <div class="form-group col-md-12 {{ $errors->has('product_description') ? 'has-error' : '' }} ">
+                                <label for="product_description" class="col-md-12 txt-left control-label">Product Description</label>
+                                <div class="col-md-12">
+                                    <textarea id="productDescription" class="form-control" placeholder="Enter Product Description" required="required" name="product_description" type="text" data-validation="required">{{ $product->productDetail->pro_info }}</textarea> 
+
+                                    @if ($errors->has('product_description'))
+                                        <span class="text-danger help-block">
+                                            <block>{{ $errors->first('product_description') }}</block>
+                                        </span>
+                                    @endif                  
+                                </div>
+                            </div>  
 
                         <!-- Available Size -->
                          <div class="form-group col-md-8">

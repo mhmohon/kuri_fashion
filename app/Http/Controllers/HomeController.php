@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\ProductDetail;
 
 class HomeController extends Controller
 {
@@ -25,8 +27,14 @@ class HomeController extends Controller
     {
         return view('front_end.pages.home');
     }
-    public function singleProductDetails()
+    public function singleProductDetails($id)
     {
-         return view('front_end.pages.single_product');
+        
+        $product = Product::find($id);
+
+        $product_colors = explode(",", $product->productDetail->pro_other_colors);
+        //dd($product_colors);
+        $product_sizes = explode(",", $product->productDetail->pro_size);
+        return view('front_end.pages.single_product',compact('product','product_colors','product_sizes'));
     }
 }

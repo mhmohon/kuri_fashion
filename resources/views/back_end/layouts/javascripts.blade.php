@@ -9,6 +9,7 @@
 	<script src="{{ asset('js/back_end/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/back_end/bootstrap.min.js') }}"></script>
 	
+	<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 	<!-- jQuery Validation -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
@@ -32,7 +33,6 @@
 	<script src="{{ asset('js/back_end/plugins/jquery.toast.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('js/back_end/plugins/select2.min.js') }}" type="text/javascript"></script>
 
-
 	<!-- App js -->
 	<script src="{{ asset('js/back_end/jquery.core.js') }}"></script>
 	<script src="{{ asset('js/back_end/jquery.app.js') }}"></script>
@@ -51,11 +51,36 @@
 
 		// Select2
 		$(".select2").select2();
-	</script>
-	<script type="text/javascript">
+
         window.setTimeout(function(){
 		  $('.alert').addClass("fadeOut");
 		}, 7000);
+
+		tinymce.init({
+            selector: '#productDescription',
+            /* theme of the editor */
+            theme: "modern",
+            skin: "lightgray",
+            
+            /* width and height of the editor */
+            width: "100%",
+            height: 200,
+            
+            /* display statusbar */
+            statubar: true,
+            
+            /* plugin */
+            plugins: [
+                "advlist autolink link image lists charmap preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                "save table contextmenu directionality paste textcolor"
+            ],
+
+            /* toolbar */
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor",
+            
+            
+        });
 	</script>
 
       

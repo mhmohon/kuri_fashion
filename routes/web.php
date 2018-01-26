@@ -15,7 +15,6 @@
 
 
 
-Route::get('/single_product','HomeController@s_product');
 
 
 
@@ -32,3 +31,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'PageController@home');
+
+Route::get('/single-product/{id}/view/','HomeController@singleProductDetails')->name('viewSingleProduct');

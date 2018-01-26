@@ -89,7 +89,7 @@
 							<div class="label-stock label label-success 2-3 Days">NEW</div>
 						
 							<div class="product-image-container ">
-								<a class="link-block" href="#" title=" Swine shankle" target="_self" >
+								<a class="link-block" href="#" title=" Swine shankle" target="_blank" >
 									<img src="images/product/{{ $productDetail->pro_image }}" alt=" Swine shankle" height="330" width="270">
 								</a>									
 							</div>
@@ -104,9 +104,9 @@
 							
 								<button class="wishlist btn-button" type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('144');"><i class="fa fa-heart"></i></button>
 
-								<button class="addToCart" type="button" data-toggle="tooltip" title="Add to Cart" onclick="cart.add('144');">
-									<span><i class="fa fa-shopping-bag"></i>Add to Cart</span>
-								</button>
+								<a class="addToCart btn" data-toggle="tooltip" href="{{ route('viewSingleProduct',$productDetail->product_id) }}" title="View Details">
+									<span></i>View Details</span>
+								</a>
 								
 								<div class="so-quickview">
 									<a class="hidden" data-product='144' href="#" target="_self"></a>

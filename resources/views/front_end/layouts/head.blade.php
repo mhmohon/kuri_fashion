@@ -20,7 +20,9 @@
 
 
 <link rel="stylesheet" href="/css/main.css">
+<link href="{{ asset('css/back_end/materialize.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="/css/custom.css">
+
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="/js/easyzoom.js"></script>

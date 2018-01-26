@@ -1,5 +1,11 @@
 /*Start Full body Css*/
-
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+	
+	font-size: 14px;
+}
+.checkbox-inline, .radio-inline{
+	padding-left: 0px;
+}
 .button, .btn:hover{
 	background: #ff5a01;
 }
@@ -12,6 +18,9 @@
 }
 .layout_top{
 	padding-top: 55px;
+}
+.row_bottom{
+	padding-bottom: 20px
 }
 /*slider*/
 .carousel-inner .item{
