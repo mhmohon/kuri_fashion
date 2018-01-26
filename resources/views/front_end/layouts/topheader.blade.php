@@ -16,7 +16,15 @@
 				<!-- If User is log in -->
 				@else
 				<span class="loginas">Login As:</span>
-				<li class="account" id="my_account"> <a href="#" title="My Account" class="btn-xs dropdown-toggle" data-toggle="dropdown"> <span>{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</span> <span class="fa fa-angle-down"></span></a>
+				<li class="account" id="my_account">
+					<a href="#" title="My Account" class="btn-xs dropdown-toggle" data-toggle="dropdown">
+						@if(checkPermission(['admin','superAdmin','staff']))
+						<span>{{ Auth::user()->staff->first_name . ' ' . Auth::user()->staff->last_name }}</span> <span class="fa fa-angle-down"></span>
+						@endif
+						@if(checkPermission(['customer']))
+						<span>{{ Auth::user()->customer->first_name . ' ' . Auth::user()->customer->last_name }}</span> <span class="fa fa-angle-down"></span>
+						@endif
+					</a>
 					<ul class="account dropdown-menu ">
 						@if(checkPermission(['admin','superAdmin','staff']))
 
@@ -96,11 +104,17 @@
 							<div class="shopcart-inner">
 								<p class="text-shopping-cart">
 								 My cart</p>
-						   
+						   	@if(Cart::count() > 0)
 								<span class="total-shopping-cart cart-total-full">
-								   <span class="items_cart">0 </span><span class="items_cart2">item(s)</span>
+								   <span class="items_cart">{{ Cart::count() }} </span><span class="items_cart2">item(s)</span>
+								   <span class="items_carts"> - ৳{{ Cart::subtotal() }}</span>        
+								</span>
+							@else
+								<span class="total-shopping-cart cart-total-full">
+								   <span class="items_cart">0</span><span class="items_cart2">item(s)</span>
 								   <span class="items_carts"> - 0.00৳</span>        
 								</span>
+							@endif
 							</div>
 								
 
@@ -111,12 +125,54 @@
 							</div>
 						  </a>
 
+						@if(Cart::count() > 0)
+							<ul class="dropdown-menu pull-right shoppingcart-box">
+							    <li class="content-item">
+							        <table class="table table-striped">
+							            <tbody>
+							             @foreach(Cart::content() as $cart_item)
+							                <tr>
+							                    <td class="text-center size-img-cart">
+							                        <a href="{{ route('viewSingleProduct',$cart_item->id) }}"><img src="{{ asset('images/product/'.$cart_item->options->image)}}" alt="{{ $cart_item->name }}" title="{{ $cart_item->name }}" class="preview" height="90" width="120"></a>
+							                    </td>
+							                    <td class="text-left"><a href="{{ route('viewSingleProduct',$cart_item->id) }}">{{ $cart_item->name }}</a>
+					                                <br>     
+					                                <small>Color: {{ $cart_item->options->color }}</small>
+					                                <br>	             
+					                                <small>Size: {{ $cart_item->options->size }}</small>
+					                                <br>
+					                                <small>Date: 2017-06-08</small>
+					                                <br>
+					                                <small>Delivery Date: 2017-06-09</small>
+					                            </td>
+							                    <td class="text-center">
+							                        x {{ $cart_item->qty }} </td>
+							                    <td class="text-center">
+							                         ‎৳ {{ number_format($cart_item->total) }} </td>
 
+							                    <td class="text-right">
+							                        <a href="{{ route('cartDelete', $cart_item->rowId) }}" class="fa fa-trash-o" style="padding:3px;">						
+							                        </a>
+							                    </td>
+							                </tr>
+							            @endforeach
+							            </tbody>
+							        </table>
+							    </li>
+							    <li>
+							        <div class="checkout clearfix">
+							            <a href="{{ route('cartIndex') }}" class="btn btn-view-cart inverse">View Cart</a>
+							            <a href="{{ route('cartIndex') }}" class="btn btn-checkout pull-right">Checkout</a>
+							        </div>
+							    </li>
+							</ul>
+						@else
 							<ul class="dropdown-menu pull-right shoppingcart-box">
 								<li>
 									<p class="text-center empty">Your shopping cart is empty!</p>
 								</li>
 							</ul>
+						@endif
 						</div>
 					</div>
 					<!-- WISHLIST  -->

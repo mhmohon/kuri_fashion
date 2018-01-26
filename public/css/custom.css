@@ -10,6 +10,7 @@
 	background: #ff5a01;
 }
 /*End Full body Css*/
+
 .row_left{
 	margin-left:7.6%
 }
@@ -22,6 +23,7 @@
 .row_bottom{
 	padding-bottom: 20px
 }
+
 /*slider*/
 .carousel-inner .item{
 	max-height: 405px;
@@ -97,3 +99,15 @@
 	visibility: visible !important; 
 }
 /*End Single product page Css*/
+
+/*Start cart page Css*/
+
+.txt_color a{
+	color: #fff !important;
+}
+
+.txt_color a:hover{
+	color: #fff !important;
+}
+
+/*End cart page Css*/

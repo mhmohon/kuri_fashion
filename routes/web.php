@@ -24,6 +24,8 @@ require __DIR__ . '/web/category.php';
 
 require __DIR__ . '/web/product.php';
 
+require __DIR__. '/web/cart.php';
+
 
 
 Auth::routes();
@@ -32,4 +34,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'PageController@home');
 
-Route::get('/single-product/{id}/view/','HomeController@singleProductDetails')->name('viewSingleProduct');
+
+
+

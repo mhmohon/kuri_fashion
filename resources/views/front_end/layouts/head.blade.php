@@ -11,6 +11,8 @@
 
 <!-- Bootstrap -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ asset('css/plugins/form-wizard-orange.css') }}">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -25,6 +27,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="{{ asset('js/plugins/form-wizard.js') }}"></script>
 <script src="/js/easyzoom.js"></script>
 <script src="/js/Drift.js"></script>
 <script src="/js/main.js"></script>

@@ -40,10 +40,16 @@
               <input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name" id="input-lastname" class="form-control" />
              </div>
           </div>
-          <div class="form-group required">
+          <div class="form-group required {{ $errors->has('email') ? ' has-error' : '' }}">
             <label class="col-sm-2 control-label" for="input-email">E-Mail</label>
             <div class="col-sm-10">
               <input type="email" name="email" value="{{ old('email') }}" placeholder="E-Mail" id="input-email" class="form-control" data-validation="email"/>
+
+              @if ($errors->has('email'))
+                  <span class="help-block">
+                      <block>{{ $errors->first('email') }}</block>
+                  </span>
+              @endif
             </div>
           </div>
           <div class="form-group required">

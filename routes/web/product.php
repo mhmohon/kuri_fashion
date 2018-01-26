@@ -9,5 +9,4 @@ Route::get('/dashboard/products/{id}/edit','ProductBackEndController@edit')->nam
 Route::post('/dashboard/products/{id}/update', 'ProductBackEndController@update')->name('productUpdate');
 
 //For Customer Route.
-
-Route::get('/products/product-details/product-id={id}', 'HomeController@singleProductDetails')->name('singleProductDetails');
+Route::get('/single-product/{id}/view/','HomeController@singleProductDetails')->name('viewSingleProduct');

@@ -9,8 +9,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    //Specify which table
-    protected $table = 'tbl_users';
 
     /**
      * The attributes that are mass assignable.
@@ -29,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function staff()
+    {
+        return $this->hasOne(Staff::class);
+    }
+
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
 }

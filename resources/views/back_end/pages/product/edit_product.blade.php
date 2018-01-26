@@ -269,7 +269,7 @@
 
                         </div>
                              <input class="btn btn-danger waves-light" type="submit" value="Submit">
-				        </form>
+				        {!! Form::close() !!}
 			        </div>  
 		        </div>        
             </div>
