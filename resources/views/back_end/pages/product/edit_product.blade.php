@@ -234,7 +234,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="radio radio-info radio-inline">
-                                            <input type="radio" name="image" id="inlineCheckbox1"onclick="showdiv()">
+                                            <input type="radio" name="image" id="inlineCheckbox1" onclick="showdiv()">
                                             <label for="inlineCheckbox1"> Upload New Picture </label>
                                         </div>
                                     </div>

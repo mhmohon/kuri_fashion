@@ -7,27 +7,30 @@
 
 
 <link rel="stylesheet" media="screen, projection" href="/css/drift-basic.css">
-<link rel="stylesheet" href="/css/easyzoom.css" />
+<link rel="stylesheet" href="{{ asset('css/easyzoom.css') }}" />
 
 <!-- Bootstrap -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="{{ asset('css/plugins/form-wizard-orange.css') }}">
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<!-- For Ajax Country Select -->
+<script src="{{ asset('js/plugins/country-select.js') }}"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.77/theme-default.css"/>
 
 
+<link rel="stylesheet" href="{{ asset('css/onepagecheckout.css') }}">
 <link rel="stylesheet" href="/css/main.css">
 <link href="{{ asset('css/back_end/materialize.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="/css/custom.css">
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="{{ asset('js/plugins/form-wizard.js') }}"></script>
 <script src="/js/easyzoom.js"></script>
 <script src="/js/Drift.js"></script>
 <script src="/js/main.js"></script>

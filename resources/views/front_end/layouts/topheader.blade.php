@@ -204,6 +204,4 @@
 		</div>
 	  
 	</div>
-	
-<!-- Navbar switcher -->
 </header>
