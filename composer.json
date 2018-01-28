@@ -28,7 +28,8 @@
             "App\\": "app/"
         },
         "files": [
-            "app/Http/Helpers/permissions.php"
+            "app/Http/Helpers/permissions.php",
+            "app/Http/Helpers/addressHelper.php"
         ]
     },
     "autoload-dev": {

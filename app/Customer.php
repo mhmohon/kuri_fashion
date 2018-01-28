@@ -8,8 +8,19 @@ class Customer extends Model
 {
     
     protected $fillable =  ['first_name','last_name','phone','user_id'];
+
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function order()
+    {
+    	return $this->hasMany(Order::class);
+    }
+
+    public function address()
+    {
+    	return $this->hasMany(Address::class);
     }
 }

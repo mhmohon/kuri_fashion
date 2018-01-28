@@ -74,7 +74,7 @@
 								<div class="radio radio-info radio-inline">
 									<input type="radio" name="product_color" value="{{ $product_color }}" id="{{ $product_color }}">
 		                                            
-		                            <label for="{{ $product_color }}"> {{ ucfirst($product_color) }} </label>
+		                            <label for="{{ $product_color }}"> {{ title_case($product_color) }} </label>
 								</div>
 							</div>
 	                   		
@@ -90,7 +90,7 @@
 								<div class="radio radio-info radio-inline">
 									<input type="radio" name="product_size" value="{{ $product_size }}" id="{{ $product_size }}">
 		                                            
-		                            <label for="{{ $product_size }}">{{ ucfirst($product_size) }}</label>
+		                            <label for="{{ $product_size }}">{{ title_case($product_size) }}</label>
 								</div>
 							</div>
 	                   	@endforeach

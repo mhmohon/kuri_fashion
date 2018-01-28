@@ -17,9 +17,11 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('payment_id');
+            $table->unsignedInteger('address_id');
+            $table->string('order_description');
             $table->date('order_date');
-            $table->date('estimate_delivery_date');
-            $table->enum('status', ['processing', 'confirm', 'ready', 'delivered']);
+            $table->date('estimate_delivery_date')->nullable();
+            $table->enum('status', ['processing', 'confirm', 'ready', 'delivered'])->default('processing');
             $table->timestamps();
         });
     }

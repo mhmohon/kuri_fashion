@@ -10,10 +10,14 @@ class Product extends Model
 
     public function category()
     {
-    	return $this->belongsTo(Category::class);
+    	return $this->belongsTo(Category::class,'category_id');
     }
     public function productDetail()
     {
     	return $this->hasOne(ProductDetail::class);
+    }
+    public function orderItem()
+    {
+    	return $this->hasOne(OrderItem::class);
     }
 }

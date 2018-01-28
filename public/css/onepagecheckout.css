@@ -848,7 +848,8 @@
         min-height: 33px;
         float: left;
         padding-top: 5px;
-        padding-left: 0
+        padding-left: 0;
+		text-align: left;
     }
     .rtl .so-onepagecheckout .col-left .checkout-login label,
     .rtl .so-onepagecheckout .col-left .checkout-register label,

@@ -10,7 +10,7 @@
 		<li><a href="/show-cart"> Show Cart</a></li>
 	</ul>
 
-	@if(Cart::count() > 0)
+	@if(Cart::count())
 	<div class="row">
 	    <div id="content" class="col-sm-12">
 	        <h1>Shopping Cart </h1>
@@ -101,7 +101,7 @@
 	
 	<div class="buttons clearfix">
 	    <div class="pull-left"><a href="/home" class="btn btn-default">Continue Shopping</a></div>
-	    <div class="pull-right"><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=checkout/checkout" class="btn btn-primary">Checkout</a></div>
+	    <div class="pull-right"><a href="{{ url('/checkout') }}" class="btn btn-primary">Checkout</a></div>
 	</div>
 	@else
 

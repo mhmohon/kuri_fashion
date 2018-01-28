@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
- load_json_data('state');
+ load_json_data('division');
 
  function load_json_data(id, parent_id)
  {
@@ -9,7 +9,7 @@ $(document).ready(function(){
 
    html_code += '<option value="">Select '+id+'</option>';
    $.each(data, function(key, value){
-    if(id == 'state')
+    if(id == 'division')
     {
      if(value.parent_id == '0')
      {
@@ -29,15 +29,15 @@ $(document).ready(function(){
 
  }
 
- $(document).on('change', '#state', function(){
+ $(document).on('change', '#division', function(){
   var country_id = $(this).val();
   if(country_id != '')
   {
-   load_json_data('city', country_id);
+   load_json_data('region', country_id);
   }
   else
   {
-   $('#city').html('<option value="">Select city</option>');
+   $('#region').html('<option value="">Select Region</option>');
   }
  });
 });

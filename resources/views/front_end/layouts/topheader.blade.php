@@ -3,8 +3,8 @@
 	<div class="header-top compact-hidden">		
 		<div class="htop-left pull-left">
 			<ul class="top-link list-inline">	
-				<!-- If User is not log in -->
-				@guest	
+			<!-- If User is not log in -->
+			@guest	
 				<li class="account" id="my_account">
 					<a href="{{ route('login') }}" title="Login">
 					<span>Login</span></a>
@@ -14,16 +14,17 @@
 					<span>Register</span></a>
 				</li>
 				<!-- If User is log in -->
-				@else
+			@else
 				<span class="loginas">Login As:</span>
 				<li class="account" id="my_account">
 					<a href="#" title="My Account" class="btn-xs dropdown-toggle" data-toggle="dropdown">
-						@if(checkPermission(['admin','superAdmin','staff']))
+						
+					@if(checkPermission(['admin','superAdmin','staff']))
 						<span>{{ Auth::user()->staff->first_name . ' ' . Auth::user()->staff->last_name }}</span> <span class="fa fa-angle-down"></span>
-						@endif
-						@if(checkPermission(['customer']))
+					@endif
+					@if(checkPermission(['customer']))
 						<span>{{ Auth::user()->customer->first_name . ' ' . Auth::user()->customer->last_name }}</span> <span class="fa fa-angle-down"></span>
-						@endif
+					@endif
 					</a>
 					<ul class="account dropdown-menu ">
 						@if(checkPermission(['admin','superAdmin','staff']))
