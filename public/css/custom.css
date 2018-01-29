@@ -9,7 +9,7 @@
 .button, .btn:hover{
 	background: #ff5a01;
 }
-/*End Full body Css*/
+
 
 .row_left{
 	margin-left:7.6%
@@ -18,13 +18,35 @@
 	padding-top: 30px;
 }
 .layout_top{
-	padding-top: 55px;
+	padding-top: 40px;
 }
 .row_bottom{
 	padding-bottom: 20px
 }
 
+/*End Full body Css*/
+
+/* For Category */
+
+span.category-item {
+    padding: 25px 20px;
+    background: #e4e0e0;
+	border-radius: 3px;
+	
+}
+span.category-item:hover {
+    color: #fff;
+	background: #FF5A01;
+	
+}
+.hot-categories a:hover span{
+	color: #fff;
+    text-decoration: none;
+}
+/* For Category */
+
 /*slider*/
+
 .carousel-inner .item{
 	max-height: 405px;
 	max-width: 100%;
@@ -95,8 +117,21 @@
 /*End Registration page Css*/
 
 /*Start Single product page Css*/
+
 .btn_visible{
 	visibility: visible !important; 
+}
+.product-category>ul>li{
+	list-style-type: square;
+}
+.product-category>ul{
+	padding-left:15px;
+}
+.women-size{
+	overflow:hidden;
+}
+.s-guide{
+	padding: 0px 50px;
 }
 /*End Single product page Css*/
 

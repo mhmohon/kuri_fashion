@@ -15,7 +15,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart_items = Cart::content();
+        $cart_items = Cart::instance('shopping')->content();
         //dd($cart_items);
         return view('front_end.pages.show_cart', compact('cart_items'));
     }
@@ -38,7 +38,7 @@ class CartController extends Controller
 
         
         //Cart::destroy();
-        Cart::add($data);
+        Cart::instance('shopping')->add($data);
         return back()->withMsgsuccess($product->pro_name. ' added to shopping cart');
 
 
@@ -67,16 +67,6 @@ class CartController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -88,7 +78,7 @@ class CartController extends Controller
     public function update_to_cart(Request $request, $id)
     {
         $new_qty = request('quantity');
-        Cart::update($id, $new_qty);
+        Cart::instance('shopping')->update($id, $new_qty);
         return redirect('/show-cart')->withMsgsuccess('Product Cart Updated Successfully');
     }
 
@@ -100,7 +90,7 @@ class CartController extends Controller
      */
     public function delete_to_cart($id)
     {
-        Cart::remove($id);
+        Cart::instance('shopping')->remove($id);
         return back()->withMsgsuccess('Product Cart Successfully Deleted');
     }
 }

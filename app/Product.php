@@ -20,4 +20,8 @@ class Product extends Model
     {
     	return $this->hasOne(OrderItem::class);
     }
+    public function inventory()
+    {
+    	return $this->hasOne(Inventory::class);
+    }
 }

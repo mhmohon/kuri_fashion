@@ -19,6 +19,7 @@
 <div class="container product-detail product-left">
 	<div class="row">
     
+    <!-- layouts for sidebar category -->
     @include ('front_end.layouts.sidebar_category')
             	
     <div id="content" class="col-md-9 col-sm-12 col-xs-12">
@@ -51,7 +52,7 @@
 
 				<div class="product-box-desc">
 					<div class="model"><span>Product Code:</span> {{ $product->pro_code }}</div>
-					<div class="stock"><span> Stock: </span> <i class="fa fa-check-square-o"></i> 753</div>			
+					<div class="stock"><span> Stock: </span> <i class="fa fa-check-square-o"></i> {{ $product->inventory->quantity_in_stock }}</div>			
 				</div>
 				
 			{!! Form::open(['route'=>['cartAdd',$product->id],'name'=>'addToCart']) !!}
@@ -62,9 +63,9 @@
                    	<div class="row row_bottom">
 	                   	<div class="col-md-2">
 		                   	<div class="radio radio-info radio-inline">
-									<input type="radio" name="product_color" value="current" id="current" checked>
-		                                            
-		                            <label for="current"> Current</label>
+								<input type="radio" name="product_color" value="{{ $product->productDetail->pro_color }}" id="current" checked>
+	                                            
+	                            <label for="current"> {{ ucfirst($product->productDetail->pro_color) }}</label>
 							</div>
 						</div>
 
@@ -123,9 +124,8 @@
 								<div class="add-to-links wish_comp">
 									<ul class="blank">
 										<li class="wishlist">
-											<a class="icon" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('144');"><i class="fa fa-heart-o"></i></a>
+											<a href="{{ route('wishlistAdd',$product->productDetail->product_id) }}" class="icon" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart-o"></i></a>
 										</li>
-										
 									</ul>
 								</div>
 							</div>	
@@ -153,110 +153,9 @@
 		<div class="row product-bottom">
 						
 			<div class="col-xs-12">
-				<div class="producttab ">
-					<div class="tabsslider  horizontal-tabs col-xs-12">
-						<ul class="nav nav-tabs font-title">
-							<li class="active"><a data-toggle="tab" href="#tab-1">Description</a></li>
-
-							<li class="item_nonactive"><a data-toggle="tab" href="#tab-4">TAGS</a></li>
-							
-							<li class="item_nonactive"><a data-toggle="tab" href="#tab-review">Reviews (0)</a></li>
-														
-						</ul>
-											
-						<div class="tab-content  col-xs-12">
-							<div id="tab-1" class="tab-pane fade active in">
-								{!! $product->productDetail->pro_info  !!}
-							</div>
-						<div id="tab-review" class="tab-pane fade in">
-							
-							<form>
-						        <div id="review">
-						            <table class="table table-striped table-bordered">
-						                <tbody>
-						                    <tr>
-						                        <td style="width: 50%;"><strong>haianh</strong></td>
-						                        <td class="text-right">02/03/2017</td>
-						                    </tr>
-						                    <tr>
-						                        <td colspan="2">
-						                            <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Mauris interdum fringilla.</p>
-						                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-						                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-						                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-						                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-						                            <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
-						                        </td>
-						                    </tr>
-						                </tbody>
-						            </table>
-						            <div class="text-right"></div>
-						        </div>
-						        <h2 id="review-title">Write a review</h2>
-						        <div class="contacts-form">
-						            <div class="form-group">
-						                <span class="icon icon-user"></span>
-						                <input type="text" name="name" class="form-control" value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}">
-						            </div>
-						            <div class="form-group">
-						                <span class="icon icon-bubbles-2"></span>
-						                <textarea class="form-control" name="text"></textarea>
-						                
-						            </div>
-						            <div class="form-group col-md-12">
-						                
-						                <div class="col-md-2">
-							                <br>
-							                <span class="rating"><b>Rating: </b></span>
-						            	</div>
-										<div class="col-md-10">
-							                <div class="col-md-2">
-												<div class="radio radio-info radio-inline">
-													<input type="radio" name="product_size" value="1" id="1">
-						                                            
-						                            <label for="1"> Poor </label>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="radio radio-info radio-inline">
-													<input type="radio" name="product_size" value="1" id="2">
-						                                            
-						                            <label for="2"> Bad </label>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="radio radio-info radio-inline">
-													<input type="radio" name="product_size" value="1" id="3">
-						                                            
-						                            <label for="3"> Good </label>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="radio radio-info radio-inline">
-													<input type="radio" name="product_size" value="1" id="4">
-						                                            
-						                            <label for="4"> Great </label>
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="radio radio-info radio-inline">
-													<input type="radio" name="product_size" value="1" id="5">
-						                                            
-						                            <label for="5"> Excellent </label>
-												</div>
-											</div>
-										</div>
-						            </div>
-						            <div class="buttons clearfix btn_visible"><a id="button-review" class="btn btn-info">Continue</a></div>
-
-						        </div>
-						    </form>
-						</div>
-						<div id="tab-4" class="tab-pane fade"></div>
-				  	</div>
-				</div>
-			</div>
-								
+				
+				<!-- layouts for product tab -->
+    			@include ('front_end.layouts.partial.product_tab')			
 												
 			<div class="bottom-product clearfix">
 				<ul class="nav nav-tabs">
@@ -492,18 +391,6 @@
 			$(this).find("[data-index='0']").addClass('active');
 		});
 		
-		$('.thumb-video').magnificPopup({
-		  type: 'iframe',
-		  iframe: {
-			patterns: {
-			   youtube: {
-				  index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
-				  id: 'v=', // String that splits URL in a two parts, second part should be %id%
-				  src: '//www.youtube.com/embed/%id%?autoplay=1' // URL that will be set as a source for iframe. 
-					},
-				}
-			}
-		});
 	});
 	
 	

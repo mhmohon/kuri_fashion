@@ -55,7 +55,7 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-telephone">Phone Number</label>
             <div class="col-sm-10">
-              <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" id="input-telephone" class="form-control" data-validation="length number" data-validation-length="min10"/>
+              <input type="text" name="phone" value="{{ old('phone') }}" placeholder="Phone" id="input-telephone" class="form-control" data-validation="length number" data-validation-length="max11"/>
             </div>
               
           </div>

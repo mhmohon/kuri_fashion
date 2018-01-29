@@ -17,14 +17,40 @@ class CategoryTableSeeder extends Seeder
         	'publication_status' => '1',
         ]);
         Category::create([
-        	'cat_name' => 'Casual',
+        	'cat_name' => 'Gown',
         	'cat_description' => '',
             'publication_status' => '1',
         ]);
         Category::create([
-        	'cat_name' => 'Hoodies & Sweatshirts',
+        	'cat_name' => 'Anarkoli',
         	'cat_description' => '',
-            'publication_status' => '0',
+            'publication_status' => '1',
         ]);
+        Category::create([
+            'cat_name' => 'Abaya',
+            'cat_description' => '',
+            'publication_status' => '1',
+        ]);
+        Category::create([
+            'cat_name' => 'Salwar kamiz',
+            'cat_description' => '',
+            'publication_status' => '1',
+        ]);
+        Category::create([
+            'cat_name' => 'Palazzo',
+            'cat_description' => '',
+            'publication_status' => '1',
+        ]);
+        Category::create([
+            'cat_name' => 'Burkha',
+            'cat_description' => '',
+            'publication_status' => '1',
+        ]);
+        Category::create([
+            'cat_name' => 'Pakistani Lawn',
+            'cat_description' => '',
+            'publication_status' => '1',
+        ]);
+
     }
 }

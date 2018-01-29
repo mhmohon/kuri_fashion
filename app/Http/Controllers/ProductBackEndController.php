@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Category;
 use App\Product;
 use App\ProductDetail;
+use App\Inventory;
 class ProductBackEndController extends Controller
 {
     /**
@@ -44,12 +45,15 @@ class ProductBackEndController extends Controller
     public function store(Request $request)
     {       
         //Form Validation
+
         $validate = $this->validate(request(),[
             'product_code' => 'required|min:3|unique:products,pro_code',
             'product_level' => 'required',
             'product_price' => 'required',
+            'product_color' => 'required',
             'product_category' => 'required',
             'product_description' => 'required',
+            'product_stock' => 'required',
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
@@ -66,7 +70,7 @@ class ProductBackEndController extends Controller
         if($validate){
             
             $this->saveProductInfo($request, $product_colors, $product_size, $image_name);
-            return redirect('/dashboard/products/')->withMsgsuccess('Category created successfully');
+            return redirect('/dashboard/products/')->withMsgsuccess('Product Created Successfully');
 
         }else{
 
@@ -84,15 +88,21 @@ class ProductBackEndController extends Controller
         $productDetail = ProductDetail::create([
             'pro_info' => request('product_description'),
             'pro_price' => request('product_price'),
+            'pro_color' => strtolower(request('product_color')),
             'pro_level' => request('product_level'),
             'pro_image' => $image_name,
             'pro_status' => request('product_status'),
+            'pro_weight' => request('product_weight'),
             'pro_size' => $product_size,
             'pro_other_colors' => $product_colors,
             'product_id' => $product->id, 
         ]);
-
-        if($product && $productDetail){
+        $inventory = Inventory::create([
+            'product_id' => $product->id,
+            'quantity_in_stock' => request('product_stock'),      
+        ]);
+        
+        if($product && $productDetail && $inventory){
             return true;
         }
     }
@@ -134,6 +144,7 @@ class ProductBackEndController extends Controller
             'product_price' => 'required',
             'product_category' => 'required',
             'product_description' => 'required',
+            'product_stock' => 'required',
             'product_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
@@ -164,10 +175,12 @@ class ProductBackEndController extends Controller
             $product->productDetail->pro_size = $product_size;
             $product->productDetail->pro_level = $request->product_level;
             $product->productDetail->pro_status = $request->product_status;
+            $product->inventory->quantity_in_stock = $request->product_stock;
             
             
             $product->save();
             $product->productDetail->save();
+            $product->inventory->save();
             
             return redirect('/dashboard/products')->withMsgsuccess('Product Updated Successfully');
             

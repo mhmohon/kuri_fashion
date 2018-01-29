@@ -27,6 +27,13 @@ class AppServiceProvider extends ServiceProvider
             $view->with('productDetails',$productDetails)->with('categories',$categories);
         });
 
+        View::composer('front_end.layouts.sidebar_category', function($view){
+
+            $categories = Category::where('publication_status',1)->get();
+            
+            $view->with('categories',$categories);
+        });
+
         
     }
 

@@ -47,7 +47,7 @@
 	                                    <div class="col-md-12">
 	                                         <input class="form-control" placeholder="Enter Category Name" required="required" name="category_name" type="text" value="{{ old('category_name') }}">
 
-                                             @if ($errors->has('category_name'))
+                                            @if ($errors->has('category_name'))
                                                 <span class="text-danger help-block">
                                                     <block>{{ $errors->first('category_name') }}</block>
                                                 </span>

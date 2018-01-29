@@ -39,12 +39,11 @@
 				<div class="container">
 				<div class="row row_top">
 				@foreach($categories as $category)
-				  <div class="item col-lg-2 col-md-2 col-sm-4 col-xs-6">
+				  <div class="item col-lg-3 col-md-4 col-sm-4 col-xs-6">
 					<div class="item-inner">
 						
-					  <a href="#" title="">
-						<img src="image/cate1.png" alt="image"> 
-						<span>{{ $category->cat_name }}</span>
+					  <a href="#" title="{{ $category->cat_name }}"> 
+						<span class="category-item">{{ $category->cat_name }}</span>
 					  </a>
 					</div>
 				  </div>
@@ -102,11 +101,13 @@
 							</div>
 							<div class="button-group">
 							
-								<button class="wishlist btn-button" type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('144');"><i class="fa fa-heart"></i></button>
-
+								<a href="{{ route('wishlistAdd',$productDetail->product_id) }}" class="wishlist btn-button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart cls" style="padding:12px;"></i></a>
+								
 								<a class="addToCart btn" data-toggle="tooltip" href="{{ route('viewSingleProduct',$productDetail->product_id) }}" title="View Details">
 									<span></i>View Details</span>
 								</a>
+
+								<a class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i></a>
 								
 								<div class="so-quickview">
 									<a class="hidden" data-product='144' href="#" target="_self"></a>
@@ -120,9 +121,7 @@
 						<div class="right-block">
 							
 							<h4>
-								<a href="#" target="_self" title="">
-
-									
+								<a href="#" target="_self" title="">		
 
 								</a>
 							</h4>						
@@ -130,7 +129,7 @@
 							<div class="caption">
 								<div  class="price">
 									
-									<span class="price-new">{{ $productDetail->pro_price }}৳</span>
+									<span class="price-new">৳{{ $productDetail->pro_price }}</span>
 									
 									
 								</div>								

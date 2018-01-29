@@ -35,11 +35,12 @@
 						@endif
 
 						@if(checkPermission(['customer']))
+	
 							<li><a href="#">My Account</a></li>
 							<li><a href="#">Order History</a></li>
 							<li><a href="#">Transactions</a></li>
 							<li><a href="#">Downloads</a></li>
-							<li class="wishlist"><a href="#" id="wishlist-total" class="top-link-wishlist" title="Wish List"><span>Wish List (0)</span></a></li>
+							<li class="wishlist"><a href="{{ route('wishlistIndex') }}" id="wishlist-total" class="top-link-wishlist" title="Wish List"><span>Wish List ({{ Cart::instance('wishlist')->count() }})</span></a></li>
 							
 						@endif
 						<li>
@@ -105,14 +106,14 @@
 							<div class="shopcart-inner">
 								<p class="text-shopping-cart">
 								 My cart</p>
-						   	@if(Cart::count() > 0)
+						   	@if(Cart::instance('shopping')->count() > 0)
 								<span class="total-shopping-cart cart-total-full">
-								   <span class="items_cart">{{ Cart::count() }} </span><span class="items_cart2">item(s)</span>
-								   <span class="items_carts"> - ৳{{ Cart::subtotal() }}</span>        
+								   <span class="items_cart">{{ Cart::instance('shopping')->count() }} </span><span class="items_cart2">item(s)</span>
+								   <span class="items_carts"> - ৳{{ Cart::instance('shopping')->subtotal() }}</span>        
 								</span>
 							@else
 								<span class="total-shopping-cart cart-total-full">
-								   <span class="items_cart">0</span><span class="items_cart2">item(s)</span>
+								   <span class="items_cart">0 </span><span class="items_cart2">item(s)</span>
 								   <span class="items_carts"> - 0.00৳</span>        
 								</span>
 							@endif
@@ -163,7 +164,7 @@
 							    <li>
 							        <div class="checkout clearfix">
 							            <a href="{{ route('cartIndex') }}" class="btn btn-view-cart inverse">View Cart</a>
-							            <a href="{{ route('cartIndex') }}" class="btn btn-checkout pull-right">Checkout</a>
+							            <a href="{{ route('checkoutIndex') }}" class="btn btn-checkout pull-right">Checkout</a>
 							        </div>
 							    </li>
 							</ul>

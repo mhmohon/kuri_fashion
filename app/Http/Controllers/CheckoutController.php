@@ -22,12 +22,24 @@ class CheckoutController extends Controller
     	$id = \Auth::user()->id;
     	$addresses = Address::where('user_id', $id)->get();
     	$cart_items = Cart::content(); //get all cart item.
-        return view('front_end.pages.checkout',compact('addresses','cart_items'));
+        if($cart_items->count()){
+            return view('front_end.pages.checkout',compact('addresses','cart_items'));
+        }else{
+            return redirect('/show-cart')->withMsgerror('You have empty shopping cart');
+        }
+        
     }
 
     public function store(Request $request)
     {
         
+        //Validation
+        $validate = $this->validate(request(),[
+
+            'payment_method' => 'required',
+            'comment' => 'required'
+
+        ]);
 
         $id = \Auth::user()->id;
         $customer_id = \Auth::user()->customer->id;
@@ -36,50 +48,65 @@ class CheckoutController extends Controller
         
         $total = str_replace(',', '', $request->get('total_cost'));
         
-            $customer = Customer::find($customer_id)->update([
+            
+        $this->saveCartInfo($request, $id, $customer_id, $mytime, $addressChecked, $total);
+      
+        return redirect('/home')->withMsgsuccess('Category created successfully');
+    }
 
-                'first_name' => request ('first_name'),
-                'last_name' => request ('last_name'),
-                'phone' => request ('mobile'),
+    public function saveCartInfo(Request $request, $id, $customer_id, $mytime, $addressChecked,$total)
+    {
+        $customer = Customer::find($customer_id)->update([
 
+            'first_name' => request ('first_name'),
+            'last_name' => request ('last_name'),
+            'phone' => request ('mobile'),
+
+        ]);
+
+        if($addressChecked == 'new'){
+
+            $address = Address::create([
+                'street_address' => request('payment_address_1'),
+                'region' => request('payment_zone_id'),  
+                'city' => request('payment_country_id'),
+                'user_id' => $id,
             ]);
 
-            if($addressChecked == 'new'){
+            $order = Order::create([
+                'user_id' => $id,
+                'payment_id' => request('payment_method'),  
+                'address_id' => $address->id,  
+                'order_description' => request('comment'),     
+                'order_date' => $mytime->toDateString(),             
+            ]);
+        }else{
+            $order = Order::create([
+                'user_id' => $id,
+                'payment_id' => request('payment_method'),  
+                'address_id' => request('payment_address_id'),  
+                'order_description' => request('comment'),     
+                'order_date' => $mytime->toDateString(),             
+            ]);
+        }
+        //Get all the cart content.
+        $cart_items = Cart::content();
 
-                $address = Address::create([
-                    'street_address' => request('payment_address_1'),
-                    'region' => request('payment_zone_id'),  
-                    'city' => request('payment_country_id'),
-                    'user_id' => $id,
-                ]);
-
-                $order = Order::create([
-                    'user_id' => $id,
-                    'payment_id' => request('payment_method'),  
-                    'address_id' => $address->id,  
-                    'order_description' => request('comment'),     
-                    'order_date' => $mytime->toDateString(),             
-                ]);
-            }else{
-                $order = Order::create([
-                    'user_id' => $id,
-                    'payment_id' => request('payment_method'),  
-                    'address_id' => request('payment_address_id'),  
-                    'order_description' => request('comment'),     
-                    'order_date' => $mytime->toDateString(),             
-                ]);
-            }
-
+        foreach($cart_items as $cart_item){
             $orderItem = OrderItem::create([
                 'order_id' => $order->id,
-                'product_id' => request('product_id'),  
-                'product_color' => request('product_color'),  
-                'product_size' => request('product_size'),  
-                'quantity' => request('quantity'),     
+                'product_id' => $cart_item->id,  
+                'product_color' => $cart_item->options->color,  
+                'product_size' => $cart_item->options->size,  
+                'quantity' => $cart_item->qty,     
                 'total_price' => $total,             
             ]);
-            dd($order,$orderItem,$customer);
-      
-        return view('front_end.pages.checkout');
+        }
+
+        //if order item store in database then distroy shopping cart.
+        if($customer && $order && $orderItem ){
+            Cart::instance('shopping')->destroy();
+            return true;
+        }
     }
 }

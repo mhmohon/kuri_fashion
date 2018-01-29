@@ -68,10 +68,25 @@
                                             </span>
                                         @endif                  
                                      </div>
+                                </div>
+                                <div class="form-group {{ $errors->has('product_color') ? ' has-error' : '' }}">
+                                    <label for="product_color" class="col-md-12 control-label txt-left">Product Color</label>
+                                    <div class="col-md-10">
+                                        <input class="form-control" placeholder="Enter Product Color" required="required" name="product_color" type="text" value="{{ old('product_color') }}" data-validation="required">
+
+                                        @if ($errors->has('product_color'))
+                                            <span class="text-danger help-block">
+                                                <block>{{ $errors->first('product_color') }}</block>
+                                            </span>
+                                        @endif                  
+                                     </div>
                                 </div> 
             
                             </div>
+                            <!-- /Left Side -->
 
+
+                            <!-- Right Side -->
                             <div class="col-md-6">      
                                 <div class="row">
                                     <!-- Product Price -->
@@ -139,9 +154,43 @@
                                         </div>
                                     </div>  
                                 </div>
-                                </div>     
+                                </div>
+
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group {{ $errors->has('product_weight') ? ' has-error' : '' }}">
+                                        <label for="product_weight" class="col-md-12 control-label txt-left">Product Weight(Kg)</label>
+                                        <div class="col-md-12">
+                                            <input class="form-control" placeholder="Enter Product Weight" required="required" name="product_weight" type="text" data-validation="required number" data-validation-allowing="float" value="{{ old('product_weight') }}">
+
+                                            @if ($errors->has('product_weight'))
+                                                <span class="text-danger help-block">
+                                                    <block>{{ $errors->first('product_weight') }}</block>
+                                                </span>
+                                            @endif                  
+                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group {{ $errors->has('product_stock') ? ' has-error' : '' }}">
+                                        <label for="product_stock" class="col-md-12 control-label txt-left">Product Stock</label>
+                                        <div class="col-md-12">
+                                            <input class="form-control" placeholder="Enter Product Stock" required="required" name="product_stock" type="text" data-validation="required number" value="{{ old('product_stock') }}">
+
+                                            @if ($errors->has('product_stock'))
+                                                <span class="text-danger help-block">
+                                                    <block>{{ $errors->first('product_stock') }}</block>
+                                                </span>
+                                            @endif                  
+                                         </div>
+                                    </div>
+                                </div>
+                                </div>       
                             </div>
-                        <!-- Product Description -->
+                            <!-- /Right Side -->
+                            
+                            <!-- Product Description -->
                            <div class="form-group col-md-12{{ $errors->has('product_description') ? 'has-error' : '' }} ">
                                 <label for="product_description" class="col-md-12 txt-left control-label">Product Description</label>
                                 <div class="col-md-12">
@@ -208,6 +257,9 @@
 
                                       <input type="checkbox" name="colors[]" value="lime" class="filled-in chk-col-lime" id="checkbox107">
                                       <label for="checkbox107">Lime</label>
+
+                                      <input type="checkbox" name="colors[]" value="multi" class="filled-in chk-col-lime" id="checkbox108">
+                                      <label for="checkbox108">MultiColor</label>
 
                                 </div>  
                                                        

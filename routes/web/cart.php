@@ -8,3 +8,8 @@ Route::post('/update-to-cart/cart_id={id}', 'CartController@update_to_cart')->na
 //For user Checkout.
 Route::get('/checkout', 'CheckoutController@index')->name('checkoutIndex');
 Route::post('/checkout', 'CheckoutController@store')->name('checkoutStore');
+
+
+Route::get('/show-wishlist', 'WishlistController@index')->name('wishlistIndex');
+Route::get('/add-to-wishlist/product_id={id}', 'WishlistController@add_to_wishlist')->name('wishlistAdd');
+Route::get('/delete-to-wishlist/wishlist_id={id}', 'WishlistController@delete_to_wishlist')->name('wishlistDelete');

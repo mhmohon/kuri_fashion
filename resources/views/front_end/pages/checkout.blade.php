@@ -30,9 +30,9 @@
 									<label class="col-sm-4 control-label" for="input-firstname">First Name</label>
 									<div class="col-sm-8">
 									@if(checkPermission(['admin','superAdmin','staff']))
-									  <input type="text" name="first_name" value="{{ Auth::user()->staff->first_name }}" placeholder="First Name" id="input-firstname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)">
+									  <input type="text" name="first_name" value="{{ Auth::user()->staff->first_name }}" placeholder="First Name" id="input-firstname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="First name has to be an alphanumeric value (3-12 chars)">
 									@else
-									  <input type="text" name="first_name" value="{{ Auth::user()->customer->first_name }}" placeholder="First Name" id="input-firstname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)">
+									  <input type="text" name="first_name" value="{{ Auth::user()->customer->first_name }}" placeholder="First Name" id="input-firstname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="First name has to be an alphanumeric value (3-12 chars)">
 									@endif
 									</div>
 								</div>
@@ -40,9 +40,9 @@
 									<label class="col-sm-4 control-label" for="input-lastname">Last Name</label>
 									<div class="col-sm-8">
 									@if(checkPermission(['admin','superAdmin','staff']))
-									  <input type="text" name="last_name" value="{{ Auth::user()->staff->last_name }}" placeholder="Last Name" id="input-lastname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)">
+									  <input type="text" name="last_name" value="{{ Auth::user()->staff->last_name }}" placeholder="Last Name" id="input-lastname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="Last name has to be an alphanumeric value (3-12 chars)">
 									@else
-									  <input type="text" name="last_name" value="{{ Auth::user()->customer->last_name }}" placeholder="Last Name" id="input-lastname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)">
+									  <input type="text" name="last_name" value="{{ Auth::user()->customer->last_name }}" placeholder="Last Name" id="input-lastname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="Last name has to be an alphanumeric value (3-12 chars)">
 									@endif
 									</div>
 								</div>
@@ -50,9 +50,9 @@
 									<label class="col-sm-4 control-label" for="input-mobile">Mobile</label>
 									<div class="col-sm-8">
 									@if(checkPermission(['admin','superAdmin','staff']))
-									  <input type="text" name="mobile" value="{{ Auth::user()->staff->phone }}" placeholder="First Name" id="input-mobile" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)">
+									  <input type="text" name="mobile" value="{{ Auth::user()->staff->phone }}" placeholder="First Name" id="input-mobile" class="form-control" data-validation="length number" data-validation-length="max11">
 									@else
-									  <input type="text" name="mobile" value="{{ Auth::user()->customer->phone }}" placeholder="First Name" id="input-mobile" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="User name has to be an alphanumeric value (3-12 chars)">
+									  <input type="text" name="mobile" value="{{ Auth::user()->customer->phone }}" placeholder="First Name" id="input-mobile" class="form-control" data-validation="length number" data-validation-length="max11">
 									@endif
 									</div>
 								</div>
@@ -78,14 +78,9 @@
 		                                    		{{ $address->street_address.', '.$address->region.', '. $address->city}}</option>
 		                                    @endforeach
 	                                    @else
-	                                    	<option value="">You have no address</option>
+	                                    	<option value="">You have no saved address</option>
 	                                    @endif
- 
-	                                    @if ($errors->has('payment_address'))
-	                                        <span class="text-danger help-block">
-	                                            <block>{{ $errors->first('payment_address') }}</block>
-	                                        </span>
-	                                    @endif  
+   
                                     </select>       
 								</div>
 							  
@@ -123,15 +118,21 @@
 							    
 								
 								<div class="radio radio-info">
-									<input type="radio" name="payment_method" value="1" id="cod">
+									<input type="radio" name="payment_method" value="1" id="cod" data-validation="required" data-validation-error-msg="You have to select payment method">
 													
 									<label for="cod"> Cash On Delivery   </label>
+									@if ($errors->has('payment_method'))
+		                                <span class="text-danger help-block">
+		                                    <block>{{ $errors->first('payment_method') }}</block>
+		                                </span>
+		                            @endif
 								</div>
 							  </div>
 							</div>
 						</div>
 					  </section>
 					  <section class="section-right col-xs-12">
+					  	
 						<div class="checkout-content checkout-cart">
 						  <h2 class="secondary-title"><i class="fa fa-shopping-cart"></i>Shopping Cart</h2>
 						  <div class="box-inner">
@@ -171,15 +172,6 @@
 									<td class="text-right total">৳ {{  number_format($cart_item->total) }}</td>
 								  </tr>
 
-							  	<!-- Input field for product Color -->
-								<input type="hidden" name="product_color" value="{{ $cart_item->options->color }}">
-								<!-- Input field for product Size -->
-								<input type="hidden" name="product_size" value="{{ $cart_item->options->size }}">
-								<!-- Input field for product Quantity -->
-								<input type="hidden" name="quantity" value="{{ $cart_item->qty }}">
-								<!-- Input field for product ID -->
-								<input type="hidden" name="product_id" value="{{ $cart_item->id }}">
-
 								@endforeach
 								@else
 								  <tr>
@@ -188,6 +180,7 @@
 								  	</td>
 								  </tr>
 								@endif
+									
 								</tbody>
 								<tfoot>
 								  <tr>
@@ -220,7 +213,13 @@
 						<div class="checkout-content confirm-section">
 						  <h2 class="secondary-title"><i class="fa fa-comment"></i>Add Comments About Your Order</h2>
 						  <div class="box-inner">
-							<textarea name="comment" rows="8" placeholder="E.g. Call me for confirmed" class="form-control requried"></textarea>
+							<textarea name="comment" rows="8" placeholder="E.g. Call me for confirmed" class="form-control requried" data-validation="length" data-validation-length="3-200" data-validation-error-msg="Order Comment must be in (3-200 chars)"></textarea>
+
+							@if ($errors->has('comment'))
+                                <span class="text-danger help-block">
+                                    <block>{{ $errors->first('comment') }}</block>
+                                </span>
+                            @endif	
 						  </div>
 						  
 						  <div class="confirm-order">
@@ -247,8 +246,8 @@
 
 @section('extra_scripts')
 
-    <script>
-       
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <script>   
         window.onload = function() {
             document.getElementById('payment-new').style.display = 'none';
         }
@@ -260,7 +259,11 @@
             document.getElementById('payment-new').style.display = 'block';
             document.getElementById('payment-existing').style.display = 'none';
         }
+        $.validate({
+		    modules : 'location, date, security, file', 
+		});
 
     </script>
 
 @endsection
+
