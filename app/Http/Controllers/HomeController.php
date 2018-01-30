@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\ProductDetail;
+use App\Review;
 
 class HomeController extends Controller
 {
@@ -30,11 +31,14 @@ class HomeController extends Controller
     public function singleProductDetails($id)
     {
         
+        //Get All the latest product.
+        $reviews = Review::latest()->get();
+
         $product = Product::find($id);
 
         $product_colors = explode(",", $product->productDetail->pro_other_colors);
-        //dd($product_colors);
+        //dd($review);
         $product_sizes = explode(",", $product->productDetail->pro_size);
-        return view('front_end.pages.single_product',compact('product','product_colors','product_sizes'));
+        return view('front_end.pages.single_product',compact('product','product_colors','product_sizes','reviews'));
     }
 }

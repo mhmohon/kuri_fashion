@@ -185,7 +185,7 @@
 								<tfoot>
 								  <tr>
 									<td colspan="4" class="text-left">Sub-Total:</td>
-									<td class="text-right">৳{{ Cart::subtotal() }}</td>
+									<td class="text-right">৳{{ Cart::instance('shopping')->subtotal() }}</td>
 								  </tr>
 								  <tr>
 								  	@php 
@@ -196,7 +196,7 @@
 								  </tr>
 								  <tr>
 								  	@php
-				                		$subTotal = Cart::subtotal();
+				                		$subTotal = Cart::instance('shopping')->subtotal();
 				                		$subTotal = str_replace(',', '', $subTotal);
 				                		$total = number_format($subTotal + $shippingCost);
 				                	@endphp

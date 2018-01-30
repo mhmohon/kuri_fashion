@@ -17,6 +17,7 @@
 
 
 
+require __DIR__. '/web/cart.php';
 
 require __DIR__ . '/web/dashboard.php';
 
@@ -24,7 +25,10 @@ require __DIR__ . '/web/category.php';
 
 require __DIR__ . '/web/product.php';
 
-require __DIR__. '/web/cart.php';
+require __DIR__ . '/web/order.php';
+
+require __DIR__ . '/web/review.php';
+
 
 
 

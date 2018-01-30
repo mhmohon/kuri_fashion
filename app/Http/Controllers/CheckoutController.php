@@ -21,7 +21,7 @@ class CheckoutController extends Controller
     {
     	$id = \Auth::user()->id;
     	$addresses = Address::where('user_id', $id)->get();
-    	$cart_items = Cart::content(); //get all cart item.
+    	$cart_items = Cart::instance('shopping')->content(); //get all shopping cart item.
         if($cart_items->count()){
             return view('front_end.pages.checkout',compact('addresses','cart_items'));
         }else{
@@ -90,7 +90,7 @@ class CheckoutController extends Controller
             ]);
         }
         //Get all the cart content.
-        $cart_items = Cart::content();
+        $cart_items = Cart::instance('shopping')->content();
 
         foreach($cart_items as $cart_item){
             $orderItem = OrderItem::create([

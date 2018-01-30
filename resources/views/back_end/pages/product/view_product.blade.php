@@ -56,7 +56,7 @@
 
                                     @if($product->productDetail->pro_level == 'top')
                                     <tr>
-                                        <td>{{ ($key+1) }}</td>
+                                        <td>#{{ ($key+1) }}</td>
                                         <td>{{ $product->pro_code }}</td>
                                         <td>{{ $product->productDetail->pro_price }}</td>
                                         <td>{{ ucfirst($product->productDetail->pro_level) }}</td>

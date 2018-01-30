@@ -10,7 +10,7 @@
             </li>
 
             <li class="item_nonactive">
-                <a data-toggle="tab" href="#tab-review">Reviews (0)</a>
+                <a data-toggle="tab" href="#tab-review">Reviews ({{ $reviews->count() }})</a>
             </li>
 
             <li class="item_nonactive">
@@ -32,50 +32,50 @@
                     <div id="review">
                         <table class="table table-striped table-bordered">
                             <tbody>
+                            @foreach($reviews as $review)
                                 <tr>
                                     <td style="width: 50%;">
-                                        <strong>haianh</strong>
+                                        <strong>{{ $review->name }}</strong>
                                     </td>
-                                    <td class="text-right">02/03/2017</td>
+                                    <td class="text-right">{{ $review->created_at }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
-                                        <p>Mauris interdum fringilla augue vitae tincidunt. Curabitur vitae tortor id eros euismod ultrices. Mauris interdum fringilla.</p>
-                                        <span class="fa fa-stack">
-                                            <i class="fa fa-star fa-stack-2x"></i>
-                                            <i class="fa fa-star-o fa-stack-2x"></i>
-                                        </span>
-                                        <span class="fa fa-stack">
-                                            <i class="fa fa-star fa-stack-2x"></i>
-                                            <i class="fa fa-star-o fa-stack-2x"></i>
-                                        </span>
-                                        <span class="fa fa-stack">
-                                            <i class="fa fa-star fa-stack-2x"></i>
-                                            <i class="fa fa-star-o fa-stack-2x"></i>
-                                        </span>
-                                        <span class="fa fa-stack">
-                                            <i class="fa fa-star fa-stack-2x"></i>
-                                            <i class="fa fa-star-o fa-stack-2x"></i>
-                                        </span>
-                                        <span class="fa fa-stack">
-                                            <i class="fa fa-star fa-stack-2x"></i>
-                                            <i class="fa fa-star-o fa-stack-2x"></i>
-                                        </span>
+                                        <p>{{ $review->comment }}</p>
+                                        <div class="ratings">
+                                            @for ($i=1; $i <= 5 ; $i++)
+										      <span class="glyphicon glyphicon-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
+										    @endfor
+                                        </div>
+										
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <div class="text-right"></div>
                     </div>
+                </form>
                     <h2 id="review-title">Write a review</h2>
+
+                    {!! Form::open(['route'=>['ReviewStore',$product->id],'class'=>'form-horizontal form-payment','name'=>'review_form','id'=>'review_form']) !!}
+
                     <div class="contacts-form">
                         <div class="form-group">
                             <span class="icon icon-user"></span>
-                            <input type="text" name="name" class="form-control" value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}">
+                            @if(checkPermission(['admin','superAdmin','staff']))
+
+                            	<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->staff->first_name . ' ' . Auth::user()->staff->last_name }}">
+							@endif
+							@if(checkPermission(['customer']))
+								<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->customer->first_name . ' ' . Auth::user()->customer->last_name }}">
+								
+							@endif
+                            
                         </div>
                         <div class="form-group">
                             <span class="icon icon-bubbles-2"></span>
-                            <textarea class="form-control" name="text"></textarea>
+                            <textarea class="form-control" name="comment"></textarea>
 
                         </div>
                         <div class="form-group col-md-12">
@@ -89,35 +89,35 @@
                             <div class="col-md-10">
                                 <div class="col-md-2">
                                     <div class="radio radio-info radio-inline">
-                                        <input type="radio" name="product_size" value="1" id="1">
+                                        <input type="radio" name="rating_star" value="1" id="1">
 
                                         <label for="1"> Poor </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="radio radio-info radio-inline">
-                                        <input type="radio" name="product_size" value="1" id="2">
+                                        <input type="radio" name="rating_star" value="2" id="2">
 
                                         <label for="2"> Bad </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="radio radio-info radio-inline">
-                                        <input type="radio" name="product_size" value="1" id="3">
+                                        <input type="radio" name="rating_star" value="3" id="3">
 
                                         <label for="3"> Good </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="radio radio-info radio-inline">
-                                        <input type="radio" name="product_size" value="1" id="4">
+                                        <input type="radio" name="rating_star" value="4" id="4">
 
                                         <label for="4"> Great </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="radio radio-info radio-inline">
-                                        <input type="radio" name="product_size" value="1" id="5">
+                                        <input type="radio" name="rating_star" value="5" id="5">
 
                                         <label for="5"> Excellent </label>
                                     </div>
@@ -125,11 +125,11 @@
                             </div>
                         </div>
                         <div class="buttons clearfix btn_visible">
-                            <a id="button-review" class="btn btn-info">Continue</a>
+                            <input type="submit" id="button-review" class="btn btn-info">Continue</a>
                         </div>
 
                     </div>
-                </form>
+                {{ Form::close() }}
             </div>
             <div id="size-guides" class="tab-pane fade in">
             	<h2><strong>WOMEN'S SIZE GUIDE</strong></h2>

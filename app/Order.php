@@ -8,9 +8,9 @@ class Order extends Model
 {
     protected $fillable = ['user_id', 'payment_id', 'address_id', 'order_description', 'order_date','estimate_delivery_date', 'status'];
 
-    public function customer()
+    public function user()
     {
-    	return $this->belongsTo(Customer::class,'user_id');
+    	return $this->belongsTo(user::class,'user_id');
     }
     public function payment()
     {
@@ -20,7 +20,7 @@ class Order extends Model
     {
     	return $this->belongsTo(Address::class, 'address_id');
     }
-    public function orderItem()
+    public function orderItems()
     {
     	return $this->hasMany(OrderItem::class);
     }

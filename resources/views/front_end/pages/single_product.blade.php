@@ -155,7 +155,10 @@
 			<div class="col-xs-12">
 				
 				<!-- layouts for product tab -->
-    			@include ('front_end.layouts.partial.product_tab')			
+    			
+    			@include ('front_end.layouts.partial.product_tab')
+
+    			<!-- layouts for product tab -->		
 												
 			<div class="bottom-product clearfix">
 				<ul class="nav nav-tabs">
@@ -397,6 +400,11 @@
 //--></script>
 
 
+
+
+@endsection
+
+@section('extra_scripts')
 
 
 @endsection

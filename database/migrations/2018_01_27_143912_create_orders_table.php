@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_description');
             $table->date('order_date');
             $table->date('estimate_delivery_date')->nullable();
-            $table->enum('status', ['processing', 'confirm', 'ready', 'delivered'])->default('processing');
+            $table->enum('status', ['processing', 'ready', 'confirm', 'delivered'])->default('processing');
             $table->timestamps();
         });
     }

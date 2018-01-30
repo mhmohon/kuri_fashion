@@ -5,10 +5,11 @@
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js'></script>
 	<script src='https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.js'></script>
 
+	
 	<!-- jQuery -->
 	<script src="{{ asset('js/back_end/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/back_end/bootstrap.min.js') }}"></script>
-	
+
 	<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 	<!-- jQuery Validation -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>

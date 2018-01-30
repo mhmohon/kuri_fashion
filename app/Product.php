@@ -24,4 +24,8 @@ class Product extends Model
     {
     	return $this->hasOne(Inventory::class);
     }
+    public function reviews()
+	{
+		return $this->hasMany(Review::class);
+	}
 }
