@@ -19,6 +19,11 @@
 
 		<!-- layouts for header -->
 		@include ('front_end.layouts.topheader')
+
+		<!-- layouts for login model -->
+		@include ('front_end.layouts.partial.login_model')
+
+		
 		
 		<!-- layouts for main content -->
 		@yield ('main_content')

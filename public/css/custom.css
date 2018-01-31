@@ -1,4 +1,13 @@
 /*Start Full body Css*/
+body{
+	
+	padding-right: 0 !important 
+}
+.modal-open{
+	
+	padding-right:0 !important;
+}
+
 [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
 	
 	font-size: 14px;
@@ -25,6 +34,16 @@
 }
 
 /*End Full body Css*/
+
+/*For home page*/
+
+.home-rate .glyphicon {
+    margin-right: 0px;
+	color: #FF5A01;
+}
+
+/* /For home page*/
+
 
 /* For Category */
 
@@ -133,6 +152,11 @@ span.category-item:hover {
 .s-guide{
 	padding: 0px 50px;
 }
+.ratings .glyphicon {
+	color: #FF5A01;
+}
+
+
 /*End Single product page Css*/
 
 /*Start cart page Css*/

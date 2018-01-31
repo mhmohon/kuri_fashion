@@ -6,7 +6,7 @@
 			<!-- If User is not log in -->
 			@guest	
 				<li class="account" id="my_account">
-					<a href="{{ route('login') }}" title="Login">
+					<a href="{{ route('login') }}" data-toggle="modal" data-target="#so_sociallogin" title="Login">
 					<span>Login</span></a>
 				</li>
 				<li class="account" id="my_account">
@@ -36,7 +36,7 @@
 
 						@if(checkPermission(['customer']))
 	
-							<li><a href="#">My Account</a></li>
+							<li><a href="{{ route('myAccount') }}">My Account</a></li>
 							<li><a href="#">Order History</a></li>
 							<li><a href="#">Transactions</a></li>
 							<li><a href="#">Downloads</a></li>

@@ -70,7 +70,7 @@
 								</div>
 
 								<div id="payment-existing">
-									<select name="payment_address_id" class="form-control">
+									<select name="payment_address_id" data-validation="required" class="form-control">
 
 										@if($addresses->count())
 		                                    @foreach($addresses as $address)
@@ -91,17 +91,17 @@
 								<div id="payment-new">
 									
 									<div class="form-group">
-									  <input type="text" name="payment_address_1" value="" placeholder="Street Address" id="input-payment-address-1" class="form-control">
+									  <input type="text" name="payment_address_1" value="" placeholder="Street Address" ata-validation="required" id="input-payment-address-1" class="form-control">
 									</div>
 									
 									<div class="form-group">
-										<select data-msg-required="Required field" class="form-control" name="payment_country_id" id="division">
+										<select data-validation="required" class="form-control" name="payment_country_id" id="division">
 										  <option value="" selected="selected">Please select</option>
 										</select>
 									</div>
 									<div class="form-group">
 										
-										<select data-msg-required="Required field" class="form-control" data-state-label="Loading..." data-empty-label="Please select" name="payment_zone_id" id="region">
+										<select data-validation="required" class="form-control" data-state-label="Loading..." data-empty-label="Please select" name="payment_zone_id" id="region">
 
 											<option value="" selected="selected">Please select</option>
 										</select>
@@ -246,7 +246,7 @@
 
 @section('extra_scripts')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    
     <script>   
         window.onload = function() {
             document.getElementById('payment-new').style.display = 'none';
@@ -259,11 +259,9 @@
             document.getElementById('payment-new').style.display = 'block';
             document.getElementById('payment-existing').style.display = 'none';
         }
-        $.validate({
-		    modules : 'location, date, security, file', 
-		});
-
+        
     </script>
 
 @endsection
+
 

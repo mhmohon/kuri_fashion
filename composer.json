@@ -29,7 +29,8 @@
         },
         "files": [
             "app/Http/Helpers/permissions.php",
-            "app/Http/Helpers/addressHelper.php"
+            "app/Http/Helpers/addressHelper.php",
+            "app/Http/Helpers/otherHelper.php"
         ]
     },
     "autoload-dev": {

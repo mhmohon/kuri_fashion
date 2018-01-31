@@ -51,7 +51,7 @@ class CheckoutController extends Controller
             
         $this->saveCartInfo($request, $id, $customer_id, $mytime, $addressChecked, $total);
       
-        return redirect('/home')->withMsgsuccess('Category created successfully');
+        return redirect()->route('checkoutSuccess');
     }
 
     public function saveCartInfo(Request $request, $id, $customer_id, $mytime, $addressChecked,$total)

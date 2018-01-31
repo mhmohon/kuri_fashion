@@ -110,11 +110,11 @@ class CategoryController extends Controller
         //Update
         $catgoryUpdate = Category::find($id)->update([
 
-                            'cat_name' => request ('category_name'),
-                            'cat_description' => request ('category_description'),
-                            'publication_status' => request ('category_status'),
+            'cat_name' => request ('category_name'),
+            'cat_description' => request ('category_description'),
+            'publication_status' => request ('category_status'),
 
-                        ]);
+        ]);
 
         if($catgoryUpdate){
             

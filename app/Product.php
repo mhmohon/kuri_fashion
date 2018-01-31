@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['pro_code', 'pro_name', 'category_id'];
+    protected $fillable = ['pro_code', 	'avg_rating', 'rating_count', 'pro_name', 'category_id'];
 
     public function category()
     {
@@ -28,4 +28,12 @@ class Product extends Model
 	{
 		return $this->hasMany(Review::class);
 	}
+	public function recalculateRating($rating)
+    {
+    	$reviews = $this->reviews();
+	    $avgRating = $reviews->avg('rating');
+		$this->avg_rating = round($avgRating,1);
+		$this->rating_count = $reviews->count();
+    	$this->save();
+    }
 }

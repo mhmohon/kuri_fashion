@@ -44,8 +44,22 @@
 					<h1 itemprop="name">{{ $product->pro_name }}</h1>
 				</div>
 				 <!-- Review -->
+				 <div class="box-review" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+				    <div class="ratings">
+				        <div class="rating-box home-rate" itemprop="ratingValue" content="5">
+				            @for ($i=1; $i <= 5 ; $i++)
+						      <span class="glyphicon glyphicon-star{{ ($i <= $product->avg_rating) ? '' : '-empty'}}"></span>
+						    @endfor
+				        </div>
+				    </div>
+
+				    <a class="reviews_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;" itemprop="reviewCount" content="1">{{ $product->rating_count }} reviews</a> |
+				    <a class="write_review_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a>
+				</div>
+				 
 				<div class="product-label">
-					<div class="product_page_price price" itemprop="offers">											 
+
+					<div class="product_page_price price" itemprop="offers">							 
 				        Price: <span class="price-new"><span itemprop="price" id="price-special">BDT {{ $product->productDetail->pro_price }}</span></span>
 					</div>										
 				</div>
@@ -89,7 +103,7 @@
 
 	                   		<div class="col-md-2">
 								<div class="radio radio-info radio-inline">
-									<input type="radio" name="product_size" value="{{ $product_size }}" id="{{ $product_size }}">
+									<input type="radio" name="product_size" data-validation="required" value="{{ $product_size }}" id="{{ $product_size }}">
 		                                            
 		                            <label for="{{ $product_size }}">{{ title_case($product_size) }}</label>
 								</div>

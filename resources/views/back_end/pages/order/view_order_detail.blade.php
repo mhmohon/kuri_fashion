@@ -202,7 +202,7 @@
                                     <td width="150px" class="text-right">৳{{ $orderItem->quantity * $orderItem->product->productDetail->pro_price }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Shipping Cose:</strong></td>
+                                    <td><strong>Shipping Cost:</strong></td>
                                     <td width="150px" class="text-right">৳100</td>
                                 </tr>
                                 <tr>

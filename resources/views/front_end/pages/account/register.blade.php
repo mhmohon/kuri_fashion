@@ -59,7 +59,7 @@
             </div>
               
           </div>
-        
+        </fieldset>
         <fieldset>
           <legend>Your Password</legend>
           <div class="form-group required {{ $errors->has('password') ? ' has-error' : '' }}">
@@ -105,18 +105,3 @@
 
 @endsection
 
-@section('extra_scripts')
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-
-  <script>
-
-    $.validate({
-       modules : 'location, date, security, file',
-     
-    
-  });
-        
-
-  </script>
-@endsection

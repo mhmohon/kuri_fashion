@@ -17,6 +17,8 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('pro_code');
             $table->string('pro_name')->nullable();
+            $table->float('avg_rating', 2, 1)->nullable();
+            $table->integer('rating_count')->nullable();
             $table->unsignedInteger('category_id');
             $table->timestamps();
         });

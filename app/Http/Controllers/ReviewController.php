@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Review;
+use App\Product;
 use Auth;
 class ReviewController extends Controller
 {
@@ -43,14 +44,17 @@ class ReviewController extends Controller
 
         ]);
         $user_id = Auth::user()->id;
-        
+        $product = Product::find($id);
+        $rating = $request->get('rating_star');
         $review = Review::create([
             'name' => request('user_name'),
             'user_id' => $user_id,  
             'product_id' => $id,  
-            'rating' => request('rating_star'),     
+            'rating' => $rating,     
             'comment' => request('comment')  
         ]);
+        // recalculate ratings for the specified product
+        $product->recalculateRating($rating);
 
         if($review){
             return back()->withMsgsuccess('You have Sucessfully Comment');

@@ -10,7 +10,7 @@
 
     </div>
     <ul class="breadcrumb">
-        <li><a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=common/home"><i class="fa fa-home"></i></a></li>
+        <li><a href=""><i class="fa fa-home"></i></a></li>
         <li><a href="#">Account</a></li>
         <li><a href="#">Login</a></li>
     </ul>
@@ -30,9 +30,8 @@
 
                         <h2>Registered Customer</h2>
                         <p><strong>I am a registered customer</strong></p>
-                        <form action="{{ route('login') }}" method="post" enctype="multipart/form-data">
 
-                            {{ csrf_field() }}
+                        {!! Form::open(['route'=>['login'],'name'=>'login']) !!}
 
                             <div class="form-group required {{ $errors->has('email') ? 'has-error' : ''}} ">
                                 <label class="control-label" for="input-email">E-Mail Address</label>
@@ -79,7 +78,7 @@
 
                             </div>
 
-                        </form>
+                        {{ Form::close() }}
 
                         <column id="column-login" class="col-sm-8 pull-right">
                             <div class="row">

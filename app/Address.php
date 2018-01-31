@@ -14,8 +14,8 @@ class Address extends Model
     	return $this->hasOne(Order::class);
     }
 
-    public function customer()
+    public function user()
     {
-    	return $this->belongsTo(Customer::class,'user_id');
+    	return $this->belongsTo(User::class,'user_id');
     }
 }

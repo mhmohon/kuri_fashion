@@ -42,7 +42,7 @@
 				  <div class="item col-lg-3 col-md-4 col-sm-4 col-xs-6">
 					<div class="item-inner">
 						
-					  <a href="#" title="{{ $category->cat_name }}"> 
+					  <a href="{{ route('viewProductByCategory',$category->id) }}" title="{{ $category->cat_name }}"> 
 						<span class="category-item">{{ $category->cat_name }}</span>
 					  </a>
 					</div>
@@ -80,6 +80,7 @@
 			
 		@foreach($productDetails as $productDetail)
 
+
 			@if($productDetail->pro_level == 'top')
 			<div class="item ">
 				<div class="product-layout  style1">
@@ -88,8 +89,9 @@
 							<div class="label-stock label label-success 2-3 Days">NEW</div>
 						
 							<div class="product-image-container ">
-								<a class="link-block" href="#" title=" Swine shankle" target="_blank" >
-									<img src="images/product/{{ $productDetail->pro_image }}" alt=" Swine shankle" height="330" width="270">
+								<a class="link-block" href="{{ route('viewSingleProduct',$productDetail->product_id) }}" title=" Swine shankle" target="_blank" >
+									
+									<img src="{{ asset('images/product/' . $productDetail->pro_image) }}" alt="{{ $productDetail->product->pro_name }}" height="330" width="270">
 								</a>									
 							</div>
 					
@@ -103,17 +105,15 @@
 							
 								<a href="{{ route('wishlistAdd',$productDetail->product_id) }}" class="wishlist btn-button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart cls" style="padding:12px;"></i></a>
 								
-								<a class="addToCart btn" data-toggle="tooltip" href="{{ route('viewSingleProduct',$productDetail->product_id) }}" title="View Details">
+								<button class="addToCart btn" data-toggle="modal" data-toggle="tooltip" data-target="#addTo_cart"
+								data-id="{{ $productDetail->product_id }}"
+								data-productColor="{{ $productDetail->pro_color }}"
+								title="View Details">
 									<span></i>View Details</span>
-								</a>
+								</button>
 
 								<a class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i></a>
 								
-								<div class="so-quickview">
-									<a class="hidden" data-product='144' href="#" target="_self"></a>
-								</div>
-								
-		
 							</div>
 							
 						</div>
@@ -121,17 +121,19 @@
 						<div class="right-block">
 							
 							<h4>
-								<a href="#" target="_self" title="">		
-
+								<a href="{{ route('viewSingleProduct',$productDetail->product_id) }}" target="_blank" title="">		
+									{{ $productDetail->product->pro_name }}
 								</a>
 							</h4>						
 							
 							<div class="caption">
+								<div class="ratings home-rate">
+                                    @for ($i=1; $i <= 5 ; $i++)
+								      <span class="glyphicon glyphicon-star{{ ($i <= $productDetail->product->avg_rating) ? '' : '-empty'}}"></span>
+								    @endfor
+                                </div>
 								<div  class="price">
-									
-									<span class="price-new">৳{{ $productDetail->pro_price }}</span>
-									
-									
+									<span class="price-new">{{ $productDetail->pro_price }}৳</span>
 								</div>								
 							</div>
 							
@@ -144,11 +146,28 @@
 				
 			</div>
 			@endif
+
+
 		@endforeach
 							
 		</div>
 		<!--End extraslider-inner -->
+		<!-- layouts for add to cart model -->
+			@include ('front_end.layouts.partial.cart_add_model')
 	</div>
+	<script>
+		$('#addTocart').on('show.bs.modal', function (event) {
+			
+		  	var button = $(event.relatedTarget) // Button that triggered the modal
+		  	var title = button.data('id')
+		  	var color = button.data('productColor')
+
+		  	var modal = $(this)
+		  	modal.find('.fieldset #email').val(title)
+		  	modal.find('.login-customer #product_color').val(color)
+		  	modal.find('.login-customer #product_color_label').val(color)
+		})
+	</script>
 	<script type="text/javascript">
 		//<![CDATA[
 		jQuery(document).ready(function ($) {

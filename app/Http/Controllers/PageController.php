@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+
 
 class PageController extends Controller
 {
-    //
-    public function home()
+    public function checkout_success()
     {
-    	$products = Product::latest()->get();	
-    	return view ('front_end.pages.home',compact('products'));
+    	return view ('front_end.pages.checkout_success');
+    }
+    public function my_account()
+    {
+    	return view ('front_end.pages.account.my_account');
     }
 }
