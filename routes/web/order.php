@@ -10,5 +10,8 @@ Route::get('/dashboard/orders/{id}/view','OrderBackEndController@show')->name('o
 Route::get('/dashboard/orders/{id}/edit','OrderBackEndController@edit')->name('orderEdit');
 Route::post('/dashboard/orders/{id}/update', 'OrderBackEndController@update')->name('orderUpdate');
 
-//For Customer Route.
-Route::get('/single-product/{id}/view/','HomeController@singleProductDetails')->name('viewSingleProduct');
+//Only OrderItem update or delete.
+Route::post('/dashboard/orders/update&order_item={id}', 'OrderBackEndController@updateQuantity')->name('orderQuantityUpdate');
+Route::post('/dashboard/orders/delete&order_item={id}', 'OrderBackEndController@deleteItem')->name('orderItemDelete');
+
+

@@ -9,10 +9,9 @@
                 <a data-toggle="tab" href="#size-guides">Size Guides</a>
             </li>
 
-            <li class="item_nonactive">
+			<li class="item_nonactive">
                 <a data-toggle="tab" href="#tab-review">Reviews ({{ $reviews->count() }})</a>
             </li>
-
             <li class="item_nonactive">
                 <a data-toggle="tab" href="#return-policy">Return Policy</a>
             </li>
@@ -65,17 +64,17 @@
                             <span class="icon icon-user"></span>
                             @if(checkPermission(['admin','superAdmin','staff']))
 
-                            	<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->staff->first_name . ' ' . Auth::user()->staff->last_name }}">
+                            	<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->staff->first_name . ' ' . Auth::user()->staff->last_name }}" data-validation="required">
 							@endif
 							@if(checkPermission(['customer']))
-								<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->customer->first_name . ' ' . Auth::user()->customer->last_name }}">
+								<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->customer->first_name . ' ' . Auth::user()->customer->last_name }}" data-validation="required">
 								
 							@endif
                             
                         </div>
                         <div class="form-group">
                             <span class="icon icon-bubbles-2"></span>
-                            <textarea class="form-control" name="comment"></textarea>
+                            <textarea class="form-control" name="comment" data-validation="required length" data-validation-length="min12"></textarea>
 
                         </div>
                         <div class="form-group col-md-12">
@@ -123,6 +122,11 @@
                                     </div>
                                 </div>
                             </div>
+                            @if ($errors->has('rating_star'))
+                                <span class="text-danger help-block">
+                                    <block>{{ $errors->first('rating_star') }}</block>
+                                </span>
+                            @endif
                         </div>
                         <div class="buttons clearfix btn_visible">
                             <input type="submit" id="button-review" class="btn btn-info">Continue</a>

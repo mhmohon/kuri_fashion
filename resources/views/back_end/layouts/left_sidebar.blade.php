@@ -6,7 +6,7 @@
 			<div id="sidebar-menu">  
 				<ul>				
 					<li class="has_sub">
-						<a href="{{ url('/home') }}" class="waves-effect"><i class="mdi mdi-home mdi-36px"></i> <span> Go to Page </span> </a>
+						<a href="{{ url('/home') }}" class="waves-effect"><i class="mdi mdi-book-open-page-variant mdi-36px"></i> <span> Go to Page </span> </a>
 					</li>
 					<li class="has_sub">
 						<a href="{{ url('dashboard') }}" class="waves-effect"><i class="mdi mdi-home mdi-36px"></i> <span> Home </span> </a>
@@ -40,28 +40,15 @@
 							</ul>
 						</li>
 						<li class="has_sub">
-							<a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-shopping"></i> <span> Product </span> <span class="menu-arrow"></span></a>
+							<a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-book-multiple"></i> <span> Product </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								<li><a href="{{ route('productCreate') }}">Add Products</a></li>
 								<li><a href="{{ route('productIndex') }}">Product List</a></li>
 							</ul>
 						</li>
-
-					<li class="menu-title">Staff Section</li>
-
+					
 					<li class="has_sub">
-						<a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account"></i> <span> Staff </span> <span class="menu-arrow"></span></a>
-						<ul class="list-unstyled">
-							<li><a href="http://lily-tms.herokuapp.com/staffs/create">Add Staff</a></li>
-							<li><a href="http://lily-tms.herokuapp.com/staffs">Staffs List</a></li>
-						</ul>
-					</li>
-					<li class="has_sub">
-						<a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cash-multiple"></i> <span> Salary </span> <span class="menu-arrow"></span></a>
-						<ul class="list-unstyled">
-							<li><a href="http://lily-tms.herokuapp.com/salaries/create">Add Salary</a></li>
-							<li><a href="http://lily-tms.herokuapp.com/salaries">Salaries List</a></li>
-						</ul>
+						<a href="{{ route('reviewAll') }}" class="waves-effect"><i class="mdi mdi-comment-account-outline"></i> <span> Product Review </span> </a>
 					</li>
 
 					<li class="menu-title">Setting Section</li>

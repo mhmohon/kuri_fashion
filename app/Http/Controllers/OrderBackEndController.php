@@ -83,7 +83,55 @@ class OrderBackEndController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $this->validate(request(),[
+            'order_date' => 'required',
+            'order_status' => 'required',
+            'customer_name' => 'required',
+            'customer_email' => 'required|email',
+            'customer_phone' => 'required',
+            'payment_type' => 'required',
+            'order_description' => 'required',
+        ]);
+        
+        
+        $orderUpdate = Order::find($id)->update([
+
+            'order_description' => request ('order_description'),
+            'status' => request ('order_status'),
+            
+
+        ]);
+
+        return redirect()->route('orderIndex')->with('msgsuccess','Order updated successfully');
+    }
+
+
+    public function updateQuantity(Request $request, $id)
+    {
+        
+        $orderItem = OrderItem::find($id);
+        $product_price = $orderItem->product->productDetail->pro_price;
+        $new_quantity = request ('quantity'.$id);
+        $sub_total = $product_price * $new_quantity;
+        
+
+        $orderUpdate = OrderItem::find($id)->update([
+
+            'quantity' => $new_quantity,
+            'total_price' => $sub_total,
+
+        ]);
+
+        return redirect()->back()->with('msgsuccess','Quantity updated successfully');
+    }
+
+    public function deleteItem($id)
+    {
+        
+        //find item and delete.
+        OrderItem::find($id)->delete();
+
+        return redirect()->back()->with('msgsuccess','Order item deleted successfully');
     }
 
     /**

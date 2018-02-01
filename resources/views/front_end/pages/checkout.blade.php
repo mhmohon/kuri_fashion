@@ -205,7 +205,7 @@
 								  </tr>
 								</tfoot>
 							  </table>
-							  <input type="hidden" name="total_cost" value="{{ $total }}">
+
 							</div>
 							
 						  </div>

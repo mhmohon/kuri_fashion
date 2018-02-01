@@ -165,7 +165,7 @@
                                     <td>৳ {{ $orderItem->product->productDetail->pro_price }}</td>
                                     <td>{{ $orderItem->quantity }}</td>
 
-                                    <td>৳ {{ $orderItem->quantity * $orderItem->product->productDetail->pro_price }}</td>
+                                    <td>৳ {{ $orderItem->total_price }}</td>
                                     
                                     
                                 </tr>
@@ -185,7 +185,7 @@
                   <h4>Order Comment</h4>                               
                     <div class="form-group col-md-12">
    
-                        <textarea id="" class="form-control" name="product_description" type="text">{{ $order->order_description }}</textarea> 
+                        <textarea id="" class="form-control" disabled name="product_description" type="text">{{ $order->order_description }}</textarea> 
   
                     </div>
                 </div> 
@@ -196,10 +196,11 @@
                     <h4>Order Total Price</h4>                       
                     <div class="table-responsive">
                         <table class="table text-right table table-bordered table-hover">                                                
-                            <tbody> 
+                            <tbody>
+                            @foreach(getOrderItemQP($order->id) as $orderTotal)
                                 <tr>
                                     <td><strong>Sub-total:</strong></td>
-                                    <td width="150px" class="text-right">৳{{ $orderItem->quantity * $orderItem->product->productDetail->pro_price }}</td>
+                                    <td width="150px" class="text-right">৳{{ $orderTotal->TotalPrice }}</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Shipping Cost:</strong></td>
@@ -207,8 +208,9 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Grand Total</strong></td>
-                                    <td width="150px" class="text-right">৳{{ $orderItem->total_price }}</td>
+                                    <td width="150px" class="text-right">৳{{ $orderTotal->TotalPrice + 100 }}</td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

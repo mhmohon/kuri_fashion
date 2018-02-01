@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Review;
 use App\Product;
-use Auth;
-class ReviewController extends Controller
+class ReviewBackEndController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,10 @@ class ReviewController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $reviews = Review::latest()->get();
+        
+        return view('back_end.pages.review.view_review', compact('reviews'));
     }
 
     /**
@@ -34,28 +35,9 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        //Form Validation
-        $validate = $this->validate(request(),[
-            'user_name' => 'required|min:3',
-            'comment' => 'required|min:10',
-            'rating_star' => 'required'
-
-        ]);
-        $user_id = Auth::user()->id;
-        $rating = $request->get('rating_star');
-        $review = Review::create([
-            'name' => request('user_name'),
-            'user_id' => $user_id,  
-            'product_id' => $id,  
-            'rating' => $rating,     
-            'comment' => request('comment')  
-        ]);
-
-        if($review){
-            return back()->withMsgsuccess('Thank you for your review. It has been submitted to the admin for approval.');
-        }
+        //
     }
 
     /**
@@ -77,7 +59,9 @@ class ReviewController extends Controller
      */
     public function edit($id)
     {
-        //
+        $review = Review::find($id);
+
+        return view('back_end.pages.review.edit_review', compact('review'));
     }
 
     /**
@@ -89,7 +73,25 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rating = $request->get('rating');
+        $product_id = $request->get('product');
+        $product = Product::find($product_id);
+        $validate = $this->validate(request(),[
+            'name_in_review' => 'required',
+            'review_status' => 'required',
+        ]);
+
+        Review::find($id)->update([
+
+            'name' => request ('name_in_review'),
+            'publication_status' => request ('review_status'),
+            
+        ]);
+
+        // recalculate ratings for the specified product
+        $product->recalculateRating($rating);
+
+        return redirect()->route('reviewAll')->with('msgsuccess','Review updated successfully');
     }
 
     /**
@@ -100,6 +102,8 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Review::find($id)->delete();
+
+        return redirect()->back()->with('msgsuccess','Review deleted successfully');
     }
 }

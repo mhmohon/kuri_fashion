@@ -13,7 +13,7 @@
                 <h3 class="page-title">Edit Order<small> Data.</small></h3> 
                 <ol class="breadcrumb p-0 m-0">
                     <li>
-                        <a href="#">Dashboard</a>
+                        <a href="{{ route('home') }}">Dashboard</a>
                     </li>
                      <li>
                         <a href="#">Order list</a>
@@ -51,7 +51,7 @@
                   <div class="form-group">
                     <label for="order_date" class="col-md-6 control-label txt-left">Order Date</label>
                     <div class="col-md-6">
-                      <input for="order_date" type="date" class="form-control" name="order_date" value="{{ $order->order_date }}">              
+                      <input for="order_date" type="date" class="form-control" name="order_date" value="{{ $order->order_date }}" data-validation="required">              
                     </div>
                   </div>
                   <div class="form-group">
@@ -94,7 +94,7 @@
                     <div class="form-group">
                         <label for="customer_phone" class="col-md-6 control-label txt-left">Customer Phone</label>
                         <div class="col-md-6">
-                          <input class="form-control" placeholder="Enter Customer phone number" required="required" name="customer_phone" type="number" value="{{ $order->user->customer->phone }}" data-validation="required number length" data-validation-length="max11">
+                          <input class="form-control" placeholder="Enter Customer phone number" required="required" name="customer_phone" type="text" value="{{ $order->user->customer->phone }}" data-validation="required number length" data-validation-length="max11">
                           @if ($errors->has('customer_phone'))
                             <span class="text-danger help-block">
                                 <block>{{ $errors->first('customer_phone') }}</block>
@@ -115,17 +115,17 @@
                   <h4>Shipping Address</h4>
 
                     <div class="form-group col-md-10">
-                      <input type="text" name="payment_address_1" value="{{ $order->address->street_address }}" placeholder="Street Address" id="input-payment-address-1" class="form-control">
+                      <input type="text" name="street_address" value="{{ $order->address->street_address }}" placeholder="Street Address" id="input-payment-address-1" class="form-control">
                     </div>
                     
                     <div class="form-group col-md-10">
-                        <select data-validation="required" data-msg-required="Required field" class="form-control" name="payment_country_id" id="division">
+                        <select  class="form-control" name="city" id="division">
                           <option value="" selected="selected">Please select</option>
                         </select>
                     </div>
                     <div class="form-group col-md-10">
                         
-                        <select data-validation="required" data-msg-required="Required field" class="form-control" data-state-label="Loading..." data-empty-label="Please select" name="payment_zone_id" id="region">
+                        <select  class="form-control" data-state-label="Loading..." data-empty-label="Please select" name="region" id="region">
 
                             <option value="" selected="selected">Please select</option>
                         </select>
@@ -168,7 +168,7 @@
                                     <th>Product Detail</th>                  
                                     <th>Price</th>
                                     <th>Qty</th>
-                                    <th>Sub-Total</th>
+                                    <th>Total</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -191,18 +191,22 @@
                                     </td>
                                     <td>৳ {{ $orderItem->product->productDetail->pro_price }}</td>
                                     <td width="8%">
-                                       
-                                        <input type="number" name="quantity" value="{{ $orderItem->quantity }}" class="form-control">
+                                    
+                                        <input type="number" name="quantity{{ $orderItem->id }}" value="{{ $orderItem->quantity }}" class="form-control">
+
                                     </td>
 
                                     <td>৳ {{ $orderItem->quantity * $orderItem->product->productDetail->pro_price }}</td>
                                     <td class="text-center">
                                         <a href="#" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
                                         
-                                        <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-upload"></i></a>
-                                        <form method="POST" name="other" action="http://lily-tms.herokuapp.com/orders/20" accept-charset="UTF-8" style="display:inline-block"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="q78uP83SpGghGyK86rIJIuoj2m2SlXPsXii9uuRh">                                                                   <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this?')"><i class="fa fa-trash-o"></i>
+                                       <button type="submit" formaction="{{  route('orderQuantityUpdate', $orderItem->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-upload"></i></i>
                                         </button>
-                                        </form>                                                            
+
+                                        <button type="submit" formaction="{{  route('orderItemDelete', $orderItem->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i>
+                                        </button>
+
+                                                                                                    
                                     </td>
                                     
                                     
@@ -223,7 +227,7 @@
                   <h4>Order Comment</h4>                               
                     <div class="form-group col-md-12">
    
-                        <textarea id="" class="form-control" name="product_description" type="text">{{ $order->order_description }}</textarea> 
+                        <textarea id="" class="form-control" name="order_description" type="text">{{ $order->order_description }}</textarea> 
   
                     </div>
                 </div> 
@@ -234,19 +238,21 @@
                     <h4>Order Total Price</h4>                       
                     <div class="table-responsive">
                         <table class="table text-right table table-bordered table-hover">                                                
-                            <tbody> 
+                            <tbody>
+                            @foreach(getOrderItemQP($order->id) as $orderTotal)
                                 <tr>
                                     <td><strong>Sub-total:</strong></td>
-                                    <td width="150px" class="text-right">৳{{ $orderItem->quantity * $orderItem->product->productDetail->pro_price }}</td>
+                                    <td width="150px" class="text-right">৳{{ $orderTotal->TotalPrice }}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Shipping Cose:</strong></td>
+                                    <td><strong>Shipping Cost:</strong></td>
                                     <td width="150px" class="text-right">৳100</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Grand Total</strong></td>
-                                    <td width="150px" class="text-right">৳{{ $orderItem->total_price }}</td>
+                                    <td width="150px" class="text-right">৳{{ $orderTotal->TotalPrice + 100 }}</td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -257,10 +263,11 @@
                 
                   
               </div>
-              {{ Form::submit('Submit', ['name' => 'login','class'=>'btn btn-danger waves-light']) }}
+              {{ Form::submit('Update', ['name' => 'order_submit','class'=>'btn btn-danger waves-light']) }}
                 
-                <input class="btn btn-danger waves-light" type="submit" value="Back">
+                <a href="{{ URL::previous() }}" class="btn btn-info waves-light">Back</a>
             {{ Form::close() }}
+
             </div> 
           </div>
           

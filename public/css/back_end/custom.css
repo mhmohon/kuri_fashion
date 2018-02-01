@@ -1,10 +1,15 @@
 /*Other Component*/
 
-
+.star-left{
+	float: left;
+	padding-top: 2px;
+	color:#FB5A27;
+}
 .txt-left {
 	text-align: left !important;
 }
 /*END Other Component*/
+
 /*Start Footer*/
 .footer{
 	background-color: #fff;

@@ -82,9 +82,10 @@
                                             <span class="label label-success"> Delivered</span>
                                         </td>
                                     @endif
-                                    @foreach ($order->orderItems as $orderItem)
 
-                                        <td>৳ {{ $orderItem->total_price }}</td>
+                                    @foreach (getOrderItemQP($order->id) as $orderItem)
+
+                                        <td>৳ {{ $orderItem->TotalPrice }}</td>
                                     @endforeach
                                         
                                         <td class="text-center">

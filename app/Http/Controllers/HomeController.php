@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except' => ['index','searchProduct']]);
+        $this->middleware('auth',['except' => ['index','searchProduct','singleProductDetails']]);
     }
 
     /**
@@ -42,12 +42,14 @@ class HomeController extends Controller
     {
         
         //Get All the latest product.
-        $reviews = Review::where('product_id', $id)->get();
+        $reviews = Review::where('product_id', $id)
+                            ->where('publication_status',1)
+                            ->get();
 
         $product = Product::find($id);
 
         $product_colors = explode(",", $product->productDetail->pro_other_colors);
-        //dd($review);
+
         $product_sizes = explode(",", $product->productDetail->pro_size);
         return view('front_end.pages.single_product',compact('product','product_colors','product_sizes','reviews'));
     }

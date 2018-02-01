@@ -45,16 +45,14 @@ class CheckoutController extends Controller
         $customer_id = \Auth::user()->customer->id;
         $mytime = \Carbon\Carbon::now();
         $addressChecked = $_POST['payment_address'];
-        
-        $total = str_replace(',', '', $request->get('total_cost'));
-        
+
             
-        $this->saveCartInfo($request, $id, $customer_id, $mytime, $addressChecked, $total);
+        $this->saveCartInfo($request, $id, $customer_id, $mytime, $addressChecked);
       
         return redirect()->route('checkoutSuccess');
     }
 
-    public function saveCartInfo(Request $request, $id, $customer_id, $mytime, $addressChecked,$total)
+    public function saveCartInfo(Request $request, $id, $customer_id, $mytime, $addressChecked)
     {
         $customer = Customer::find($customer_id)->update([
 
@@ -93,13 +91,14 @@ class CheckoutController extends Controller
         $cart_items = Cart::instance('shopping')->content();
 
         foreach($cart_items as $cart_item){
+
             $orderItem = OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $cart_item->id,  
                 'product_color' => $cart_item->options->color,  
                 'product_size' => $cart_item->options->size,  
                 'quantity' => $cart_item->qty,     
-                'total_price' => $total,             
+                'total_price' => $cart_item->total,             
             ]);
         }
 
