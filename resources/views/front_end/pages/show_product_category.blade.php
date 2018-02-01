@@ -1,5 +1,12 @@
 @php
-	$page_title = $category->cat_name;
+	if(isset($category)){
+
+		$page_title = $category->cat_name;
+	}
+	elseif(isset($input)){
+		$page_title = 'Search Product';
+		$input = $input;
+	}
 @endphp
 
 @extends ('front_end.layouts.master')
@@ -30,6 +37,7 @@
 
 		<!-- layouts for sidebar category -->
     	@include ('front_end.layouts.sidebar_all_product')
+
 	@if($products->count())
 
     	<div id="content" class="col-md-9 col-sm-12 col-xs-12"> <!-- start content -->
@@ -48,7 +56,15 @@
 		    <!-- Filters -->
 		    <div class="product-filter filters-panel">
 		        <div class="row">
-		            
+				@if(isset($input))
+		            <div class="box-list col-md-2">
+						<div class="view-mode">
+							<div class="list-view">
+								<span>Search By<strong> {{ $input }}</strong></span>
+							</div>
+						</div>
+					</div>
+				@endif
 		            <div class="short-by-show form-inline text-right col-md-10 col-sm-12">
 		                
 
@@ -164,10 +180,15 @@
 	@else
 		<div id="content" class="col-md-9 col-sm-12 col-xs-12 layout_top">
 			<div class="text-center">
-				
-				<h1>Empty Product Category</h1>
-				<p>There is no product in this product category!</p>
-				<a href="{{ url('/home') }}" class="btn btn-primary" title="Continue">Continue</a>
+				@if(isset($category))
+					<h1>Empty Product Category</h1>
+					<p>There is no product in this product category!</p>
+					<a href="{{ url('/home') }}" class="btn btn-primary" title="Continue">Go to Home page</a>
+				@elseif(isset($input))
+					<h1>Empty Seacrch Query Result</h1>
+					<p>There is no product by {{ $input }} name!</p>
+					<a href="{{ url('/home') }}" class="btn btn-primary" title="Continue">Go to Home page</a>
+				@endif
 			</div>
 		
 		 </div>

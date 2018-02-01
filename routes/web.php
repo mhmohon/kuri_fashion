@@ -34,6 +34,7 @@ require __DIR__ . '/web/user_customer.php';
 
 
 
+Route::post('/product/search', 'HomeController@searchProduct')->name('productSearch');
 
 Auth::routes();
 

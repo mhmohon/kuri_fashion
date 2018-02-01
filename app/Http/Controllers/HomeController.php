@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
-use App\Category;
 use App\ProductDetail;
+use App\Category;
 use App\Review;
 
 class HomeController extends Controller
@@ -17,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth',['except' => ['index','searchProduct']]);
     }
 
     /**
@@ -29,10 +29,15 @@ class HomeController extends Controller
     {
         return view('front_end.pages.home');
     }
-    public function test()
+
+    public function searchProduct(Request $request)
     {
-        return view('front_end.pages.test');
+        $input = $request->input('search_value');
+        $products = Product::where('pro_name','Like','%'.$input.'%')->get();
+        //dd($products);
+        return view('front_end.pages.show_product_category',compact('products','input'));
     }
+
     public function singleProductDetails($id)
     {
         

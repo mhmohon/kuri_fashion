@@ -77,13 +77,15 @@
 			<div class="row">
 				<div class="header-center-left col-lg-4 col-md-4 col-sm-4 col-xs-12">	
 					<div class="search-header-w">
+					{!! Form::open(['route'=>['productSearch'],'name'=>'search','id'=>'searchsubmit']) !!}
 						<span class="hidden-lg hidden-md hidden-sm search-mobi"><i class="fa fa-search"></i></span>	
 						<div id="search" class="input-group">
-						  <input type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
+						  <input type="text" name="search_value" value="{{ isset($input) ? $input : '' }}" placeholder="Search" class="form-control input-lg" data-toggle="popover" data-placement="bottom" data-content="You can search any specific product by product name, code number."/>
 						  <span class="input-group-btn">
 							<button type="button" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
 						  </span>
-						</div>					
+						</div>
+					 {!! Form::close() !!}					
 					</div>
 				</div>
 				<!-- LOGO -->
