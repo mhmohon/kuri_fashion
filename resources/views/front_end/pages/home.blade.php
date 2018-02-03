@@ -91,7 +91,7 @@
 							<div class="product-image-container ">
 								<a class="link-block" href="{{ route('viewSingleProduct',$productDetail->product_id) }}" title=" Swine shankle" target="_blank" >
 									
-									<img src="{{ asset('images/product/' . $productDetail->pro_image) }}" alt="{{ $productDetail->product->pro_name }}" height="330" width="270">
+									<img src="{{ asset('images/product/' . $productDetail->pro_image) }}" alt="{{ $productDetail->product->pro_name }}" >
 								</a>									
 							</div>
 					
@@ -111,8 +111,9 @@
 								title="View Details">
 									<span></i>View Details</span>
 								</button>
-
-								<a class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i></a>
+								
+								<!-- This will add To comapre session -->
+								<a href="{{ route('compareAdd', $productDetail->product_id) }}" class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i></a>
 								
 							</div>
 							

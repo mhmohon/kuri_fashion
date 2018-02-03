@@ -18,6 +18,7 @@ class CreateAddressesTable extends Migration
             $table->string('street_address');
             $table->string('region');
             $table->string('city');
+            $table->string('country');
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });

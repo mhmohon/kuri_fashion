@@ -19,6 +19,8 @@
 
 require __DIR__. '/web/cart.php';
 
+require __DIR__. '/web/wishlist&comparison.php';
+
 require __DIR__ . '/web/dashboard.php';
 
 require __DIR__ . '/web/category.php';

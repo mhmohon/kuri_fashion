@@ -91,21 +91,18 @@
 								<div id="payment-new">
 									
 									<div class="form-group">
-									  <input type="text" name="payment_address_1" value="" placeholder="Street Address" ata-validation="required" id="input-payment-address-1" class="form-control">
+									  <input type="text" name="new_street_address" value="" placeholder="Street Address" ata-validation="required" id="input-payment-address-1" class="form-control">
 									</div>
 									
 									<div class="form-group">
-										<select data-validation="required" class="form-control" name="payment_country_id" id="division">
-										  <option value="" selected="selected">Please select</option>
-										</select>
+										<input type="text" id="new_city_address" name="new_city_address" value="" placeholder="City Address Location" data-validation="required" id="input-payment-address-1" class="form-control">
 									</div>
-									<div class="form-group">
-										
-										<select data-validation="required" class="form-control" data-state-label="Loading..." data-empty-label="Please select" name="payment_zone_id" id="region">
-
-											<option value="" selected="selected">Please select</option>
-										</select>
-									</div>
+									<!-- Address Hidden Field -->
+										<input class="field" id="local">
+										<input class="field" id="route">
+										<input class="field" id="division">
+										<input class="field" id="country">
+									<!-- /Address Hidden Field -->
 								</div>
 						  </div>
 						</div>
@@ -246,7 +243,6 @@
 
 @section('extra_scripts')
 
-    
     <script>   
         window.onload = function() {
             document.getElementById('payment-new').style.display = 'none';
@@ -259,9 +255,9 @@
             document.getElementById('payment-new').style.display = 'block';
             document.getElementById('payment-existing').style.display = 'none';
         }
-        
     </script>
-
+    <script type="text/javascript" src="{{ asset('js/plugins/autcomplete.js') }}"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVW0FORtm8JXJZpN1pWnmzLiZD_UoyIYE&libraries=places&callback=autoCompleteLocation"></script>
 @endsection
 
 

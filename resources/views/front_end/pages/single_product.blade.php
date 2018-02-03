@@ -105,7 +105,7 @@
 								<div class="radio radio-info radio-inline">
 									<input type="radio" name="product_size" data-validation="required" value="{{ $product_size }}" id="{{ $product_size }}">
 		                                            
-		                            <label for="{{ $product_size }}">{{ title_case($product_size) }}</label>
+		                            <label for="{{ $product_size }}">{{ strtoupper($product_size) }}</label>
 								</div>
 							</div>
 	                   	@endforeach
@@ -172,169 +172,22 @@
     			
     			@include ('front_end.layouts.partial.product_tab')
 
-    			<!-- layouts for product tab -->		
+    			<!-- /layouts for product tab -->
+
+    			<!-- layouts for bottom-product -->
+    			
+    			@include ('front_end.layouts.partial.bottom_product')
+
+    			<!-- /layouts for bottom-product -->		
 												
-			<div class="bottom-product clearfix">
-				<ul class="nav nav-tabs">
-					<li>
-						<a data-toggle="tab" href="#product-related"><b>Related</b> Products</a>
-					</li>
-					  
-					<li class="active">
-						<a data-toggle="tab" href="#product-upsell">Upsell Products</a>
-					</li>
-				</ul>
-
-				<div class="tab-content">
-					<div id="product-related" class="tab-pane fade">
-					   	<div class="clearfix module">
-						<div class="products-category">
-			            	<div class="releate-products products-list grid">
-							<!-- Products list -->
-				                <div class="product-layout">
-						  		<div class="product-item-container">
-									<div class="left-block">
-									<!-- QUICK VIEW -->
-										<div class="product-image-container ">
-											<img  src="http://opencart.opencartworks.com/themes/so_jenzo/image/cache/catalog/product/7-270x330.jpg" alt="Deserunt donerest" title="Deserunt donerest" class="img-1 img-responsive" />
-										</div>
-									
-									<div class="box-label">
-										<!--New Label-->
-																																							
-										<!--Sale Label-->
-										<span></span>
-									</div>
-									<div class="button-group">
-										<!-- WISHLIST -->
-										<button class="wishlist btn-button" type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('70');"><i class="fa fa-heart"></i></button>
-										<!-- CART -->
-										<button class="addToCart btn-button" type="button" data-toggle="tooltip" title="Add to Cart" onclick="cart.add('70');"> <span>Add to Cart</span></button>
-										
-										<!-- COMPARE -->
-										<button class="compare btn-button" type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('70');"><i class="fa fa-refresh"></i></button>
-										
-									</div>
-									</div>
-								  
-								<!-- BOX BUTTON -->
-								
-								<div class="right-block">
-									<div class="caption">
-									   <h4><a class="preview-image" href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/product&amp;product_id=70">Deserunt donerest</a></h4>
-
-									   	<div class="ratings">
-										<div class="rating-box">
-											<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-											 <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-											 <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-											 <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-											 <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-										</div>
-										</div>
-									    									    
-									<div class="price">
-										<span class="price-old">82.13€</span>
-									</div>
-
-									</div>
-									 
-								</div>
-						  </div>
-                            
-                        </div>
-                    </div>
-			</div>
-    	</div>
-	
-	</div>
-		
-	<div id="product-upsell" class="tab-pane fade in active">
-		<div class="module so-extraslider-ltr upsell-full">
-	
-		<div class="modcontent ">
-			<div id="sp_extra_slider_4364855461512120518"
-		 	class="so-extraslider  buttom-type1 preset00-3 preset01-3 preset02-2 preset03-2 picanhareset04-1 button-type1 ">
-		<!-- Begin extraslider-inner -->
-
-				<div class="extraslider-inner products-list grid" data-effect="none">
-				<div class="item col-sm-4">
-						<div class="product-layout  style1">
-						<div class="product-item-container">
-							<div class="left-block">
-								<div class="label-stock label label-success 2-3 Days">2-3 Days</div> 
-
-							<div class="product-image-container ">
-								<a class="link-block" href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/product&amp;product_id=171" title="Urgdoggen picanha" target="_self" >
-									<img src="http://opencart.opencartworks.com/themes/so_jenzo/image/cache/catalog/product/Index3/14-270x330.jpg" alt="Urgdoggen picanha">
-								</a>									
-							</div>
-					
-							<div class="box-label">
-								<!--New Label-->
-															
-								<!--Sale Label-->
-							</div>
-							<div class="button-group">
-								<button class="wishlist btn-button" type="button" data-toggle="tooltip" title="Add to Wish List" onclick="wishlist.add('171');"><i class="fa fa-heart"></i></button>
-								
-								<button class="addToCart" type="button" data-toggle="tooltip" title="Add to Cart" onclick="cart.add('171');">
-									<span><i class="fa fa-shopping-bag"></i>Add to Cart</span>
-								</button>
-																
-								<button class="compare btn-button" type="button" data-toggle="tooltip" title="Compare this Product" onclick="compare.add('171');"><i class="fa fa-random"></i></button>
-																																	
-								
-							</div>
-							</div>
-						  		
-						<div class="right-block">
-							<h4>
-								<a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/product&amp;product_id=171" target="_self"
-								title="Urgdoggen picanha">This is Product
-								</a>
-							</h4>						
-							
-							<div class="caption">
-								<div class="rating">
-									<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-									<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-									<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-									<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-									<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-								</div>
-								<div  class="price">
-									<span class="price-new">27.38€</span>
-								</div>
-							</div>
-
-							
-						</div>
-					</div>
-
-					<!-- End item-wrap-inner -->
-				</div>
-				<!-- End item-wrap -->
-				</div>
-								
-			</div>
-		
-		</div>
-	
-	</div> <!-- /.modcontent -->
-
-</div>
-					  	</div>
-					</div> 
-				</div>
-					
-			</div>
 			
-		</div>
-		
-    </div>
+    		</div>
 	
+		</div>
+
 					
+    </div>
+				
 	</div>
 </div>
 
