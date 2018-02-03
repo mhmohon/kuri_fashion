@@ -29,31 +29,25 @@
 								<div class="form-group required">
 									<label class="col-sm-4 control-label" for="input-firstname">First Name</label>
 									<div class="col-sm-8">
-									@if(checkPermission(['admin','superAdmin','staff']))
-									  <input type="text" name="first_name" value="{{ Auth::user()->staff->first_name }}" placeholder="First Name" id="input-firstname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="First name has to be an alphanumeric value (3-12 chars)">
-									@else
+									
 									  <input type="text" name="first_name" value="{{ Auth::user()->customer->first_name }}" placeholder="First Name" id="input-firstname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="First name has to be an alphanumeric value (3-12 chars)">
-									@endif
+									
 									</div>
 								</div>
 								<div class="form-group required">
 									<label class="col-sm-4 control-label" for="input-lastname">Last Name</label>
 									<div class="col-sm-8">
-									@if(checkPermission(['admin','superAdmin','staff']))
-									  <input type="text" name="last_name" value="{{ Auth::user()->staff->last_name }}" placeholder="Last Name" id="input-lastname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="Last name has to be an alphanumeric value (3-12 chars)">
-									@else
+									
 									  <input type="text" name="last_name" value="{{ Auth::user()->customer->last_name }}" placeholder="Last Name" id="input-lastname" class="form-control" data-validation="length alphanumeric" data-validation-length="3-12" data-validation-error-msg="Last name has to be an alphanumeric value (3-12 chars)">
-									@endif
+									
 									</div>
 								</div>
 								<div class="form-group required">
 									<label class="col-sm-4 control-label" for="input-mobile">Mobile</label>
 									<div class="col-sm-8">
-									@if(checkPermission(['admin','superAdmin','staff']))
-									  <input type="text" name="mobile" value="{{ Auth::user()->staff->phone }}" placeholder="First Name" id="input-mobile" class="form-control" data-validation="length number" data-validation-length="max11">
-									@else
+									
 									  <input type="text" name="mobile" value="{{ Auth::user()->customer->phone }}" placeholder="First Name" id="input-mobile" class="form-control" data-validation="length number" data-validation-length="max11">
-									@endif
+									
 									</div>
 								</div>
 							  </div>
@@ -64,7 +58,7 @@
 						  <div class="box-inner">
 							  
 								<div class="radio radio-info row_bottom">
-									<input type="radio" name="payment_address" checked value="existing" id="existing" onclick="hidediv()">
+									<input type="radio" name="payment_address" checked value="existing" id="existing">
 		                                            
 		                            <label for="existing">I want to use an existing address</label>
 								</div>
@@ -74,8 +68,13 @@
 
 										@if($addresses->count())
 		                                    @foreach($addresses as $address)
+		                                    	@if($address->street_address)
 		                                    	<option value="{{ $address->id }}">
-		                                    		{{ $address->street_address.', '.$address->region.', '. $address->city}}</option>
+		                                    		{{ $address->street_address.', '.$address->route.', '. $address->city}}</option>
+		                                    	@else
+		                                    		<option value="{{ $address->id }}">
+		                                    		{{ $address->route.', '. $address->city}}</option>
+		                                    	@endif
 		                                    @endforeach
 	                                    @else
 	                                    	<option value="">You have no saved address</option>
@@ -85,25 +84,55 @@
 								</div>
 							  
 								<div class="radio radio-info row_bottom">
-									<input type="radio" name="payment_address" value="new" id="new" onclick="showdiv()">		                                            
-		                            <label for="new"> I want to use a new address </label>
+									<input type="radio" name="payment_address" value="new" id="new_address">		                                            
+		                            <label for="new_address"> I want to use a new address </label>
 								</div>
 								<div id="payment-new">
 									
 									<div class="form-group">
-									  <input type="text" name="new_street_address" value="" placeholder="Street Address" ata-validation="required" id="input-payment-address-1" class="form-control">
+									  <input type="text" name="new_house_address" placeholder="House No." data-validation="required" id="input-payment-address-1" class="form-control">
 									</div>
 									
 									<div class="form-group">
-										<input type="text" id="new_city_address" name="new_city_address" value="" placeholder="City Address Location" data-validation="required" id="input-payment-address-1" class="form-control">
+										<input id="autocomplete" placeholder="Enter your full address" onFocus="geolocate()" name="full_address" type="text" class="form-control"></input>
 									</div>
-									<!-- Address Hidden Field -->
-										<input class="field" id="local">
-										<input class="field" id="route">
-										<input class="field" id="division">
-										<input class="field" id="country">
-									<!-- /Address Hidden Field -->
+									
 								</div>
+								<!-- Use my location -->
+								<div class="radio radio-info row_bottom">
+									<input type="radio" name="payment_address" id="my_location" value="my_location" onclick="getMyLocation()">		                                            
+		                            <label for="my_location"> Use my current Location </label>
+								</div>
+								<div id="my-address">
+									<div class="" id="map" style="width:350px; height: 250px;">
+										
+									</div>
+									<div style="padding-top: 10px;">
+										<input id="my_full_address" type="text" class="form-control"></input>
+									</div>
+									
+								</div>
+								
+								<!-- /Use my location -->
+
+								<!-- Address Hidden Field -->
+
+								<input type="hidden" id="street_address" name="street_address"></input>
+							    <input type="hidden" id="route" name="route"></input>
+							     
+							      
+							   <input type="hidden" id="locality" name="locality"></input>
+							    <input type="hidden" id="administrative_area_level_1" name="state"></input>
+							        
+							    <input type="hidden" id="postal_code" name="postal_code"></input>
+							    <input type="hidden" id="country" name="country"></input>
+								
+								<!-- Get Client latitude and longitude -->
+							    <input type="hidden" id="latitude" name="latitude"></input>
+							    <input type="hidden" id="longitude" name="longitude"></input>
+									      
+									    
+								<!-- /Address Hidden Field -->
 						  </div>
 						</div>
 						                        	                        		
@@ -221,6 +250,9 @@
 						  
 						  <div class="confirm-order">
 							<button id="so-checkout-confirm-button" data-loading-text="Loading..." class="btn btn-primary button confirm-button">Confirm Order</button>
+							<div class="pull-right">
+					            <a href="{{ URL::previous() }}" class="btn btn-primary">Back</a>
+					        </div>
 						  </div>                            
 						</div>
 					</section>
@@ -242,22 +274,46 @@
 @endsection
 
 @section('extra_scripts')
-
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script>   
         window.onload = function() {
             document.getElementById('payment-new').style.display = 'none';
+            document.getElementById('my-address').style.display = 'none';
+            
         }
-        function hidediv(){
-            document.getElementById('payment-new').style.display = 'none';
-            document.getElementById('payment-existing').style.display = 'block';
-        }
-        function showdiv(){
-            document.getElementById('payment-new').style.display = 'block';
-            document.getElementById('payment-existing').style.display = 'none';
-        }
+        
+        $(document).ready(function(){
+		    
+		    $("#existing").click(function(){
+		        $("#payment-existing").fadeIn("slow");
+		        $("#my-address").hide(1000);
+		        $("#payment-new").hide(1000);
+		    });
+		    $("#new_address").click(function(){
+		        $("#payment-new").fadeIn("slow");
+		        $("#my-address").hide(1000);
+		        $("#payment-existing").hide(1000);
+		    });
+		    $("#my_location").click(function(){
+		        $("#my-address").fadeIn("slow");
+		        $("#payment-existing").hide(1000);
+		        $("#payment-new").hide(1000);
+		    });
+		});
     </script>
+
     <script type="text/javascript" src="{{ asset('js/plugins/autcomplete.js') }}"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVW0FORtm8JXJZpN1pWnmzLiZD_UoyIYE&libraries=places&callback=autoCompleteLocation"></script>
+    <script type="text/javascript" src="{{ asset('js/plugins/my_location.js') }}"></script>
+	
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVW0FORtm8JXJZpN1pWnmzLiZD_UoyIYE&sensor=true"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVW0FORtm8JXJZpN1pWnmzLiZD_UoyIYE&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
 @endsection
 
 

@@ -8,7 +8,7 @@
 	<ul class="breadcrumb">
 		<li><a href="/"><i class="fa fa-home"></i></a></li>
 		<li><a href="{{ route('myAccount') }}"> Account</a></li>
-		<li><a href="#"> Edit Information</a></li>
+		<li><a> Edit Information</a></li>
 	</ul>
 	<div class="container">
 	<div class="row">
@@ -22,30 +22,20 @@
 			{!! Form::open(['route'=>['checkoutStore'],'class'=>'form-horizontal form-payment','name'=>'checkout','id'=>'checkoutsubmit']) !!}
 
 			<div class="form-group">
-	            <label class="col-sm-2 control-label" for="input-firstname">Street Address</label>
+	            <label class="col-sm-2 control-label" for="input-firstname">House No.</label>
 	            <div class="col-sm-10">
-	              <input type="text" name="street_address" value="{{ $address->street_address }}" placeholder="Street Address" id="street_address" class="form-control" data-validation="length alphanumeric" data-validation="required"/>
+	              <input type="text" name="house_no" value="{{ $address->house_no }}" placeholder="Your house address" id="house_no" class="form-control"data-validation="required"/>
 	            </div>
           	</div>
           	
           	<div class="form-group">
-	            <label class="col-sm-2 control-label" for="input-firstname">City</label>
+	            <label class="col-sm-2 control-label" for="input-firstname">Address</label>
 	            <div class="col-sm-10">
-		            <select data-validation="required" class="form-control" data-state-label="Loading..." data-empty-label="Please select" name="payment_zone_id" id="region">
-
-						<option value="" selected="selected">Please select</option>
-					</select>
+		            <input type="text" name="full_address" id="autocomplete" onFocus="geolocate()" value="{{ $address->street_address.', '.$address->route.', '. $address->city}}" placeholder="Your Full address" class="form-control" data-validation="required"/>
 	            </div>
           	</div>
           	
-          	<div class="form-group">
-	            <label class="col-sm-2 control-label" for="input-firstname">Region</label>
-	            <div class="col-sm-10">
-		            <select data-validation="required" class="form-control" name="payment_country_id" id="division">
-						<option value="" selected="selected">Please select</option>
-					</select>
-	            </div>
-          	</div>
+          	
 			
 			<div class="buttons">
 	          <div class="pull-left pull-form">
@@ -54,9 +44,7 @@
 	            </button>
 	          </div>
 	          <div class="pull-right">
-	            <button type="submit" class="btn btn-primary">
-	                Back
-	            </button>
+	            <a href="{{ URL::previous() }}" class="btn btn-primary">Back</a>
 	          </div>
 	        </div>
 			{{ Form::close() }}
@@ -67,5 +55,13 @@
 </div>
 
 
+
+@endsection
+
+@section('extra_scripts')
+
+	<script type="text/javascript" src="{{ asset('js/plugins/autcomplete.js') }}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVW0FORtm8JXJZpN1pWnmzLiZD_UoyIYE&libraries=places&callback=initAutocomplete"
+        async defer></script>
 
 @endsection

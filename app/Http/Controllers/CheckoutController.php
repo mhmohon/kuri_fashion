@@ -62,12 +62,54 @@ class CheckoutController extends Controller
 
         ]);
 
+        //check if user checkd for new address.
         if($addressChecked == 'new'){
+            
+            $full_address = request('full_address');
+            $get_street = explode(',',trim($full_address))[0];
+            $street_address = request('route');
+            
+            //check if user street address is get.
+            if($get_street != $street_address){
+
+                $address = Address::create([
+                    'house_no' => request('new_house_address'),
+                    'street_address' => $get_street,
+                    'route' => request('route'),  
+                    'city' => request('locality'),
+                    'state' => request('state'),
+                    'country' => request('country'),
+                    'user_id' => $id,
+                ]);
+            }else{
+                $address = Address::create([
+                    'house_no' => request('new_house_address'),
+                    'street_address' => request('street_address'),
+                    'route' => request('route'),  
+                    'city' => request('locality'),
+                    'state' => request('state'),
+                    'country' => request('country'),
+                    'user_id' => $id,
+                ]);
+            }
+            $order = Order::create([
+                'user_id' => $id,
+                'payment_id' => request('payment_method'),  
+                'address_id' => $address->id,  
+                'order_description' => request('comment'),     
+                'order_date' => $mytime->toDateString(),             
+            ]);
+
+        }elseif($addressChecked == 'my_location'){ // if user checkd for use my current address.
 
             $address = Address::create([
-                'street_address' => request('payment_address_1'),
-                'region' => request('payment_zone_id'),  
-                'city' => request('payment_country_id'),
+                'street_address' => request('street_address'),
+                'route' => request('route'),  
+                'city' => request('locality'),
+                'state' => request('state'),
+                'country' => request('country'),
+                'latitude' => request('latitude'),
+                'longitude' => request('longitude'),
                 'user_id' => $id,
             ]);
 

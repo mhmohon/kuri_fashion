@@ -17,7 +17,7 @@ function renameCity($citytxt){
 	}elseif($citytxt == "SYL"){
 		$city = "Sylhet";
 	}
-	return $city;
+	return $citytxt;
 }
 
 function getTotalq($id){

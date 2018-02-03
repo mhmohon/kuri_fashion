@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     
-    protected $fillable = ['street_address', 'region', 'city', 'user_id'];
+    protected $fillable = ['house_no', 'street_address', 'route', 'city', 'state', 'country', 'latitude', 'longitude', 'user_id'];
 
     public function order()
     {
