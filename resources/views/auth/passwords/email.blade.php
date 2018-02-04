@@ -1,11 +1,19 @@
-@extends('layouts.app')
+@extends ('front_end.layouts.master')
 
-@section('content')
+@section ('page_title', config('app.name'))
+
+@section('main_content')
+
 <div class="container">
+    <ul class="breadcrumb">
+        <li><a href="/"><i class="fa fa-home"></i></a></li>
+        <li><a href="{{ route('myAccount') }}"> Account</a></li>
+        <li><a> Forgotten Password</a></li>
+    </ul>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="content col-md-8">
+            <h1>Forgot Your Password?</h1>
             <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
 
                 <div class="panel-body">
                     @if (session('status'))

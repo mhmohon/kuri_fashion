@@ -21,7 +21,7 @@
                 </div>
               </div>
            
-              <div class="secondary ft-link-p"><a class="action remind" href="#"><span>Forgot Your Password?</span></a></div>
+              <div class="secondary ft-link-p"><a class="action remind" href="{{ route('password.request') }}"><span>Forgot Your Password?</span></a></div>
               <div class="actions-toolbar">
                 <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span>Login</span></button></div>
               </div>
@@ -36,7 +36,7 @@
           <li>Faster checkout</li>
           <li>Save multiple shipping addresses</li>
           <li>View and track orders and more</li>
-        </ul>                                    <a class="btn-reg-popup" title="Register" href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=account/register">Create an account</a>
+        </ul>                                    <a class="btn-reg-popup" title="Register" href="{{ route('register') }}">Create an account</a>
       </div>
       <div style="clear:both;"></div>
     </div>

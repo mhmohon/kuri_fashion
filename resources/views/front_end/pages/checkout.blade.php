@@ -299,6 +299,7 @@
 		        $("#my-address").fadeIn("slow");
 		        $("#payment-existing").hide(1000);
 		        $("#payment-new").hide(1000);
+		        getMyLocation();
 		    });
 		});
     </script>

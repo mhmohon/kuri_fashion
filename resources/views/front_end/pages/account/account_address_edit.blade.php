@@ -10,8 +10,8 @@
 		<li><a href="{{ route('myAccount') }}"> Account</a></li>
 		<li><a> Edit Information</a></li>
 	</ul>
-	<div class="container">
 	<div class="row">
+	
 
 	    <!-- layouts for header -->
 	    @include ('front_end.layouts.sidebar_account')
@@ -51,10 +51,8 @@
 	  	</div>
 	</div>
 
-		
+
 </div>
-
-
 
 @endsection
 

@@ -17,9 +17,9 @@
 
 
 
-require __DIR__. '/web/cart.php';
+require __DIR__. '/web/cart&checkout.php';
 
-require __DIR__. '/web/wishlist&comparison.php';
+require __DIR__. '/web/wishlist.php';
 
 require __DIR__ . '/web/dashboard.php';
 
@@ -36,17 +36,26 @@ require __DIR__ . '/web/user_customer.php';
 
 
 
-Route::post('/product/search', 'HomeController@searchProduct')->name('productSearch');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/checkout-success', 'PageController@checkout_success')->name('checkoutSuccess');
+Route::get('/all-product/view/','HomeController@allProductDetails')->name('viewAllProduct');
 
+Route::get('/single-product/{id}/view/','HomeController@singleProductDetails')->name('viewSingleProduct');
+
+Route::post('/product/search', 'HomeController@searchProduct')->name('productSearch');
+
+Route::get('/all-product/category/view&category_id={id}','HomeController@productByCategory')->name('viewProductByCategory');
+
+//For user comparison.
+Route::get('/show/product-comparison', 'CompareController@index')->name('compareIndex');
+
+Route::get('/comparison/add&product_id={id}', 'CompareController@add_to_compare')->name('compareAdd');
+
+Route::get('/comparison/delete&compare_id={id}', 'CompareController@delete_to_compare')->name('compareDelete');
 
 
 

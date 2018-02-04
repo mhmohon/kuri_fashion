@@ -9,11 +9,6 @@ Route::group(['middleware'=>'auth'],function(){
 
 	Route::get('/wishlist/delete&wishlist_id={id}', ['middleware'=>'check-role:customer','uses'=>'WishlistController@delete_to_wishlist'])->name('wishlistDelete');
 
-	//For user comparison.
-	Route::get('/show/product-comparison', ['middleware'=>'check-role:customer','uses'=>'CompareController@index'])->name('compareIndex');
-
-	Route::get('/comparison/add&product_id={id}', ['middleware'=>'check-role:customer','uses'=>'CompareController@add_to_compare'])->name('compareAdd');
-
-	Route::get('/comparison/delete&compare_id={id}', ['middleware'=>'check-role:customer','uses'=>'CompareController@delete_to_compare'])->name('compareDelete');
+	
 });
 

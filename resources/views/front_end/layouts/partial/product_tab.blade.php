@@ -58,18 +58,17 @@
                     <h2 id="review-title">Write a review</h2>
 
                     {!! Form::open(['route'=>['ReviewStore',$product->id],'class'=>'form-horizontal form-payment','name'=>'review_form','id'=>'review_form']) !!}
-
+					@guest
+						<p>
+							<span>Please <strong><a href="{{ route('login') }}">Login</a></strong> Or <strong><a href="{{ route('register') }}">Register</a></strong> To Review.</span>
+						</p>
+					@else
                     <div class="contacts-form">
                         <div class="form-group">
                             <span class="icon icon-user"></span>
-                            @if(checkPermission(['admin','superAdmin','staff']))
-
-                            	<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->staff->first_name . ' ' . Auth::user()->staff->last_name }}" data-validation="required">
-							@endif
-							@if(checkPermission(['customer']))
+					
 								<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->customer->first_name . ' ' . Auth::user()->customer->last_name }}" data-validation="required">
 								
-							@endif
                             
                         </div>
                         <div class="form-group">
@@ -133,6 +132,7 @@
                         </div>
 
                     </div>
+                    @endguest
                 {{ Form::close() }}
             </div>
             <div id="size-guides" class="tab-pane fade in">
