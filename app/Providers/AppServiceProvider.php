@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
             $categories = Category::where('publication_status',1)->get();
             
             
-            $productDetails = ProductDetail::where('pro_status',1)->get();
+            $productDetails = ProductDetail::where('pro_status',1)->latest()->get();
             
             $view->with('productDetails',$productDetails)->with('categories',$categories);
         });

@@ -63,10 +63,15 @@
 							<span>Please <strong><a href="{{ route('login') }}">Login</a></strong> Or <strong><a href="{{ route('register') }}">Register</a></strong> To Review.</span>
 						</p>
 					@else
+					@if(checkPermission(['admin','superAdmin','staff']))
+						<p>
+							<span>Please login as customer.</span>
+						</p>
+					@else
                     <div class="contacts-form">
                         <div class="form-group">
                             <span class="icon icon-user"></span>
-					
+							
 								<input type="text" name="user_name" class="form-control" value="{{ Auth::user()->customer->first_name . ' ' . Auth::user()->customer->last_name }}" data-validation="required">
 								
                             
@@ -132,6 +137,7 @@
                         </div>
 
                     </div>
+                    @endif
                     @endguest
                 {{ Form::close() }}
             </div>

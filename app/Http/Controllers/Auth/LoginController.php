@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -44,12 +44,7 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        $role = $this->guard()->user()->user_role;
-
-        if($role == '1' | $role == '2' | $role == '3'){
-            return redirect('/dashboard');
-        }
-            return redirect('/home')->with('msgsuccess','Login');
+        return redirect()->back();
         
     }
 
