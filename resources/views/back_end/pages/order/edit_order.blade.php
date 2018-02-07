@@ -200,7 +200,7 @@
                                     <td class="text-center">
                                         <a href="#" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
                                         
-                                       <button type="submit" formaction="{{  route('orderQuantityUpdate', $orderItem->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-upload"></i></i>
+                                       <button type="submit" formaction="{{  route('orderQuantityUpdate', $orderItem->id) }}" class="btn btn-sm btn-warning"><i class="mdi mdi-cloud-upload mdi-35px"></i></i>
                                         </button>
 
                                         <button type="submit" formaction="{{  route('orderItemDelete', $orderItem->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i>

@@ -222,7 +222,7 @@
                   
               </div> 
                 <input class="btn btn-danger waves-light" type="submit" value="Submit">
-                <input class="btn btn-danger waves-light" type="submit" value="Back">
+                <a class="btn btn-info" href="{{ URL::previous() }}">back</a>
             </div> 
           </div>
           
@@ -244,15 +244,7 @@
                 txt.value = txt.value.toUpperCase();
             }, 400);
         }
-        window.onload = function() {
-            document.getElementById('upload_img').style.display = 'none';
-        }
-        function hidediv(){
-            document.getElementById('upload_img').style.display = 'none';
-        }
-        function showdiv(){
-            document.getElementById('upload_img').style.display = 'block';
-        }
+        
 
     </script>
 

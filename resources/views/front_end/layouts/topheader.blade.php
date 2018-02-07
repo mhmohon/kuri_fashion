@@ -14,7 +14,9 @@
 					<span>Register</span></a>
 				</li>
 				<!-- If User is log in -->
-			@else
+			@endguest
+
+			@auth
 				<span class="loginas">Login As:</span>
 				<li class="account" id="my_account">
 					<a href="#" title="My Account" class="btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -40,7 +42,13 @@
 							<li><a href="#">Order History</a></li>
 							<li><a href="#">Transactions</a></li>
 							<li><a href="#">Downloads</a></li>
-							<li class="wishlist"><a href="{{ route('wishlistIndex') }}" id="wishlist-total" class="top-link-wishlist" title="Wish List"><span>Wish List ({{ Cart::instance('wishlist')->count() }})</span></a></li>
+							<li class="wishlist">
+								<a href="{{ route('wishlistIndex') }}" id="wishlist-total" class="top-link-wishlist" title="Wish List">
+									
+									<span>Wish List ({{ $wishlist_items->count() }})</span>
+									
+								</a>
+							</li>
 							
 						@endif
 						<li>
@@ -57,7 +65,7 @@
 						
 					</ul>
 				</li>
-				@endguest
+				@endauth
 			</ul>	
 		</div>
 	
@@ -108,10 +116,11 @@
 							<div class="shopcart-inner">
 								<p class="text-shopping-cart">
 								 My cart</p>
-						   	@if(Cart::instance('shopping')->count() > 0)
+
+						   	@if(Cart::count() > 0)
 								<span class="total-shopping-cart cart-total-full">
-								   <span class="items_cart">{{ Cart::instance('shopping')->count() }} </span><span class="items_cart2">item(s)</span>
-								   <span class="items_carts"> - ৳{{ Cart::instance('shopping')->subtotal() }}</span>        
+								   <span class="items_cart">{{ Cart::count() }} </span><span class="items_cart2">item(s)</span>
+								   <span class="items_carts"> - ৳{{ Cart::subtotal() }}</span>        
 								</span>
 							@else
 								<span class="total-shopping-cart cart-total-full">
@@ -145,9 +154,9 @@
 					                                <br>	             
 					                                <small>Size: {{ $cart_item->options->size }}</small>
 					                                <br>
-					                                <small>Date: 2017-06-08</small>
+					                                <small>Date: {{ $cart_item->options->order_date }}</small>
 					                                <br>
-					                                <small>Delivery Date: 2017-06-09</small>
+					                                
 					                            </td>
 							                    <td class="text-center">
 							                        x {{ $cart_item->qty }} </td>
@@ -180,11 +189,13 @@
 						</div>
 					</div>
 					<!-- WISHLIST  -->
+					@auth
 					<div class="wishlist">
-						<a href="#" id="wishlist-total" class="btn-link" title="Wish List (0)">
-							<span >Wish List (0)</span>
+						<a href="{{ route('wishlistIndex') }}" id="wishlist-total" class="btn-link" title="Wish List ({{ $wishlist_items->count() }})">
+							<span >Wish List ({{ $wishlist_items->count() }})</span>
 						</a>
-					</div>					
+					</div>
+					@endauth					
 										
 				
 				</div>

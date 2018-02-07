@@ -91,7 +91,7 @@
 	                      <div class="box-label">
 	                        <!--New Label-->							
 	                        <!--Sale Label-->
-	                        <span class="label-product label-sale">-29% </span>
+	                        <span class="label-product label-sale"></span>
 	                      </div>
 	                      <div class="button-group">
 	                        <a href="{{ route('wishlistAdd',$productDetail->product_id) }}" class="wishlist btn-button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart cls" style="padding:12px;"></i></a>

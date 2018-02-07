@@ -6,11 +6,23 @@
 			<div id="sidebar-menu">  
 				<ul>				
 					<li class="has_sub">
-						<a href="{{ url('/home') }}" class="waves-effect"><i class="mdi mdi-book-open-page-variant mdi-36px"></i> <span> Go to Page </span> </a>
+						<a href="{{ url('/') }}" class="waves-effect"><i class="mdi mdi-book-open-page-variant mdi-36px"></i> <span> Go to Page </span> </a>
 					</li>
 					<li class="has_sub">
-						<a href="{{ url('dashboard') }}" class="waves-effect"><i class="mdi mdi-home mdi-36px"></i> <span> Home </span> </a>
+						<a href="{{ route('dashboardHome') }}" class="waves-effect"><i class="mdi mdi-home mdi-36px"></i> <span> Home </span> </a>
 					</li>
+					
+					<li class="menu-title">Page Section</li>
+
+						<li class="has_sub">
+							<a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-image-album"></i> <span> Banner </span> <span class="menu-arrow"></span></a>
+							<ul class="list-unstyled">
+								
+								<li><a href="{{ route('bannerCreate') }}">Add Banner</a></li>
+								<li><a href="{{ route('bannerIndex') }}">Banner List</a></li>
+							</ul>
+						</li>
+
 
 					<li class="menu-title">Customer Section</li>
 

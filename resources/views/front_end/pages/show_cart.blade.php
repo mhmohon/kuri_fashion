@@ -39,9 +39,8 @@
 	                                <br>	             
 	                                <small>Size: {{ $cart_item->options->size }}</small>
 	                                <br>
-	                                <small>Date: 2017-06-08 </small>
-	                                <br>
-	                                <small>Delivery Date: 2017-06-09</small>
+	                                <small>Date: {{ $cart_item->options->order_date }} </small>
+	                                
 	                            </td>
 	                            <td class="text-left">p2</td>
 	                            <td class="text-left">

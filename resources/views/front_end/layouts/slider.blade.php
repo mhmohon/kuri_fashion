@@ -4,29 +4,17 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="images/s1-1920x720.jpg" alt="...">
-				<div class="carousel-caption">
-				  <h3>Lorem ipsum dolor</h3> Lorem ipsum dolor sit amet, tharsiam eam est in.
-				</div>
+				<img src="{{ asset('images/s1-1920x720.jpg') }}" alt="...">
+				
 			</div>
-			<div class="item sldr">
-				<img src="images/im05.jpg" alt="...">
-				<div class="carousel-caption">
-				  <h3>Lorem ipsum dolor</h3> Lorem ipsum dolor sit amet, tharsiam eam est in.
+			
+			@foreach($banners as $banner)
+				<div class="item">
+					<img src="{{ asset('images/banner/' . $banner->image) }}" alt="{{ $banner->name }}">
+					
 				</div>
-			</div>
-			<div class="item">
-				<img src="images/kurti-collection.jpg" alt="...">
-				<div class="carousel-caption">
-				  <h3>Lorem ipsum dolor</h3> Lorem ipsum dolor sit amet, tharsiam eam est in.
-				</div>
-			</div>
-			<div class="item">
-				<img src="images/Women-Fashion-Banner-1.jpg" alt="..." style="width:100%">
-				<div class="carousel-caption">
-				  <h3>Lorem ipsum dolor</h3> Lorem ipsum dolor sit amet, tharsiam eam est in.
-				</div>
-			</div>
+			@endforeach
+
 		</div>
 
 		<!-- Controls -->

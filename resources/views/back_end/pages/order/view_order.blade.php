@@ -96,8 +96,6 @@
 
                                             <a href="{{ route('orderEdit',$order->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                                             
-                                            <form method="POST" action="http://lily-tms.herokuapp.com/orders/19" accept-charset="UTF-8" style="display:inline-block"><input name="_method" type="hidden" value="DELETE"><input name="_token" type="hidden" value="Ui0huUgLgfiab4ML237SeT27MD93LBCSqHKZtPbO">                                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this?')"><i class="fa fa-trash-o"></i></button>
-                                            </form>                                           
                                         </td>
                                         
                                     </tr>

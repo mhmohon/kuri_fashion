@@ -57,11 +57,18 @@ class ProductBackEndController extends Controller
             'product_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
+        if(request('colors')){
 
-        $product_colors = implode(", ", $request->get('colors'));
-        $product_size = implode(", ",  $request->get('size'));
+            $product_colors = implode(", ", $request->get('colors'));
+        }
+        if(request('size')){
+
+            $product_size = implode(", ",  $request->get('size'));
+        }
+        
 
         $image = $request->file('product_image');
+        
         $image_name = time().'.'.$image->getClientOriginalExtension();
         $destinationPath = public_path('/images/product');
 
@@ -151,12 +158,22 @@ class ProductBackEndController extends Controller
         if($validate){
 
             $product = Product::find($id);
-            $product_colors = implode(", ", $request->get('colors'));
-            $product_size = implode(", ",  $request->get('size'));
+
+            if(request('colors')){
+
+                $product_colors = implode(", ", $request->get('colors'));
+            }
+            if(request('size')){
+
+                $product_size = implode(", ",  $request->get('size'));
+            }
+            
             
             
             if($request->hasFile('product_image')){
+
                 $image = $request->file('product_image');
+
                 $image_name = time().'.'.$image->getClientOriginalExtension();
                 $destinationPath = public_path('/images/product');                 
                 $image->move($destinationPath, $image_name); 

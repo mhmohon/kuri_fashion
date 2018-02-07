@@ -12,6 +12,7 @@ Route::post('/dashboard/orders/{id}/update', 'OrderBackEndController@update')->n
 
 //Only OrderItem update or delete.
 Route::post('/dashboard/orders/update&order_item={id}', 'OrderBackEndController@updateQuantity')->name('orderQuantityUpdate');
+
 Route::post('/dashboard/orders/delete&order_item={id}', 'OrderBackEndController@deleteItem')->name('orderItemDelete');
 
 

@@ -119,8 +119,8 @@
 		<div id="content" class="bg-page-404 col-sm-12">
 			<div class="text-center">
 				
-				<h1>My Wishlist</h1>
-				<p>Your wishlist is empty!</p>
+				<h1>Product Comparison</h1>
+				<p>Your have no product is comparison!</p>
 				<a href="{{ url('/home') }}" class="btn btn-primary" title="Continue">Continue</a>
 			</div>
 		

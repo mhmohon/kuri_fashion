@@ -14,7 +14,11 @@ class Product extends Model
     }
     public function productDetail()
     {
-    	return $this->hasOne(ProductDetail::class);
+        return $this->hasOne(ProductDetail::class);
+    }
+    public function wishlist()
+    {
+    	return $this->hasOne(Wishlist::class);
     }
     public function orderItem()
     {
@@ -28,6 +32,7 @@ class Product extends Model
 	{
 		return $this->hasMany(Review::class);
 	}
+    
 	public function recalculateRating($rating)
     {
     	$reviews = $this->reviews();

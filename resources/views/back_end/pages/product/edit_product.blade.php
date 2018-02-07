@@ -313,6 +313,7 @@
 
                         </div>
                              <input class="btn btn-danger waves-light" type="submit" value="Submit">
+                             <a class="btn btn-info" href="{{ URL::previous() }}">back</a>
 				        {!! Form::close() !!}
 			        </div>  
 		        </div>        

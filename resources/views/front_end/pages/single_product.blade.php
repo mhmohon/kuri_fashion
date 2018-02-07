@@ -44,7 +44,7 @@
 					<h1 itemprop="name">{{ $product->pro_name }}</h1>
 				</div>
 				 <!-- Review -->
-				 <div class="box-review" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+				 <div class="box-review">
 				    <div class="ratings">
 				        <div class="rating-box home-rate" itemprop="ratingValue" content="5">
 				            @for ($i=1; $i <= 5 ; $i++)
@@ -53,7 +53,7 @@
 				        </div>
 				    </div>
 
-				    <a class="reviews_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;" itemprop="reviewCount" content="1">{{ $product->rating_count }} reviews</a> |
+				    <a class="reviews_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;" itemprop="reviewCount" content="1">{{ isset($product->rating_count) ? $product->rating_count : '0' }} reviews</a> |
 				    <a class="write_review_button" href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">Write a review</a>
 				</div>
 				 

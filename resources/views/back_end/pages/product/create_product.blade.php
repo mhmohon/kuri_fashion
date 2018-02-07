@@ -13,7 +13,7 @@
                 <h3 class="page-title">Add Product<small> Add New Product Data.</small></h3> 
                 <ol class="breadcrumb p-0 m-0">
                     <li>
-                        <a href="#">Dashboard</a>
+                        <a href="{{ route('dashboardHome') }}">Dashboard</a>
                     </li>
                     <li class="active">
                         Add Product

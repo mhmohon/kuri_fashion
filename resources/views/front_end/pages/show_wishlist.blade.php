@@ -11,7 +11,7 @@
 		<li><a href="/show-wishlist"> My Wish List</a></li>
 	</ul>
 
-	@if(Cart::instance('wishlist')->count())
+	@if($wishlist_items->count())
 	<div class="row">
 	    <div id="content" class="col-sm-9">
 		    <h2>My Favorite Product List</h2>
@@ -30,26 +30,28 @@
 		            @foreach($wishlist_items as $wishlist_item)
 		                <tr>
 		                    <td class="text-center">
-	                            <a href="{{ route('viewSingleProduct',$wishlist_item->id) }}"><img src="{{ asset('images/product/'.$wishlist_item->options->image)}}" alt="{{ $wishlist_item->name }}" title="{{ $wishlist_item->name }}" class="img-thumbnail" height="47" width="47"></a>
+	                            <a href="{{ route('viewSingleProduct',$wishlist_item->product_id) }}"><img src="{{ asset('images/product/'.$wishlist_item->product->productDetail->pro_image)}}" alt="{{ $wishlist_item->product->pro_name }}" title="{{ $wishlist_item->product->pro_name }}" class="img-thumbnail" height="50" width="50"></a>
 	                            </td>
+	                       
 		                    <td class="text-left">
-		                        <a href="{{ route('viewSingleProduct',$wishlist_item->id) }}">{{ $wishlist_item->name }}</a>
+		                        <a href="{{ route('viewSingleProduct',$wishlist_item->product_id) }}">{{ $wishlist_item->product->pro_name }}</a>
 		                    </td>
-		                    <td class="text-right">{{ $wishlist_item->options->stock }}</td>
+		                    <td class="text-right">{{ $wishlist_item->product->inventory->quantity_in_stock }}</td>
 		                    <td class="text-right">
 		                        <div class="price">
-		                            {{ number_format($wishlist_item->price) }}
+		                            ৳{{ number_format($wishlist_item->product->productDetail->pro_price) }}
 		                        </div>
 		                    </td>
 		                    <td class="text-right">
 		                        <button type="button" onclick="cart.add('61');" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Add to Cart">
 		                            <i class="fa fa-shopping-cart"></i>
 		                        </button>
-		                        <a href="{{ route('wishlistDelete', $wishlist_item->rowId) }}" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Remove">
+		                        <a href="{{ route('wishlistDelete',$wishlist_item->id) }}" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Remove">
 		                            <i class="fa fa-times"></i>
 		                        </a>
 		                    </td>
 		                </tr>
+		            
 		            @endforeach
 		            </tbody>
 		        </table>

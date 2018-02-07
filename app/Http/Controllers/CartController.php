@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use Carbon\Carbon;
 use Cart;
 
 class CartController extends Controller
@@ -15,7 +16,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart_items = Cart::instance('shopping')->content();
+        $cart_items = Cart::content();
         //dd($cart_items);
         return view('front_end.pages.show_cart', compact('cart_items'));
     }
@@ -35,10 +36,11 @@ class CartController extends Controller
         $data['options']['image'] = $product->productDetail->pro_image;
         $data['options']['size'] = request('product_size');
         $data['options']['color'] = request('product_color');
+        $data['options']['order_date'] = Carbon::now()->toDateString();
 
         
-        //Cart::destroy();
-        Cart::instance('shopping')->add($data);
+        
+        Cart::add($data);
         return back()->withMsgsuccess($product->pro_name. ' added to shopping cart');
 
 
@@ -78,7 +80,7 @@ class CartController extends Controller
     public function update_to_cart(Request $request, $id)
     {
         $new_qty = request('quantity');
-        Cart::instance('shopping')->update($id, $new_qty);
+        Cart::update($id, $new_qty);
         return redirect('/show-cart')->withMsgsuccess('Product Cart Updated Successfully');
     }
 
@@ -90,7 +92,7 @@ class CartController extends Controller
      */
     public function delete_to_cart($id)
     {
-        Cart::instance('shopping')->remove($id);
+        Cart::remove($id);
         return back()->withMsgsuccess('Product Cart Successfully Deleted');
     }
 }

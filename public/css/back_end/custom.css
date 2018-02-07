@@ -1,5 +1,7 @@
 /*Other Component*/
-
+.space_top{
+	padding-top: 15px;
+}
 .star-left{
 	float: left;
 	padding-top: 2px;

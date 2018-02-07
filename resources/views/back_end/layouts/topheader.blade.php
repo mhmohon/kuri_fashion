@@ -55,7 +55,7 @@
 							<li>
 								@if(Auth::check())
 									<a href="">
-										{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
+										{{ Auth::user()->staff->first_name . ' ' . Auth::user()->staff->last_name }}
 									</a>
 								@endif
 								
