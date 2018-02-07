@@ -30,7 +30,7 @@
 							<a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-account-multiple-plus"></i> <span> Customer </span> <span class="menu-arrow"></span></a>
 							<ul class="list-unstyled">
 								
-								<li><a href="customer_list.html">Customers List</a></li>
+								<li><a href="{{ route('customerList') }}">Customers List</a></li>
 							</ul>
 						</li>
 						<li class="has_sub">

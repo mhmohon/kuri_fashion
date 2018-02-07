@@ -33,6 +33,8 @@ require __DIR__ . '/web/review.php';
 
 require __DIR__ . '/web/user_customer.php';
 
+require __DIR__ . '/web/backend_customer.php';
+
 
 
 

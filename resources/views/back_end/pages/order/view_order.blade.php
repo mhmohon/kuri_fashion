@@ -65,9 +65,9 @@
                                         <td>Not Delivery Yet</td>
                                     @endif
                                         
-                                    @if( $order->status == 'processing')
+                                    @if( $order->status == 'pending')
                                         <td class="text-center">
-                                            <span class="label label-warning"> Processing</span>
+                                            <span class="label label-warning"> Pending</span>
                                         </td>
                                     @elseif($order->status == 'confirm')
                                         <td class="text-center">

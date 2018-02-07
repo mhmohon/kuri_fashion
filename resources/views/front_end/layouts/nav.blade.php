@@ -17,39 +17,37 @@
 				<ul class="megamenu" data-transition="slide" data-animationtime="300">
 
 					<li class="home">
-							<a href="/">
+							<a href="{{ url('/') }}">
 								<span><strong>Home</strong></span>
+							</a>
+					</li>
+					<li class="home">
+							<a href="{{ route('viewAllProduct') }}">
+								<span><strong>Products</strong></span>
 							</a>
 					</li>
 				
 
 					<li class='full-width menu-features with-sub-menu hover' >
 						<p class='close-menu'></p><a href='' class='clearfix' >
-						<strong>Features</strong>
+						<strong>Categories</strong>
 						<b class='caret' ></b></a>
 						<div class="sub-menu" style="width:40%">
 						<div class="content row col-sm-12 html">
 							<div class="column">    
 								<div>       
 									<ul class="row-list content-feature" style="font-size: 14px;">
-									  <li><a href="#"><span>Category Left</span></a></li>
-									  <li><a href="#"><span>Category Left</span></a></li>
-									  <li><a href="#"><span>Category Left</span></a></li>										 
+								@foreach($categories as $category)
+										  <li>
+										  	<a href="{{ route('viewProductByCategory',$category->id) }}" title="{{ $category->cat_name }}"> 
+												<span>{{ $category->cat_name }}</span>
+											</a>
+										  </li>
+								@endforeach										 
 									</ul>
 								</div>
 							</div>
-						<div class="border row col-sm-12 html demo-detail">
-						<div class="column">    
-							<div>       
-								<ul class="row-list content-feature">
-									<li><a href="#"><span>Category Left</span></a></li>
-									<li><a href="#"><span>Category Left</span></a></li>
-									<li><a href="#"><span>Category Left</span></a></li>
-									  
-								</ul>
-							</div>
-						</div>
-						</div>
+						
 						</div>
 					</li>
 					<li class='style-page with-sub-menu hover'><p class='close-menu'></p><a href='' class='clearfix' >

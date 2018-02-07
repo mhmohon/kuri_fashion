@@ -25023,11 +25023,12 @@ body #so_sociallogin .block-popup-login .block-content .action.login:hover {
     background-color: #ff5a01
 }
 .breadcrumbs {
-    background: url(../images/bg-breadcrumb.jpg)  no-repeat center top;
+    background: url(../images/test.png)  no-repeat top;
 	background-size: cover;
     padding: 35px 0;
     text-align: center;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+	opacity: 1;
 }
 .breadcrumbs .current-name {
     font-size: 26px;

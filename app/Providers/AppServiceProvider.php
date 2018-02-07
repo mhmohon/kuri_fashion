@@ -38,9 +38,17 @@ class AppServiceProvider extends ServiceProvider
             $banners = Banner::where('publication_status', 1)->limit(5)->get();
             
             $view->with('banners',$banners);
-           
 
         });
+
+        //Home page nav bar
+        View::composer('front_end.layouts.nav', function($view){
+
+            $categories = Category::where('publication_status',1)->get();
+            
+            $view->with('categories',$categories);
+        });
+
         View::composer('front_end.pages.home', function($view){
 
             $categories = Category::where('publication_status',1)->get();
@@ -51,7 +59,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
 
-        
+
+        //Show ALl product page.
         View::composer('front_end.pages.show_all_product', function($view){
 
             $categories = Category::where('publication_status',1)->get();

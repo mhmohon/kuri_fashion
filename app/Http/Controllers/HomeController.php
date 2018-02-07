@@ -31,6 +31,11 @@ class HomeController extends Controller
         return view('front_end.pages.home');
     }
 
+    public function allProductDetails()
+    {  
+        return view('front_end.pages.show_all_product');
+    }
+
     public function searchProduct(Request $request)
     {
         $input = $request->input('search_value');
