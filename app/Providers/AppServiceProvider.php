@@ -53,9 +53,17 @@ class AppServiceProvider extends ServiceProvider
 
             $categories = Category::where('publication_status',1)->get();
             
-            $productDetails = ProductDetail::where('pro_status',1)->latest()->get();
+            $topProductDetails = ProductDetail::where('pro_status',1)
+                                                ->where('pro_level', 'top')
+                                                ->latest()->limit(7)->get();
+            $newProductDetails = ProductDetail::where('pro_status',1)
+                                                ->where('pro_level', 'usual')
+                                                ->latest()->limit(6)->get();
+            $trendProductDetails = ProductDetail::where('pro_status',1)
+                                                ->where('pro_level', 'trend')
+                                                ->latest()->limit(6)->get();
             
-            $view->with('productDetails',$productDetails)->with('categories',$categories);
+            $view->with('topProductDetails',$topProductDetails)->with('categories',$categories)->with('newProductDetails',$newProductDetails)->with('trendProductDetails',$trendProductDetails);
         });
 
 

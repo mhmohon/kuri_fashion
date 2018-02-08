@@ -41,7 +41,7 @@
           <div id="bg-default" class="panel-collapse collapse in">
             <div class="portlet-body">
             
-            {!! Form::open(['route'=>['orderUpdate',$order->id],'class'=>'form-horizontal m-b-30','files' => true,'name'=>'editProductForm']) !!}                      
+            {!! Form::open(['route'=>['orderUpdate',$order->id],'class'=>'form-horizontal m-b-30','files' => true,'name'=>'editOrderForm']) !!}                      
               <div class='row'>
                 <!-- Left Side -->
 
@@ -203,7 +203,7 @@
                                        <button type="submit" formaction="{{  route('orderQuantityUpdate', $orderItem->id) }}" class="btn btn-sm btn-warning"><i class="mdi mdi-cloud-upload mdi-35px"></i></i>
                                         </button>
 
-                                        <button type="submit" formaction="{{  route('orderItemDelete', $orderItem->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i>
+                                        <button type="submit" formaction="{{  route('orderItemDelete', $orderItem->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i>
                                         </button>
 
                                                                                                     

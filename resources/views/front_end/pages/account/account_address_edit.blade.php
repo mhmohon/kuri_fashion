@@ -24,19 +24,45 @@
 			<div class="form-group">
 	            <label class="col-sm-2 control-label" for="input-firstname">House No.</label>
 	            <div class="col-sm-10">
-	              <input type="text" name="house_no" value="{{ $address->house_no }}" placeholder="Your house address" id="house_no" class="form-control"data-validation="required"/>
+	              <input type="text" name="house_no" value="{{ $address->house_no }}" placeholder="Your house address" id="house_no" class="form-control"/>
+
+	              	@if ($errors->has('house_no'))
+	                    <span class="text-danger help-block">
+	                        <block>{{ $errors->first('house_no') }}</block>
+	                    </span>
+	                @endif  
 	            </div>
           	</div>
           	
           	<div class="form-group">
 	            <label class="col-sm-2 control-label" for="input-firstname">Address</label>
 	            <div class="col-sm-10">
-		            <input type="text" name="full_address" id="autocomplete" onFocus="geolocate()" value="{{ $address->street_address.', '.$address->route.', '. $address->city}}" placeholder="Your Full address" class="form-control" data-validation="required"/>
+		            @if($address->street_address)
+                        <input type="text" name="full_address" id="autocomplete" onFocus="geolocate()" value="{{ $address->street_address.', '.$address->route.', '. $address->city}}" placeholder="Customer Full address" class="form-control" data-validation="required"/>
+                    @else
+                        <input type="text" name="full_address" id="autocomplete" onFocus="geolocate()" value="{{ $address->route.', '. $address->city.', '.$address->state}}" placeholder="Customer Full address" class="form-control" data-validation="required"/>
+                    @endif
+                    @if ($errors->has('full_address'))
+	                    <span class="text-danger help-block">
+	                        <block>{{ $errors->first('full_address') }}</block>
+	                    </span>
+	                @endif  
 	            </div>
           	</div>
           	
-          	
-			
+          	<!-- Address Hidden Field -->
+
+            <input type="hidden" id="street_address" name="street_address"></input>
+            <input type="hidden" id="route" name="route"></input>
+             
+              
+           <input type="hidden" id="locality" name="locality"></input>
+            <input type="hidden" id="administrative_area_level_1" name="state"></input>
+                
+            <input type="hidden" id="postal_code" name="postal_code"></input>
+            <input type="hidden" id="country" name="country"></input>
+            <!-- /Address Hidden Field -->
+
 			<div class="buttons">
 	          <div class="pull-left pull-form">
 	            <button type="submit" class="btn btn-primary">

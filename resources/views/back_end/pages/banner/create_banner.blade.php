@@ -1,7 +1,7 @@
 @extends ('back_end.layouts.master')
 
 <!-- provide title of this page -->
-@section ('page_title',' Creatae Banner')
+@section ('page_title',' Create Banner')
 
 @section ('main_content')
 

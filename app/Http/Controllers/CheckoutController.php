@@ -70,7 +70,18 @@ class CheckoutController extends Controller
             $street_address = request('route');
             
             //check if user street address is get.
-            if($get_street != $street_address){
+            if($street_address == null){
+
+                $address = Address::create([
+                    'house_no' => request('new_house_address'),
+                    'street_address' => request('street_address'),
+                    'route' => $get_street,  
+                    'city' => request('locality'),
+                    'state' => request('state'),
+                    'country' => request('country'),
+                    'user_id' => $id,
+                ]);
+            }elseif($get_street != $street_address){
 
                 $address = Address::create([
                     'house_no' => request('new_house_address'),

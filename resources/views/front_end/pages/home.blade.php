@@ -75,17 +75,18 @@
 	          <div id="sp_extra_slider_3540808091512108768" class="so-extraslider  button-type2 preset00-4 preset01-4 preset02-3 preset03-2 preset04-1 button-type2 ">
 	            <!-- Begin extraslider-inner -->
 	            <div class="extraslider-inner products-list grid" data-effect="none">
-	              @foreach($productDetails as $productDetail)
 
-	              @if($productDetail->pro_level == 'top')
+	              @foreach($topProductDetails as $topProductDetail)
+
+	              
 	              <div class="item">
 	                <div class="product-layout  style1">
 	                  <div class="product-item-container">
 	                    <div class="left-block">
 	                      <div class="label-stock label label-success 2-3 Days">NEW</div>
 	                      <div class="product-image-container ">
-	                        <a class="link-block" href="{{ route('viewSingleProduct',$productDetail->product_id) }}" title=" Swine shankle" target="_blank" >
-	                          <img src="{{ asset('images/product/' . $productDetail->pro_image) }}" alt="{{ $productDetail->product->pro_name }}" width="270" height="330">
+	                        <a class="link-block" href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" title=" Swine shankle" target="_blank" >
+	                          <img src="{{ asset('images/product/' . $topProductDetail->pro_image) }}" alt="{{ $topProductDetail->product->pro_name }}" width="270" height="330">
 	                        </a>									
 	                      </div>
 	                      <div class="box-label">
@@ -94,28 +95,28 @@
 	                        <span class="label-product label-sale"></span>
 	                      </div>
 	                      <div class="button-group">
-	                        <a href="{{ route('wishlistAdd',$productDetail->product_id) }}" class="wishlist btn-button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart cls" style="padding:12px;"></i></a>
+	                        <a href="{{ route('wishlistAdd',$topProductDetail->product_id) }}" class="wishlist btn-button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart cls" style="padding:12px;"></i></a>
 	                        <button class="addToCart btn" data-toggle="tooltip" title="View Details">
 	                          <span>View Details</span>
 	                        </button>
 	                      <!-- This will add To comapre session -->
-	                      <a href="{{ route('compareAdd', $productDetail->product_id) }}" class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i></a>
+	                      <a href="{{ route('compareAdd', $topProductDetail->product_id) }}" class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i></a>
 	                    </div>
 	                  </div>
 	                  <div class="right-block">
 	                    <h4>
-	                      <a href="{{ route('viewSingleProduct',$productDetail->product_id) }}" target="_blank" title="">		
-	                        {{ $productDetail->product->pro_name }}
+	                      <a href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" target="_blank" title="">		
+	                        {{ $topProductDetail->product->pro_name }}
 	                      </a>
 	                    </h4>						
 	                    <div class="caption">
 	                      <div class="ratings home-rate">
 	                        @for ($i=1; $i <= 5 ; $i++)
-	                            <span class="glyphicon glyphicon-star{{ ($i <= $productDetail->product->avg_rating) ? '' : '-empty'}}"></span>
+	                            <span class="glyphicon glyphicon-star{{ ($i <= $topProductDetail->product->avg_rating) ? '' : '-empty'}}"></span>
 	                        @endfor
 	                      </div>
 	                      <div  class="price">
-	                        <span class="price-new">{{ $productDetail->pro_price }}৳</span>
+	                        <span class="price-new">{{ $topProductDetail->pro_price }}৳</span>
 	                      </div>								
 	                    </div>
 	                  </div>
@@ -124,7 +125,7 @@
 	              </div>
 	              <!-- End item-wrap -->
 	            </div>
-	            @endif
+	            
 	            @endforeach
 	          </div>
 	          <!--End extraslider-inner -->
@@ -155,7 +156,7 @@
 						
 					<div class="extraslider-inner products-list grid owl2-carousel owl2-theme owl2-loaded" data-effect="none">
 						
-					@foreach($productDetails as $productDetail)
+						@foreach($newProductDetails as $newProductDetail)
 		                <div class="item ">
 		                    <div class="product-layout  style1">
 		                        <div class="product-item-container">
@@ -165,8 +166,8 @@
 		                               
 
 		                                <div class="product-image-container ">
-		                                    <a class="link-block" href="{{ route('viewSingleProduct',$productDetail->product_id) }}" title=" Swine shankle" target="_blank" >
-					                          <img src="{{ asset('images/product/' . $productDetail->pro_image) }}" alt="{{ $productDetail->product->pro_name }}" width="270" height="330">
+		                                    <a class="link-block" href="{{ route('viewSingleProduct',$newProductDetail->product_id) }}" title=" Swine shankle" target="_blank" >
+					                          <img src="{{ asset('images/product/' . $newProductDetail->pro_image) }}" alt="{{ $newProductDetail->product->pro_name }}" width="270" height="330">
 					                        </a>
 		                                </div>
 
@@ -200,28 +201,17 @@
 		                            <div class="right-block">
 
 		                                <h4>
-		                                    <a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/product&amp;product_id=144" target="_self" title=" Swine shankle">
-		                                        Swine shankle </a>
+		                                    <a href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" target="_blank" title="">		
+					                        {{ $topProductDetail->product->pro_name }}
+					                      	</a>
 		                                </h4>
 
 		                                <div class="caption">
-		                                    <div class="rating">
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                    </div>
+		                                    <div class="ratings home-rate">
+						                        @for ($i=1; $i <= 5 ; $i++)
+						                            <span class="glyphicon glyphicon-star{{ ($i <= $newProductDetail->product->avg_rating) ? '' : '-empty'}}"></span>
+						                        @endfor
+						                      </div>
 
 
 		                                    <div class="price">
@@ -238,90 +228,8 @@
 
 		                        <!-- End item-wrap-inner -->
 		                    </div>
-		                    <!-- End item-wrap -->
-		                    <div class="product-layout  style1">
-		                        <div class="product-item-container">
-		                            <div class="left-block">
-		                                <div class="label-stock label label-success Pre-Order">Pre-Order</div>
-
-		                                <div class="so-quickview">
-		                                    <a class="hidden" data-product="143" href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/product&amp;product_id=143" target="_self"></a>
-		                                    <a class="quickview iframe-link visible-lg btn-button" href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=extension/soconfig/quickview&amp;product_id=143" title="" data-toggle="tooltip" data-title="Quick View"
-		                                        data-fancybox-type="iframe" data-original-title="Quick View">
-		                                        <i class="fa fa-eye"></i>
-		                                    </a>
-		                                </div>
-
-		                                <div class="product-image-container ">
-		                                    <a class="link-block" href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/product&amp;product_id=143" title="Alcatra boudin" target="_self">
-		                                        <img src="http://opencart.opencartworks.com/themes/so_jenzo/image/cache/catalog/product/10-270x330.jpg" alt="Alcatra boudin">
-		                                    </a>
-		                                </div>
-
-		                                <div class="box-label">
-		                                    <!--New Label-->
-
-		                                    <!--Sale Label-->
-		                                </div>
-		                                <div class="button-group">
-		                                    <button class="wishlist btn-button" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('143');" data-original-title="Add to Wish List">
-		                                        <i class="fa fa-heart"></i>
-		                                    </button>
-
-		                                    <button class="addToCart" type="button" data-toggle="tooltip" title="" onclick="cart.add('143');" data-original-title="Add to Cart">
-		                                        <span>
-		                                            <i class="fa fa-shopping-bag"></i>Add to Cart</span>
-		                                    </button>
-
-		                                    <button class="compare btn-button" type="button" data-toggle="tooltip" title="" onclick="compare.add('143');" data-original-title="Compare this Product">
-		                                        <i class="fa fa-random"></i>
-		                                    </button>
-
-
-		                                </div>
-		                            </div>
-
-		                            <div class="right-block">
-
-		                                <h4>
-		                                    <a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/product&amp;product_id=143" target="_self" title="Alcatra boudin">
-		                                        Alcatra boudin </a>
-		                                </h4>
-
-		                                <div class="caption">
-		                                    <div class="rating">
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                        <span class="fa fa-stack">
-		                                            <i class="fa fa-star-o fa-stack-2x"></i>
-		                                        </span>
-		                                    </div>
-
-
-		                                    <div class="price">
-		                                        <span class="price-new">
-		                                            $66.00 </span>
-		                                        <span class="price-percent-reduction hidden">Ex Tax: $66.00</span>
-		                                    </div>
-
-		                                </div>
-
-
-		                            </div>
-		                        </div>
-
-		                        <!-- End item-wrap-inner -->
-		                    </div>
+		                    
+		                    
 		                    <!-- End item-wrap -->
 		                </div>
 				        @endforeach
