@@ -18,6 +18,7 @@ class CreateCustomersTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('phone');
+            $table->enum('user_type', ['vip', 'premier', 'usual'])->default('usual');
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });

@@ -195,7 +195,7 @@
 									  </div>
 									</td>
 									<td class="text-right price">৳ {{ number_format($cart_item->price) }}</td>
-									<td class="text-right total">৳ {{  number_format($cart_item->total) }}</td>
+									<td class="text-right total">৳ {{  number_format($cart_item->price * $cart_item->qty) }}</td>
 								  </tr>
 
 								@endforeach
@@ -210,8 +210,13 @@
 								</tbody>
 								<tfoot>
 								  <tr>
+								  	@php
+				                		$subTotal = Cart::subtotal();
+				                		$subTotal = str_replace('.00', '', $subTotal);;
+				                		
+				                	@endphp
 									<td colspan="4" class="text-left">Sub-Total:</td>
-									<td class="text-right">৳{{ Cart::subtotal() }}</td>
+									<td class="text-right">৳{{ $subTotal }}</td>
 								  </tr>
 								  <tr>
 								  	@php 

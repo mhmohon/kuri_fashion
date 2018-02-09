@@ -30,7 +30,7 @@ class CartController extends Controller
     {
         $product = Product::find($product_id);
         $data['id'] = $product_id;
-        $data['name'] = $product->pro_name;
+        $data['name'] = $product->productDetail->pro_name;
         $data['price'] = $product->productDetail->pro_price;
         $data['qty'] = request('quantity');
         $data['options']['image'] = $product->productDetail->pro_image;
@@ -41,7 +41,7 @@ class CartController extends Controller
         
         
         Cart::add($data);
-        return back()->withMsgsuccess($product->pro_name. ' added to shopping cart');
+        return back()->withMsgsuccess($product->productDetail->pro_name. ' added to shopping cart');
 
 
     }

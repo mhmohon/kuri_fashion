@@ -41,7 +41,7 @@
 			
 			<div class="content-product-right info-right col-md-7 col-sm-12 col-xs-12">
 				<div class="title-product font-title">
-					<h1 itemprop="name">{{ $product->pro_name }}</h1>
+					<h1 itemprop="name">{{ $product->productDetail->pro_name }}</h1>
 				</div>
 				 <!-- Review -->
 				 <div class="box-review">

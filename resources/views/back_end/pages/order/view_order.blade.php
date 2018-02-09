@@ -41,7 +41,7 @@
                             <table id="datatable" class="table table-striped table-hover">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>Order No.</th>
+                                        <th>Serial No.</th>
                                         <th>Placed By</th>                  
                                         <th>Purchase Date</th>
                                         <th>Delivery Date</th>
@@ -60,7 +60,7 @@
                                         <td>{{ $order->order_date }}</td>
 
                                     @if( $order->status == 'delivered') 
-                                        <td>{{ $order->order_date }}</td>
+                                        <td>{{ $order->delivery_date }}</td>
                                     @else
                                         <td>Not Delivery Yet</td>
                                     @endif
@@ -81,13 +81,21 @@
                                         <td class="text-center">
                                             <span class="label label-success"> Delivered</span>
                                         </td>
+                                    @elseif($order->status == 'returned')
+                                        <td class="text-center">
+                                            <span class="label label-danger"> Returned</span>
+                                        </td>
                                     @endif
+                                    
+                                    @if($order->orderItems->count())
+                                    
+                                        @foreach (getOrderItemQP($order->id) as $orderItem)
 
-                                    @foreach (getOrderItemQP($order->id) as $orderItem)
-
-                                        <td>৳ {{ $orderItem->TotalPrice }}</td>
-                                    @endforeach
-                                        
+                                            <td>৳ {{ $orderItem->TotalPrice }}</td>
+                                        @endforeach
+                                    @else
+                                        <td>৳0</td>
+                                    @endif  
                                         <td class="text-center">
                                             
                                             <a href="http://lily-tms.herokuapp.com/orders/19" class="btn btn-sm btn-info"><i class="fa fa-print"></i></a>

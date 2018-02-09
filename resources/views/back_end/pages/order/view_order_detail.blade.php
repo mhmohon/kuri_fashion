@@ -1,7 +1,7 @@
 @extends ('back_end.layouts.master')
 
 <!-- provide title of this page -->
-@section ('page_title','Edit Order')
+@section ('page_title','View Order')
 
 @section ('main_content')
 
@@ -13,10 +13,10 @@
                 <h3 class="page-title">View Order<small> Data.</small></h3> 
                 <ol class="breadcrumb p-0 m-0">
                     <li>
-                        <a href="#">Dashboard</a>
+                        <a href="{{ route('home') }}">Dashboard</a>
                     </li>
                      <li>
-                        <a href="#">Order list</a>
+                        <a href="{{ route('orderIndex') }}">Order list</a>
                     </li>
                     <li class="active">
                         View Order detail
@@ -100,7 +100,7 @@
                             <br>
                             {{ ucfirst($order->address->street_address) }}
                             <br>
-                            {{ ucfirst($order->address->region) }}
+                            {{ ucfirst($order->address->route) }}
                             <br>
                             {{ ucfirst($order->address->city) }}
                         </label>
@@ -142,7 +142,7 @@
                                     <th>Product Detail</th>                  
                                     <th>Price</th>
                                     <th>Qty</th>
-                                    <th>Sub-Total</th>
+                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>                
@@ -221,7 +221,7 @@
                 
                   
               </div> 
-                <input class="btn btn-danger waves-light" type="submit" value="Submit">
+                
                 <a class="btn btn-info" href="{{ URL::previous() }}">back</a>
             </div> 
           </div>

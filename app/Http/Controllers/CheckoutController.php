@@ -7,6 +7,7 @@ use App\Address;
 use App\Customer;
 use App\Order;
 use App\OrderItem;
+use App\Inventory;
 use Cart;
 
 
@@ -21,6 +22,7 @@ class CheckoutController extends Controller
     {
     	$id = \Auth::user()->id;
     	$addresses = Address::where('user_id', $id)->get();
+        //dd($addresses, $id);
     	$cart_items = Cart::content(); //get all shopping cart item.
         if($cart_items->count()){
             return view('front_end.pages.checkout',compact('addresses','cart_items'));
@@ -41,18 +43,19 @@ class CheckoutController extends Controller
 
         ]);
 
-        $id = \Auth::user()->id;
+        $user_id = \Auth::user()->id;
+        //dd($user_id);
         $customer_id = \Auth::user()->customer->id;
         $mytime = \Carbon\Carbon::now();
         $addressChecked = $_POST['payment_address'];
 
             
-        $this->saveCartInfo($request, $id, $customer_id, $mytime, $addressChecked);
+        $this->saveCartInfo($request, $user_id, $customer_id, $mytime, $addressChecked);
       
         return redirect()->route('checkoutSuccess');
     }
 
-    public function saveCartInfo(Request $request, $id, $customer_id, $mytime, $addressChecked)
+    public function saveCartInfo(Request $request, $user_id, $customer_id, $mytime, $addressChecked)
     {
         $customer = Customer::find($customer_id)->update([
 
@@ -79,7 +82,7 @@ class CheckoutController extends Controller
                     'city' => request('locality'),
                     'state' => request('state'),
                     'country' => request('country'),
-                    'user_id' => $id,
+                    'user_id' => $user_id,
                 ]);
             }elseif($get_street != $street_address){
 
@@ -90,7 +93,7 @@ class CheckoutController extends Controller
                     'city' => request('locality'),
                     'state' => request('state'),
                     'country' => request('country'),
-                    'user_id' => $id,
+                    'user_id' => $user_id,
                 ]);
             }else{
                 $address = Address::create([
@@ -100,11 +103,11 @@ class CheckoutController extends Controller
                     'city' => request('locality'),
                     'state' => request('state'),
                     'country' => request('country'),
-                    'user_id' => $id,
+                    'user_id' => $user_id,
                 ]);
             }
             $order = Order::create([
-                'user_id' => $id,
+                'user_id' => $user_id,
                 'payment_id' => request('payment_method'),  
                 'address_id' => $address->id,  
                 'order_description' => request('comment'),     
@@ -121,11 +124,11 @@ class CheckoutController extends Controller
                 'country' => request('country'),
                 'latitude' => request('latitude'),
                 'longitude' => request('longitude'),
-                'user_id' => $id,
+                'user_id' => $user_id,
             ]);
 
             $order = Order::create([
-                'user_id' => $id,
+                'user_id' => $user_id,
                 'payment_id' => request('payment_method'),  
                 'address_id' => $address->id,  
                 'order_description' => request('comment'),     
@@ -133,7 +136,7 @@ class CheckoutController extends Controller
             ]);
         }else{
             $order = Order::create([
-                'user_id' => $id,
+                'user_id' => $user_id,
                 'payment_id' => request('payment_method'),  
                 'address_id' => request('payment_address_id'),  
                 'order_description' => request('comment'),     
@@ -145,6 +148,11 @@ class CheckoutController extends Controller
 
         foreach($cart_items as $cart_item){
 
+            $product_id = $cart_item->id;
+            $order_qty = $cart_item->qty;
+            $exist_qty = Inventory::find($product_id)->quantity_in_stock;
+            $new_qty = $exist_qty - $order_qty;
+            
             $orderItem = OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $cart_item->id,  
@@ -152,6 +160,9 @@ class CheckoutController extends Controller
                 'product_size' => $cart_item->options->size,  
                 'quantity' => $cart_item->qty,     
                 'total_price' => $cart_item->total,             
+            ]);
+            $updateInventory = Inventory::find($product_id)->update([
+                'quantity_in_stock' => $new_qty,
             ]);
         }
 

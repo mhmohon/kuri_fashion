@@ -16,7 +16,7 @@
                         <a href="{{ route('home') }}">Dashboard</a>
                     </li>
                      <li>
-                        <a href="#">Order list</a>
+                        <a href="{{ route('orderIndex') }}">Order list</a>
                     </li>
                     <li class="active">
                         Edit Order detail
@@ -41,7 +41,7 @@
           <div id="bg-default" class="panel-collapse collapse in">
             <div class="portlet-body">
             
-            {!! Form::open(['route'=>['orderUpdate',$order->id],'class'=>'form-horizontal m-b-30','files' => true,'name'=>'editOrderForm']) !!}                      
+            {!! Form::open(['route'=>['orderUpdate',$order->id,$order->address->id],'class'=>'form-horizontal m-b-30','files' => true,'name'=>'editOrderForm']) !!}                      
               <div class='row'>
                 <!-- Left Side -->
 
@@ -57,7 +57,7 @@
                   <div class="form-group">
                     <label for="order_status" class="col-md-6 control-label txt-left">Order Status</label>
                     <div class="col-md-6">
-                      {!! Form::select('order_status',['processing'=>'Processing','confirm'=>'Confirm','ready'=>'Ready','delivered'=>'Delivered'],$order->status,['class'=>'form-control select','required','data-validation'=>'required']) !!}             
+                      {!! Form::select('order_status',['pending'=>'Pending','confirm'=>'Confirm','ready'=>'Ready','delivered'=>'Delivered','returned'=>'Returned'],$order->status,['class'=>'form-control select','required','data-validation'=>'required']) !!}             
                     </div>
                   </div>
                 </div>
@@ -113,23 +113,46 @@
                  <!-- Delivery Address -->
                 <div class="order-infomation col-md-6">
                   <h4>Shipping Address</h4>
+                    <div class="form-group {{ $errors->has('house_no') ? ' has-error' : '' }}">
+                        <label for="house_no" class="col-md-4 control-label txt-left">House No.</label>
+                        <div class="col-md-8">
+                             <input class="form-control" placeholder="Enter House No." name="house_no" type="text" value="{{ $order->address->house_no }}">
 
-                    <div class="form-group col-md-10">
-                      <input type="text" name="street_address" value="{{ $order->address->street_address }}" placeholder="Street Address" id="input-payment-address-1" class="form-control">
+                            @if ($errors->has('house_no'))
+                                <span class="text-danger help-block">
+                                    <block>{{ $errors->first('house_no') }}</block>
+                                </span>
+                            @endif                  
+                         </div>
                     </div>
-                    
-                    <div class="form-group col-md-10">
-                        <select  class="form-control" name="city" id="division">
-                          <option value="" selected="selected">Please select</option>
-                        </select>
+                    <div class="form-group {{ $errors->has('full_address') ? 'has-error' : '' }} ">
+                        <label for="full_address" class="col-md-4 txt-left control-label">Full Address</label>
+                        <div class="col-md-8">
+                        @if($order->address->street_address)
+                            <input type="text" name="full_address" id="autocomplete" onFocus="geolocate()" value="{{ $order->address->street_address.', '.$order->address->route.', '. $order->address->city}}" placeholder="Customer Full address" class="form-control" data-validation="required"/>
+                        @else
+                            <input type="text" name="full_address" id="autocomplete" onFocus="geolocate()" value="{{ $order->address->route.', '. $order->address->city.', '.$order->address->state}}" placeholder="Customer Full address" class="form-control" data-validation="required"/>
+                        @endif
+                            @if ($errors->has('full_address'))
+                                <span class="text-danger help-block">
+                                    <block>{{ $errors->first('full_address') }}</block>
+                                </span>
+                            @endif                  
+                         </div>
                     </div>
-                    <div class="form-group col-md-10">
+
+                    <!-- Address Hidden Field -->
+
+                    <input type="hidden" id="street_address" value="{{ $order->address->street_address }}" name="street_address"></input>
+                    <input type="hidden" id="route" value="{{ $order->address->route }}" name="route"></input>
+                     
+                      
+                   <input type="hidden" id="locality" value="{{ $order->address->city }}" name="locality"></input>
+                    <input type="hidden" id="administrative_area_level_1" value="{{ $order->address->state }}" name="state"></input>
                         
-                        <select  class="form-control" data-state-label="Loading..." data-empty-label="Please select" name="region" id="region">
-
-                            <option value="" selected="selected">Please select</option>
-                        </select>
-                    </div>
+                    <input type="hidden" id="postal_code" name="postal_code"></input>
+                    <input type="hidden" id="country" value={{ $order->address->country }} name="country"></input>
+                    <!-- /Address Hidden Field -->
 
                 </div> 
                 
@@ -174,12 +197,12 @@
                             </thead>
                             <tbody>                
 
-                              
+                            @if($order->orderItems->count())
                             @foreach ($order->orderItems as $key => $orderItem)
                                 <tr>
                                     <td>#{{ ($key+1) }}</td>
                                     <td>
-                                        {{ $orderItem->product->pro_name }}
+                                        {{ $orderItem->product->productDetail->pro_name }}
                                         
                                     </td>
                                     <td>
@@ -189,16 +212,15 @@
                                         <br>
                                         Color: {{ $orderItem->product_color }}
                                     </td>
-                                    <td>৳ {{ $orderItem->product->productDetail->pro_price }}</td>
+                                    <td>৳ {{ number_format($orderItem->product->productDetail->pro_price) }}</td>
                                     <td width="8%">
                                     
                                         <input type="number" name="quantity{{ $orderItem->id }}" value="{{ $orderItem->quantity }}" class="form-control">
 
                                     </td>
 
-                                    <td>৳ {{ $orderItem->quantity * $orderItem->product->productDetail->pro_price }}</td>
+                                    <td>৳ {{ number_format($orderItem->quantity * $orderItem->product->productDetail->pro_price) }}</td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a>
                                         
                                        <button type="submit" formaction="{{  route('orderQuantityUpdate', $orderItem->id) }}" class="btn btn-sm btn-warning"><i class="mdi mdi-cloud-upload mdi-35px"></i></i>
                                         </button>
@@ -208,10 +230,14 @@
 
                                                                                                     
                                     </td>
-                                    
-                                    
+
                                 </tr>
-                            @endforeach                                                            
+                            @endforeach
+                            @else
+                                <tr class="text-center">
+                                    <td colspan="7">User have no Orders</td>
+                                </tr>
+                            @endif                                                        
                             </tbody>
                             
                         </table>
@@ -242,7 +268,7 @@
                             @foreach(getOrderItemQP($order->id) as $orderTotal)
                                 <tr>
                                     <td><strong>Sub-total:</strong></td>
-                                    <td width="150px" class="text-right">৳{{ $orderTotal->TotalPrice }}</td>
+                                    <td width="150px" class="text-right">৳{{ number_format($orderTotal->TotalPrice) }}</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Shipping Cost:</strong></td>
@@ -250,7 +276,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Grand Total</strong></td>
-                                    <td width="150px" class="text-right">৳{{ $orderTotal->TotalPrice + 100 }}</td>
+                                    <td width="150px" class="text-right">৳{{ number_format($orderTotal->TotalPrice + 100) }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -282,30 +308,9 @@
 
 @section('scripts')
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <!-- For Ajax Country Select -->
-    <script src="{{ asset('js/plugins/country-select.js') }}"></script>
-    <script>
-       
-        function upperCaseF(txt){
-            setTimeout(function(){
-                txt.value = txt.value.toUpperCase();
-            }, 400);
-        }
-        window.onload = function() {
-            document.getElementById('payment-new').style.display = 'none';
-        }
-        function hidediv(){
-            document.getElementById('payment-new').style.display = 'none';
-            document.getElementById('payment-existing').style.display = 'block';
-        }
-        function showdiv(){
-            document.getElementById('payment-new').style.display = 'block';
-            document.getElementById('payment-existing').style.display = 'none';
-        }
-
-    </script>
+    <script type="text/javascript" src="{{ asset('js/plugins/autcomplete.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVW0FORtm8JXJZpN1pWnmzLiZD_UoyIYE&libraries=places&callback=initAutocomplete"
+        async defer></script>
 
 @endsection
 

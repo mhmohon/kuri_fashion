@@ -84,7 +84,7 @@
                                 <input type="hidden" id="administrative_area_level_1" value="{{ $address->state }}" name="state"></input>
                                     
                                 <input type="hidden" id="postal_code" name="postal_code"></input>
-                                <input type="hidden" id="country" name="country"></input>
+                                <input type="hidden" id="country" value={{ $order->address->country }} name="country"></input>
                                 <!-- /Address Hidden Field -->
 
                                 <div class="col-md-12">

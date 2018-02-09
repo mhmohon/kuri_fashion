@@ -21,7 +21,6 @@
 	                        <tr>
 	                            <td class="text-center">Image</td>
 	                            <td class="text-left">Product Name</td>
-	                            <td class="text-left">Model</td>
 	                            <td class="text-left">Quantity</td>
 	                            <td class="text-left">Unit Price</td>
 	                            <td class="text-right">Total Price</td>
@@ -42,7 +41,7 @@
 	                                <small>Date: {{ $cart_item->options->order_date }} </small>
 	                                
 	                            </td>
-	                            <td class="text-left">p2</td>
+	                            
 	                            <td class="text-left">
 	                                {!! Form::open(['route'=>['cartUpdate',$cart_item->rowId],'name'=>'updateToCart']) !!}
 	                                <div class="input-group btn-block txt_color" style="max-width: 200px;">
@@ -57,7 +56,7 @@
 					                {!! Form::close() !!}
 	                            </td>
 	                            <td class="text-left">BDT {{ number_format($cart_item->price) }}</td>
-	                            <td class="text-right">BDT {{  number_format($cart_item->total) }}</td>
+	                            <td class="text-right">BDT {{  number_format($cart_item->price * $cart_item->qty) }}</td>
 	                        </tr>
 	                    @endforeach
 	                    </tbody>
@@ -74,8 +73,13 @@
 	        <table class="table table-bordered">
 	            <tbody>
 	                <tr>
+	                	@php
+	                		$subTotal = Cart::subtotal();
+	                		$subTotal = str_replace('.00', '', $subTotal);;
+	                		
+	                	@endphp
 	                    <td class="text-right"><strong>Sub-Total:</strong></td>
-	                    <td class="text-right">BDT {{ Cart::subtotal() }}</td>
+	                    <td class="text-right">BDT {{ $subTotal }}</td>
 	                </tr>
 	                <tr>
 	                	@php 
