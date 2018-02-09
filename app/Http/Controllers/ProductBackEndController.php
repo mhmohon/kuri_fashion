@@ -89,11 +89,11 @@ class ProductBackEndController extends Controller
     {
         $product = Product::create([
             'pro_code' => request('product_code'),
-            'pro_name' => request('product_name'),  
             'category_id' => request('product_category'),     
         ]);
         $productDetail = ProductDetail::create([
             'pro_info' => request('product_description'),
+            'pro_name' => request('product_name'),  
             'pro_price' => request('product_price'),
             'pro_color' => strtolower(request('product_color')),
             'pro_level' => request('product_level'),
@@ -184,8 +184,8 @@ class ProductBackEndController extends Controller
             }
 
             $product->pro_code = $request->product_code;
-            $product->pro_name = $request->product_name;
             $product->category_id = $request->product_category;
+            $product->productDetail->pro_name = $request->product_name;
             $product->productDetail->pro_info = $request->product_description;
             $product->productDetail->pro_other_colors = $product_colors;
             $product->productDetail->pro_price = $request->product_price;

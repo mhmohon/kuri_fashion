@@ -63,7 +63,7 @@
                                 <div class="form-group {{ $errors->has('product_name') ? ' has-error' : '' }}">
                                     <label for="product_name" class="col-md-12 control-label txt-left">Product Name</label>
                                     <div class="col-md-10">
-                                        <input class="form-control" placeholder="Enter Product Name" required="required" name="product_name" type="text" value="{{ $product->pro_name }}">
+                                        <input class="form-control" placeholder="Enter Product Name" required="required" name="product_name" type="text" value="{{ $product->productDetail->pro_name }}">
 
                                         @if ($errors->has('product_name'))
                                             <span class="text-danger help-block">

@@ -46,34 +46,21 @@
 		    <!-- Filters -->
 		    <div class="product-filter filters-panel">
 		        <div class="row">
-		            <div class="box-list col-md-2 hidden-sm hidden-xs">
-		                <div class="view-mode">
-		                    <div class="list-view">
-		                        <button class="btn btn-default grid active" data-toggle="tooltip" title="" data-original-title="Grid">
-		                            <i class="fa fa-th-large"></i>
-		                        </button>
-		                        <button class="btn btn-default list " data-toggle="tooltip" title="" data-original-title="List">
-		                            <i class="fa fa-bars"></i>
-		                        </button>
-		                    </div>
-		                </div>
-		            </div>
-		            <div class="short-by-show form-inline text-right col-md-10 col-sm-12">
+		            <div class="box-list col-md-4 col-sm-12">
 		                <div class="form-group short-by">
 		                    <label class="control-label" for="input-sort">Sort By:</label>
-		                    <select id="input-sort" class="form-control" onchange="location = this.value;">
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=p.sort_order&amp;order=ASC" selected="selected">Default</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=pd.name&amp;order=ASC">Name (A - Z)</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=pd.name&amp;order=DESC">Name (Z - A)</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=p.price&amp;order=ASC">Price (Low &gt; High)</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=p.price&amp;order=DESC">Price (High &gt; Low)</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=rating&amp;order=DESC">Rating (Highest)</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=rating&amp;order=ASC">Rating (Lowest)</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=p.model&amp;order=ASC">Model (A - Z)</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;sort=p.model&amp;order=DESC">Model (Z - A)</option>
+		                    <select id="input-sort" class="text-right form-control" onchange="location = this.value;">
+		                        <option value="#" selected="selected">Default</option>
+		                        <option value="{{ url('/all-product/view/sort_by=pro_name&order=ASC')}}">Name (A - Z)</option>
+		                        <option value="{{ url('/all-product/view/sort_by=pro_name&order=DESC')}}">Name (Z - A)</option>
+		                        <option value="{{ url('/all-product/view/sort_by=pro_price&order=ASC')}}">Price (Low &gt; High)</option>
+		                        <option value="{{ url('/all-product/view/sort_by=pro_price&order=DESC')}}">Price (High &gt; Low)</option>
+		            
 		                    </select>
 		                </div>
-
+		            </div>
+		            <div class="short-by-show form-inline text-right col-md-8 col-sm-12">
+		                
 		                <div class="form-group">
 		                    <label class="control-label" for="input-limit">Show:</label>
 		                    <select id="input-limit" class="form-control" onchange="location = this.value;">
@@ -99,6 +86,7 @@
 		    <!--Changed Listings-->
 		    <div class="products-list row grid so-filter-gird">
 
+		    	@if($productDetails->count())
 		    	<!--Loop for collect single product-->
 		    	@foreach($productDetails as $productDetail)
 
@@ -110,7 +98,7 @@
 		                    <div class="product-image-container second_img ">
 		                        <a href="{{ route('viewSingleProduct',$productDetail->product_id) }}" title=" Swine shankle" target="_blank" >
 									
-									<img src="{{ asset('images/product/' . $productDetail->pro_image) }}" alt="{{ $productDetail->product->pro_name }}" height="330" width="270">
+									<img src="{{ asset('images/product/' . $productDetail->pro_image) }}" alt="{{ $productDetail->pro_name }}" height="330" width="270">
 								</a>
 		                    </div>
 		                    @if($productDetail->pro_level == 'top')
@@ -129,44 +117,42 @@
 		                    <div class="caption">
 		                        <h4>
 		                            <a href="{{ route('viewSingleProduct',$productDetail->product_id) }}" target="_blank" title="">		
-									{{ $productDetail->product->pro_name }}
+									{{ $productDetail->pro_name }}
 									</a>
 		                        </h4>
 		                        <div class="price">
-		                            <span class="price-new">{{ $productDetail->pro_price }}৳</span>
+		                            <span class="price-new">৳{{ $productDetail->pro_price }}</span>
 		                        </div>
-		                        <div class="description hidden ">
-		                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut ..</p>
-		                        </div>
+		                        
 		                    </div>
 		                </div>
 		            </div>
 		        </div>
 
 		        @endforeach
-		        
+		        @else
+		        	<div id="content" class="col-md-12 col-sm-12 col-xs-12 layout_top">
+						<div class="text-center">
+						
+							<h1>Empty Query Result</h1>
+							<p>There is no product by this range!</p>
+							<a href="{{ url('/home') }}" class="btn btn-primary" title="Continue">Go to Home page</a>
+
+						</div>
+					
+					</div>
+		        @endif
 		    </div>
 		    <!--// End Changed listings-->
 
 		    <!-- Filters -->
 		    <div class="product-filter product-filter-bottom filters-panel">
 		        <div class="row">
-		            <div class="box-list col-md-2 hidden-sm hidden-xs">
-		                <div class="view-mode">
-		                    <div class="list-view">
-		                        <button class="btn btn-default grid active" data-toggle="tooltip" title="" data-original-title="Grid">
-		                            <i class="fa fa-th-large"></i>
-		                        </button>
-		                        <button class="btn btn-default list " data-toggle="tooltip" title="" data-original-title="List">
-		                            <i class="fa fa-bars"></i>
-		                        </button>
-		                    </div>
-		                </div>
+		            <div class="box-list col-md-12 hidden-sm hidden-xs">
+		                 
+		                 {{ $productDetails->links() }}
 		            </div>
-		            <div class="short-by-show text-center col-md-6 col-sm-8 col-xs-12">
-		                <div class="form-group" style="margin:0px">Showing 1 to 16 of 16 (1 Pages)</div>
-		            </div>
-		            <div class="box-pagination col-md-4 col-sm-4 text-right"></div>
+		           
 
 		        </div>
 		    </div>

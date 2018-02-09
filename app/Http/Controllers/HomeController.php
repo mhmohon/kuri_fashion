@@ -10,15 +10,7 @@ use App\Review;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth',['except' => ['index','searchProduct','singleProductDetails']]);
-    }
+    
 
     /**
      * Show the application dashboard.
@@ -33,9 +25,31 @@ class HomeController extends Controller
 
     public function allProductDetails()
     {  
-        return view('front_end.pages.show_all_product');
+        $categories = Category::where('publication_status',1)->get();
+            
+        $productDetails = ProductDetail::where('pro_status',1)->paginate(10);
+        
+        return view('front_end.pages.show_all_product', compact('productDetails'));
     }
 
+    public function sort_order($short, $orderby)
+    {
+        $productDetails = ProductDetail::where('pro_status',1)
+                                        ->orderBy($short,$orderby)
+                                        ->paginate(10);
+                                        
+        return view('front_end.pages.show_all_product', compact('productDetails'));
+    }
+
+    public function sort_price($min, $max)
+    {  
+        //dd($min, $max);
+        $productDetails = ProductDetail::where('pro_status',1)
+                                        ->whereBetween('pro_price', [$min, $max])
+                                        ->paginate(10);
+
+        return view('front_end.pages.show_all_product', compact('productDetails'));
+    }
     public function searchProduct(Request $request)
     {
         $input = $request->input('search_value');

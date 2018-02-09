@@ -66,19 +66,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with('topProductDetails',$topProductDetails)->with('categories',$categories)->with('newProductDetails',$newProductDetails)->with('trendProductDetails',$trendProductDetails);
         });
 
-
-
-        //Show ALl product page.
-        View::composer('front_end.pages.show_all_product', function($view){
-
-            $categories = Category::where('publication_status',1)->get();
-            
-            
-            $productDetails = ProductDetail::where('pro_status',1)->get();
-            
-            $view->with('productDetails',$productDetails)->with('categories',$categories);
-        });
-
         View::composer('front_end.layouts.sidebar_category', function($view){
 
             $categories = Category::where('publication_status',1)->get();

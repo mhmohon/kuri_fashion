@@ -46,6 +46,11 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/all-product/view/','HomeController@allProductDetails')->name('viewAllProduct');
 
+//All product search and range
+Route::get('/all-product/view/sort_by={Name}&order={name}','HomeController@sort_order')->name('viewProductOrder');
+
+Route::get('/all-product/view/by_price/min={minprice}&max={maxprice}','HomeController@sort_price')->name('viewProductPrice');
+// end All product search and range
 Route::get('/single-product/{id}/view/','HomeController@singleProductDetails')->name('viewSingleProduct');
 
 Route::post('/product/search', 'HomeController@searchProduct')->name('productSearch');

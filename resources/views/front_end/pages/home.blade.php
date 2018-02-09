@@ -77,16 +77,15 @@
 	            <div class="extraslider-inner products-list grid" data-effect="none">
 
 	              @foreach($topProductDetails as $topProductDetail)
-
-	              
+					
 	              <div class="item">
 	                <div class="product-layout  style1">
 	                  <div class="product-item-container">
 	                    <div class="left-block">
-	                      <div class="label-stock label label-success 2-3 Days">NEW</div>
+	                      
 	                      <div class="product-image-container ">
-	                        <a class="link-block" href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" title=" Swine shankle" target="_blank" >
-	                          <img src="{{ asset('images/product/' . $topProductDetail->pro_image) }}" alt="{{ $topProductDetail->product->pro_name }}" width="270" height="330">
+	                        <a class="link-block" href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" title="{{ $topProductDetail->pro_name }}" target="_blank" >
+	                          <img src="{{ asset('images/product/' . $topProductDetail->pro_image) }}" alt="{{ $topProductDetail->pro_name }}" width="270" height="330">
 	                        </a>									
 	                      </div>
 	                      <div class="box-label">
@@ -106,7 +105,7 @@
 	                  <div class="right-block">
 	                    <h4>
 	                      <a href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" target="_blank" title="">		
-	                        {{ $topProductDetail->product->pro_name }}
+	                        {{ $topProductDetail->pro_name }}
 	                      </a>
 	                    </h4>						
 	                    <div class="caption">
@@ -116,7 +115,7 @@
 	                        @endfor
 	                      </div>
 	                      <div  class="price">
-	                        <span class="price-new">{{ $topProductDetail->pro_price }}৳</span>
+	                        <span class="price-new">৳{{ $topProductDetail->pro_price }}</span>
 	                      </div>								
 	                    </div>
 	                  </div>
@@ -167,7 +166,7 @@
 
 		                                <div class="product-image-container ">
 		                                    <a class="link-block" href="{{ route('viewSingleProduct',$newProductDetail->product_id) }}" title=" Swine shankle" target="_blank" >
-					                          <img src="{{ asset('images/product/' . $newProductDetail->pro_image) }}" alt="{{ $newProductDetail->product->pro_name }}" width="270" height="330">
+					                          <img src="{{ asset('images/product/' . $newProductDetail->pro_image) }}" alt="{{ $newProductDetail->pro_name }}" width="270" height="330">
 					                        </a>
 		                                </div>
 
@@ -202,7 +201,7 @@
 
 		                                <h4>
 		                                    <a href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" target="_blank" title="">		
-					                        {{ $topProductDetail->product->pro_name }}
+					                        {{ $topProductDetail->pro_name }}
 					                      	</a>
 		                                </h4>
 

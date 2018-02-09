@@ -4,7 +4,7 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="{{ asset('images/s1-1920x720.jpg') }}" alt="...">
+				<img src="{{ asset('images/im05.jpg') }}" alt="...">
 				
 			</div>
 			

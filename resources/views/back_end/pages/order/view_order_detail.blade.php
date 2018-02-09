@@ -152,7 +152,7 @@
                                 <tr>
                                     <td>#{{ ($key+1) }}</td>
                                     <td>
-                                        {{ $orderItem->product->pro_name }}
+                                        {{ $orderItem->product->productDetail->pro_name }}
                                         
                                     </td>
                                     <td>

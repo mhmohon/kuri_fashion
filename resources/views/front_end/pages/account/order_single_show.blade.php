@@ -77,7 +77,7 @@
 		            <tbody>
 		            @foreach ($order->orderItems as $orderItem)
 		                <tr>
-		                    <td class="text-left">{{ $orderItem->product->pro_name }} </td>
+		                    <td class="text-left">{{ $orderItem->product->productDetail->pro_name }} </td>
 		                    <td class="text-left">{{ $orderItem->product->pro_code }}</td>
 		                    <td class="text-right">{{ $orderItem->quantity }}</td>
 		                    <td class="text-right">৳ {{ $orderItem->product->productDetail->pro_price }}</td>

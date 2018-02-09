@@ -21,10 +21,17 @@
 								<span><strong>Home</strong></span>
 							</a>
 					</li>
-					<li class="home">
-							<a href="{{ route('viewAllProduct') }}">
-								<span><strong>Products</strong></span>
-							</a>
+					<li class='style-page with-sub-menu hover'><p class='close-menu'></p><a href='' class='clearfix' >
+						<strong>Dresses</strong>
+						<b class='caret' ></b></a>
+						<div class="sub-menu" style="width:180px"><div class="content row col-sm-12 html">
+							<ul class="row-list" style="font-size: 14px;">
+								<li><a class="subcategory_item" href="{{ route('viewAllProduct') }}">All Dresses</a></li>
+								<li><a class="subcategory_item" href="#">Top Dresses</a></li>
+								<li><a class="subcategory_item" href="#">Feature Dresses</a></li>
+								<li><a class="subcategory_item" href="#">Trend Dresses</a></li>  
+							</ul>
+						</div></div>
 					</li>
 				
 
@@ -58,7 +65,7 @@
 								<li><a class="subcategory_item" href="#">About US</a></li>
 								<li><a class="subcategory_item" href="#">Contact us</a></li>
 								<li><a class="subcategory_item" href="#">Warranty And Services</a></li>
-								<li><a class="subcategory_item" href="#">Support 24/7 Page</a></li>  
+								
 							</ul>
 						</div></div>
 					</li>
