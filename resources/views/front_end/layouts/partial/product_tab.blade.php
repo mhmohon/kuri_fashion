@@ -84,7 +84,7 @@
                         <div class="form-group col-md-12">
 
                             <div class="col-md-2">
-                                <br>
+                                
                                 <span class="rating">
                                     <b>Rating: </b>
                                 </span>
@@ -133,7 +133,7 @@
                             @endif
                         </div>
                         <div class="buttons clearfix btn_visible">
-                            <input type="submit" id="button-review" class="btn btn-info">Continue</a>
+                            <input type="submit" id="button-review" class="btn btn-info">
                         </div>
 
                     </div>

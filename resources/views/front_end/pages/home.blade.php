@@ -174,9 +174,7 @@
 		                                    <!--New Label-->
 
 		                                    <!--Sale Label-->
-		                                    <span class="label-product label-sale">
-		                                        -29%
-		                                    </span>
+		                                    
 
 		                                </div>
 		                                <div class="button-group">
@@ -214,9 +212,7 @@
 
 
 		                                    <div class="price">
-		                                        <span class="price-new">$45.00</span>&nbsp;&nbsp;
-		                                        <span class="price-old">$63.00</span>&nbsp;
-		                                        <span class="price-percent-reduction hidden">Ex Tax: $45.00</span>
+		                                        <span class="price-new">৳{{ $newProductDetail->pro_price }}</span>
 		                                    </div>
 
 		                                </div>

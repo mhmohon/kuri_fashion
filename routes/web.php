@@ -44,6 +44,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/about-us', function () {
+    return view('front_end.pages.about_us');
+});
+
 Route::get('/all-product/view/','HomeController@allProductDetails')->name('viewAllProduct');
 
 //All product search and range

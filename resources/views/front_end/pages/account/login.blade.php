@@ -1,3 +1,4 @@
+
 @extends ('front_end.layouts.master')
 
 @section ('page_title','Account Login')
@@ -31,7 +32,7 @@
                         <h2>Registered Customer</h2>
                         <p><strong>I am a registered customer</strong></p>
 
-                        {!! Form::open(['route'=>['login'],'name'=>'login']) !!}
+                        {!! Form::open(['route'=>['loginCheck'],'name'=>'login']) !!}
 
                             <div class="form-group required {{ $errors->has('email') ? 'has-error' : ''}} ">
                                 <label class="control-label" for="input-email">E-Mail Address</label>

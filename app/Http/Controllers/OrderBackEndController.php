@@ -104,7 +104,7 @@ class OrderBackEndController extends Controller
         //check if user street address is get.
         if($street_address == null){
 
-            $address = Address::find($id)->update([
+            $address = Address::find($address_id)->update([
                 'house_no' => request('house_no'),
                 'street_address' => request('street_address'),
                 'route' => $get_street,  
@@ -116,7 +116,7 @@ class OrderBackEndController extends Controller
 
         }elseif($get_street != $street_address){
 
-            $address = Address::find($id)->update([
+            $address = Address::find($address_id)->update([
                 'house_no' => request('house_no'),
                 'street_address' => $get_street,
                 'route' => request('route'),  
@@ -126,7 +126,7 @@ class OrderBackEndController extends Controller
                 
             ]);
         }else{
-            $address = Address::find($id)->update([
+            $address = Address::find($address_id)->update([
                 'house_no' => request('house_no'),
                 'street_address' => request('street_address'),
                 'route' => request('route'),  
@@ -143,22 +143,24 @@ class OrderBackEndController extends Controller
         //order update
         if( $status == 'confirm'){
 
-            $updateDate = Order::find($id)->updated_at->addDays(4);
+            $updateDate = Order::find($id)->updated_at->addDays(3);
+
             Order::find($id)->update([
 
-                'estimate_delivery_date' => $updateDate->toDateString()
+                'estimate_delivery_date' => $updateDate->toDateString(),
             ]);
 
         }elseif($status == 'delivered'){
 
             $updateDate = \Carbon\Carbon::now();
+           
             Order::find($id)->update([
 
-                'delivery_date' => $updateDate->toDateString()
+                'delivery_date' => '2018-02-01',
             ]);
 
         }elseif($status == 'returned'){
-
+            
             //Get all the order content.
             $orderItems = OrderItem::where('order_id', $id)->get();
 
@@ -235,8 +237,10 @@ class OrderBackEndController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function invoice($id)
     {
-        //
+        $order = Order::find($id);
+        return view('back_end.pages.order.order_invoice', compact('order'));
     }
+
 }

@@ -122,7 +122,7 @@
 							  <div class="input-group quantity-control">
 								  
 								  <span class="input-group-addon product_quantity_down fa fa-minus"></span>
-								  <input class="form-control" type="text" name="quantity" value="1" style="z-index: unset"/>
+								  <input class="form-control" min=0 data-validation="required" type="text" name="quantity" value="1" style="z-index: unset"/>
 								  
 								  
 								  <span class="input-group-addon product_quantity_up fa fa-plus"></span>

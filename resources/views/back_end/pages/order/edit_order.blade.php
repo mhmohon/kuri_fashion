@@ -215,7 +215,7 @@
                                     <td>৳ {{ number_format($orderItem->product->productDetail->pro_price) }}</td>
                                     <td width="8%">
                                     
-                                        <input type="number" name="quantity{{ $orderItem->id }}" value="{{ $orderItem->quantity }}" class="form-control">
+                                        <input type="number" min="0" name="quantity{{ $orderItem->id }}" value="{{ $orderItem->quantity }}" class="form-control">
 
                                     </td>
 

@@ -62,7 +62,7 @@
                                         <td>#{{ ($key+1) }}</td>
                                         <td>{{ $review->user->customer->first_name.' '.$review->user->customer->last_name }}</td>
 
-                                        <td>{{ $review->product->pro_name}}</td>
+                                        <td>{{ $review->product->productDetail->pro_name}}</td>
                                         <td>
                                             <div class="ratings">
                                             @for ($i=1; $i <= 5 ; $i++)

@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();          
             $table->string('password');
             $table->tinyInteger('user_role')->default('0');
+            $table->tinyInteger('user_status')->default('0');
             $table->rememberToken();
             $table->timestamps();
             

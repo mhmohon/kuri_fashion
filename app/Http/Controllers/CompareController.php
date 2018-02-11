@@ -21,7 +21,7 @@ class CompareController extends Controller
         $product = Product::find($product_id);
         //dd($product);
         $data['id'] = $product_id;
-        $data['name'] = $product->pro_name;
+        $data['name'] = $product->productDetail->pro_name;
         $data['qty'] = '1';
         $data['price'] = $product->productDetail->pro_price;
         $data['options']['image'] = $product->productDetail->pro_image;

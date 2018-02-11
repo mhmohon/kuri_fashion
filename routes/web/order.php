@@ -18,5 +18,7 @@ Route::group(['middleware'=>'auth'],function(){
 
 	Route::post('/dashboard/orders/delete&order_item={id}', ['middleware'=>'check-role:superAdmin|admin','uses'=>'OrderBackEndController@deleteItem'])->name('orderItemDelete');
 
+	//Only Print Order.
+	Route::get('/dashboard/orders/invoice&order_id={id}', ['middleware'=>'check-role:superAdmin|admin|staff','uses'=>'OrderBackEndController@invoice'])->name('orderInvoice');
 });
 

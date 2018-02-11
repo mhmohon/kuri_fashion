@@ -57,21 +57,9 @@
 						
 						</div>
 					</li>
-					<li class='style-page with-sub-menu hover'><p class='close-menu'></p><a href='' class='clearfix' >
-						<strong>Pages</strong>
-						<b class='caret' ></b></a>
-						<div class="sub-menu" style="width:230px"><div class="content row col-sm-12 html">
-							<ul class="row-list" style="font-size: 14px;">
-								<li><a class="subcategory_item" href="#">About US</a></li>
-								<li><a class="subcategory_item" href="#">Contact us</a></li>
-								<li><a class="subcategory_item" href="#">Warranty And Services</a></li>
-								
-							</ul>
-						</div></div>
-					</li>
 
 					<li class=''><p class='close-menu'></p>
-						<a href='#' class='clearfix' >
+						<a href='{{ url('/about-us') }}' class='clearfix' >
 							<strong>About US</strong>											 
 						</a>
 					</li>

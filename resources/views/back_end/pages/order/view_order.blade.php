@@ -98,7 +98,7 @@
                                     @endif  
                                         <td class="text-center">
                                             
-                                            <a href="http://lily-tms.herokuapp.com/orders/19" class="btn btn-sm btn-info"><i class="fa fa-print"></i></a>
+                                            <a href="{{ route('orderInvoice',$order->id) }}" class="btn btn-sm btn-info"><i class="fa fa-print"></i></a>
 
                                             <a href="{{ route('orderView',$order->id) }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a>
 

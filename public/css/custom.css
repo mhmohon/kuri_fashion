@@ -32,7 +32,9 @@ body{
 .row_bottom{
 	padding-bottom: 20px
 }
-
+.layout_bottom{
+	padding-bottom: 40px;
+}
 /*End Full body Css*/
 
 /*For home page*/

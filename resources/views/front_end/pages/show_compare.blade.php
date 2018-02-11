@@ -99,7 +99,7 @@
 				            <td></td>
 				    @foreach($compare_items as $compare_item)
 				            <td>
-				                <input type="button" value="Add to Cart" class="btn btn-primary btn-block" onclick="cart.add('72', '1');">
+				                <input type="button" value="View Details" class="btn btn-primary btn-block" onclick="cart.add('72', '1');">
 				                <a href="{{ route('compareDelete', $compare_item->rowId) }}" class="btn btn-danger btn-block">Remove
 				                </a>
 				            </td>

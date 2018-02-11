@@ -20,10 +20,10 @@
 		<div class="topbar-left">
 			<a href="index.html" class="logo">
 				<span>
-					<img src="http://lily-tms.herokuapp.com/images/lily-logo-min.png" alt=""  class="thumb-md img-rounded bg-white"> KU<span>RI</span>
+					<img src="{{URL::asset('images/logo.png')}}" alt=""  class="thumb-md img-rounded bg-white"> KU<span>RI</span>
 				</span>
 				<i>
-				   <img src="http://lily-tms.herokuapp.com/images/lily-logo-min.png" alt="" class="thumb-md img-rounded bg-white">
+				   <img src="{{URL::asset('images/logo.png')}}" alt="" class="thumb-md img-rounded bg-white">
 				</i>
 			</a>
 		</div>
