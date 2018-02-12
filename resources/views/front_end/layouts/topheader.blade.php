@@ -111,7 +111,7 @@
 						  <a data-loading-text="Loading..." class="btn-group top_cart dropdown-toggle" data-toggle="dropdown">
 							<div class="shopcart">
 							
-								<img src="https://png.icons8.com/shopping-cart/ios7/25/000000" style="padding-right: 10px; float: left;"/>
+								<i class="fa fa-shopping-basket"></i>
 							 
 							<div class="shopcart-inner">
 								<p class="text-shopping-cart">
@@ -195,6 +195,9 @@
 							<span >Wish List ({{ $wishlist_items->count() }})</span>
 						</a>
 					</div>
+					<div class="sn header-compare hidden-xs">
+					    <a class="fa fa-random" href="{{ route('compareIndex') }}"></a>
+					</div>
 					@endauth					
 										
 				
@@ -215,6 +218,7 @@
 					@include('front_end.layouts.nav')
 
 				</div>
+				
 			</div>
 		</div>
 	  

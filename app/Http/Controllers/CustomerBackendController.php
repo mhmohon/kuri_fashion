@@ -47,19 +47,23 @@ class CustomerBackendController extends Controller
         $this->validate(request(),[
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'customer_phone' => 'required|string|max:11',
-            'customer_email' => 'required|string|email|max:255|unique:users,email,'.$id,
+            'user_type' => 'required',
+            'user_status' => 'required',
+            'customer_phone' => 'required|string|min:11',
+            'customer_email' => 'required|string|email|unique:users,email,'.$id,
 
         ]);
 
         $user = User::find($id)->update([
             'email' => request('customer_email'),
+            'user_status' => request('user_status'),
         ]);
 
         $customer = Customer::where('user_id', $id)->update([
             'first_name' => request('first_name'),
             'last_name' => request('last_name'),
             'phone' => request('customer_phone'),
+            'user_type' => request('user_type'),
             'user_id' => $id,
         ]);
 

@@ -37,15 +37,21 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
+    
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
 
-        return redirect()->back();
+        return back();
         
     }
-
+    protected function credentials(Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
+        $credentials['user_status'] = 1;
+        return $credentials;
+        
+    }
 }

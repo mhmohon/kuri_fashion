@@ -14,12 +14,12 @@
             {{ $page_title  }}</div>
         <ul class="breadcrumb">
             <li>
-                <a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=common/home">
+                <a href="{{ route('home') }}">
                     <i class="fa fa-home"></i>
                 </a>
             </li>
             <li>
-                <a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33">{{ $page_title }}</a>
+                <a href="#">{{ $page_title }}</a>
             </li>
         </ul>
     </div>
@@ -48,9 +48,10 @@
 		        <div class="row">
 		            <div class="box-list col-md-4 col-sm-12">
 		                <div class="form-group short-by">
-		                    <label class="control-label" for="input-sort">Sort By:</label>
-		                    <select id="input-sort" class="text-right form-control" onchange="location = this.value;">
-		                        <option value="#" selected="selected">Default</option>
+		                    <label class="control-label short_by" for="input-sort" >Sort By:</label>
+
+		                    <select id="input-sort" class="text-right form-control display_sort" onchange="location = this.value;">
+		                        <option value="{{ url('/all-product/view/')}}">Default</option>
 		                        <option value="{{ url('/all-product/view/sort_by=pro_name&order=ASC')}}">Name (A - Z)</option>
 		                        <option value="{{ url('/all-product/view/sort_by=pro_name&order=DESC')}}">Name (Z - A)</option>
 		                        <option value="{{ url('/all-product/view/sort_by=pro_price&order=ASC')}}">Price (Low &gt; High)</option>
@@ -60,20 +61,9 @@
 		                </div>
 		            </div>
 		            <div class="short-by-show form-inline text-right col-md-8 col-sm-12">
-		                
-		                <div class="form-group">
-		                    <label class="control-label" for="input-limit">Show:</label>
-		                    <select id="input-limit" class="form-control" onchange="location = this.value;">
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=9" selected="selected">9</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=25">25</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=50">50</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=75">75</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=100">100</option>
-		                    </select>
-		                </div>
 
 		                <div class="product-compare form-group">
-		                    <a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/compare" id="compare-total" class="btn btn-default">
+		                    <a href="{{ route('compareIndex') }}" id="compare-total" class="btn btn-default">
 		                        <i class="fa fa-refresh"></i> Compare</a>
 		                </div>
 
@@ -161,25 +151,16 @@
 
 		    <!--End content-->
 
-		    <script type="text/javascript">
-		        <!--
-		        $('.view-mode .list-view button').bind("click", function() {
-		            if ($(this).is(".active")) {
-		                return false;
-		            }
-		            $.cookie('listingType', $(this).is(".grid") ? 'grid' : 'list', {
-		                path: '/'
-		            });
-		            location.reload();
-		        });
-		        //-->
-		    </script>
-
 		</div>
-
-
 		
     	</div> <!-- end content -->
 	</div> <!-- end row -->
 </div> <!-- end container product-listing -->
+@endsection
+
+@section('extra_scripts')
+	<script>
+		var x = document.URL;
+		document.getElementById("input-sort").value = x;
+	</script>
 @endsection

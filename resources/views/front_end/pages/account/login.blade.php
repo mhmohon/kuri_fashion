@@ -1,4 +1,3 @@
-
 @extends ('front_end.layouts.master')
 
 @section ('page_title','Account Login')

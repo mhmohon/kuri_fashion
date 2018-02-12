@@ -12,7 +12,7 @@
 		<div class="row row_tb0d box-content1 ">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col_8k9a col-style">
 			<div class="promotion">
-				<span class="textColor">ENDS SOON:</span> EXTRA <span class="textColor">50% OFF</span> ALL ITEM (<i>reduction automatically applied at checkout</i>) + <span class="textColor">FREE STANDARD SHIPPING</span> (<i>on Orders 300 EUR</i>)
+				<span class="textColor">Cash Back Offer:</span> Two Piece Dress Order (<i>Cash Back <span class="textColor">300 BDT </span></i>), Three Piece Dress Order (<i>Cash Back <span class="textColor">500 BDT </span></i>), Four Piece Dress Order(<i>Cash Back <span class="textColor">700 BDT </span></i>), Five Piece Dress Order(<i>Cash Back <span class="textColor">900 BDT </span></i>)
 			</div>
 		</div> 								
 		</div> 	
@@ -69,7 +69,7 @@
 	      <div class="module so-extraslider-ltr extra-full layout_top">
 	        <h3 class="modtitle"><span>Best seller products</span></h3>	
 	        <div class="form-group">
-	          Lorem Khaled Ipsum is a major key to success. It’s on you how you want to live your life
+	          Our most popular products based on sales. Updated hourly.
 	        </div>
 	        <div class="modcontent">
 	          <div id="sp_extra_slider_3540808091512108768" class="so-extraslider  button-type2 preset00-4 preset01-4 preset02-3 preset03-2 preset04-1 button-type2 ">
@@ -91,17 +91,21 @@
 	                      <div class="box-label">
 	                        <!--New Label-->							
 	                        <!--Sale Label-->
-	                        <span class="label-product label-sale"></span>
+	                       
 	                      </div>
 	                      <div class="button-group">
-	                        <a href="{{ route('wishlistAdd',$topProductDetail->product_id) }}" class="wishlist btn-button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart cls" style="padding:12px;"></i></a>
-	                        <button class="addToCart btn" data-toggle="tooltip" title="View Details">
+	                        <a href="{{ route('wishlistAdd',$topProductDetail->product_id) }}" class="wishlist btn-button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart cls" style="padding:12px;"></i>
+	                        </a>
+
+	                        <a href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" class="addToCart btn" data-toggle="tooltip" title="View Details">
 	                          <span>View Details</span>
-	                        </button>
+	                        </a>
+
 	                      <!-- This will add To comapre session -->
-	                      <a href="{{ route('compareAdd', $topProductDetail->product_id) }}" class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i></a>
-	                    </div>
-	                  </div>
+	                      	<a href="{{ route('compareAdd', $topProductDetail->product_id) }}" class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i>
+	                      	</a>
+		                  </div>
+		                </div>
 	                  <div class="right-block">
 	                    <h4>
 	                      <a href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" target="_blank" title="">		
@@ -144,91 +148,89 @@
 				    <span>New Arrivals</span>
 				</h3>
 				<div class="form-group">
-					Lorem Khaled Ipsum is a major key to success. It’s on you how you want to live your life	
+					Our recent uploaded products. Feel free to see more.	
 				</div>
 				<div class="modcontent">
 					<div id="sp_extra_slider_1175725011517772254" class="so-extraslider  button-type2 preset00-4 preset01-4 preset02-3 preset03-2 preset04-1 button-type2">
 					<!-- Begin extraslider-inner total-->
 
 					
-					<!-- extraslider-inner -->
-						
-					<div class="extraslider-inner products-list grid owl2-carousel owl2-theme owl2-loaded" data-effect="none">
-						
-						@foreach($newProductDetails as $newProductDetail)
-		                <div class="item ">
-		                    <div class="product-layout  style1">
-		                        <div class="product-item-container">
-		                            <div class="left-block">
-		                                <div class="label-stock label label-success 2-3 Days">2-3 Days</div>
+				<!-- extraslider-inner -->
+					
+				<div class="extraslider-inner products-list grid owl2-carousel owl2-theme owl2-loaded" data-effect="none">
+					
+					@foreach($newProductDetails as $newProductDetail)
+	                <div class="item ">
+	                    <div class="product-layout  style1">
+	                        <div class="product-item-container">
+	                            <div class="left-block">
+	                                <div class="label-stock label label-success 2-3 Days">2-3 Days</div>
 
-		                               
+	                               
 
-		                                <div class="product-image-container ">
-		                                    <a class="link-block" href="{{ route('viewSingleProduct',$newProductDetail->product_id) }}" title=" Swine shankle" target="_blank" >
-					                          <img src="{{ asset('images/product/' . $newProductDetail->pro_image) }}" alt="{{ $newProductDetail->pro_name }}" width="270" height="330">
-					                        </a>
-		                                </div>
+	                                <div class="product-image-container ">
+	                                    <a class="link-block" href="{{ route('viewSingleProduct',$newProductDetail->product_id) }}" title=" Swine shankle" target="_blank" >
+				                          <img src="{{ asset('images/product/' . $newProductDetail->pro_image) }}" alt="{{ $newProductDetail->pro_name }}" width="270" height="330">
+				                        </a>
+	                                </div>
 
-		                                <div class="box-label">
-		                                    <!--New Label-->
+	                                <div class="box-label">
+	                                    <!--New Label-->
 
-		                                    <!--Sale Label-->
-		                                    
+	                                    <!--Sale Label-->
+	                                    
 
-		                                </div>
-		                                <div class="button-group">
-		                                    <button class="wishlist btn-button" type="button" data-toggle="tooltip" title="" onclick="wishlist.add('144');" data-original-title="Add to Wish List">
-		                                        <i class="fa fa-heart"></i>
-		                                    </button>
+	                                </div>
+	                                <div class="button-group">
+	                                    <a href="{{ route('wishlistAdd',$newProductDetail->product_id) }}" class="wishlist btn-button" data-toggle="tooltip" title="Add to Wish List"><i class="fa fa-heart cls" style="padding:12px;"></i>
+				                        </a>
 
-		                                    <button class="addToCart" type="button" data-toggle="tooltip" title="" onclick="cart.add('144');" data-original-title="Add to Cart">
-		                                        <span>
-		                                            <i class="fa fa-shopping-bag"></i>Add to Cart</span>
-		                                    </button>
+				                        <a href="{{ route('viewSingleProduct',$newProductDetail->product_id) }}" class="addToCart btn" data-toggle="tooltip" title="View Details">
+				                          <span>View Details</span>
+				                        </a>
 
-		                                    <button class="compare btn-button" type="button" data-toggle="tooltip" title="" onclick="compare.add('144');" data-original-title="Compare this Product">
-		                                        <i class="fa fa-random"></i>
-		                                    </button>
+				                      <!-- This will add To comapre session -->
+				                      	<a href="{{ route('compareAdd', $newProductDetail->product_id) }}" class="compare btn-button" data-toggle="tooltip" title="Compare this Product"><i class="fa fa-random" style="padding:12px;"></i>
+				                      	</a>
 
 
-		                                </div>
-		                            </div>
+	                                </div>
+	                            </div>
 
-		                            <div class="right-block">
+	                            <div class="right-block">
 
-		                                <h4>
-		                                    <a href="{{ route('viewSingleProduct',$topProductDetail->product_id) }}" target="_blank" title="">		
-					                        {{ $topProductDetail->pro_name }}
-					                      	</a>
-		                                </h4>
+	                                <h4>
+	                                    <a href="{{ route('viewSingleProduct',$newProductDetail->product_id) }}" target="_blank" title="">		
+				                        {{ $newProductDetail->pro_name }}
+				                      	</a>
+	                                </h4>
 
-		                                <div class="caption">
-		                                    <div class="ratings home-rate">
-						                        @for ($i=1; $i <= 5 ; $i++)
-						                            <span class="glyphicon glyphicon-star{{ ($i <= $newProductDetail->product->avg_rating) ? '' : '-empty'}}"></span>
-						                        @endfor
-						                      </div>
-
-
-		                                    <div class="price">
-		                                        <span class="price-new">৳{{ $newProductDetail->pro_price }}</span>
-		                                    </div>
-
-		                                </div>
+	                                <div class="caption">
+	                                    <div class="ratings home-rate">
+					                        @for ($i=1; $i <= 5 ; $i++)
+					                            <span class="glyphicon glyphicon-star{{ ($i <= $newProductDetail->product->avg_rating) ? '' : '-empty'}}"></span>
+					                        @endfor
+					                      </div>
 
 
-		                            </div>
-		                        </div>
+	                                    <div class="price">
+	                                        <span class="price-new">৳{{ $newProductDetail->pro_price }}</span>
+	                                    </div>
 
-		                        <!-- End item-wrap-inner -->
-		                    </div>
-		                    
-		                    
-		                    <!-- End item-wrap -->
-		                </div>
-				        @endforeach
-					</div>
+	                                </div>
+
+
+	                            </div>
+	                        </div>
+
+	                        <!-- End item-wrap-inner -->
+	                    </div>
+	                    
+	                    
+	                    <!-- End item-wrap -->
+	                </div>
+			        @endforeach
+				</div>
 
 					<!-- extraslider-inner -->
 					
@@ -367,7 +369,7 @@
 	              </div>
 	              <div class="policy-info">
 	                <a href="#">Cash On Delivery</a>
-	                <p>Lorem khaled ipsum is major </p>
+	                <p> Hand-to-hand payment.</p>
 	              </div>
 	            </div>
 	          </div>
@@ -379,7 +381,7 @@
 	              </div>
 	              <div class="policy-info">
 	                <a href="#">Fast Delivery</a>
-	                <p>Lorem khaled ipsum is major </p>
+	                <p>Takes maximum 3-4 days. </p>
 	              </div>
 	            </div>
 	          </div>
@@ -391,7 +393,7 @@
 	              </div>
 	              <div class="policy-info">
 	                <a href="#">Support 24/7</a>
-	                <p>Lorem khaled ipsum is major </p>
+	                <p>Call us anytime. </p>
 	              </div>
 	            </div>
 	          </div>
@@ -403,7 +405,7 @@
 	              </div>
 	              <div class="policy-info">
 	                <a href="#">RETURN & EXCHANGE</a>
-	                <p>Lorem khaled ipsum is major </p>
+	                <p>Return & exchange facility. </p>
 	              </div>
 	            </div>
 	          </div>

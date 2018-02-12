@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->date('estimate_delivery_date')->nullable();
             $table->date('delivery_date')->nullable();
             $table->enum('status', ['pending', 'confirm', 'ready', 'delivered', 'returned'])->default('pending');
+            $table->tinyInteger('read_status')->default('0');
             $table->timestamps();
         });
     }

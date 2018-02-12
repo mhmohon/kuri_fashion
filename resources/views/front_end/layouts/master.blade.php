@@ -16,7 +16,7 @@
 	@include ('front_end.layouts.message')
 
 	<div id="wrapper" class="wrapper-full banners-effect-7">
-
+		
 		<!-- layouts for header -->
 		@include ('front_end.layouts.topheader')
 

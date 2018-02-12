@@ -24,7 +24,7 @@ class CreateProductDetailsTable extends Migration
             $table->float('pro_weight', 8, 2)->nullable();
             $table->string('pro_size');
             $table->enum('pro_level', ['top', 'feature', 'trend','usual'])->default('usual');
-            $table->string('pro_status')->default('0');
+            $table->tinyInteger('pro_status')->default('0');
             $table->unsignedInteger('product_id');
             $table->timestamps();
         });

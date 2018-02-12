@@ -26,6 +26,6 @@ class CheckRole
         }
 
 
-        return redirect('/home')->with('msgsuccess',"You don't have permission for access that page.");
+        return redirect()->back()->with('msgsuccess',"You don't have permission for access that page");
     }
 }

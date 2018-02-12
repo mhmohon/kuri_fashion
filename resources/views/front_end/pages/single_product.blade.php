@@ -29,7 +29,7 @@
 				                                      
 				<div class="large-image">	
 
-					<img itemprop="image" class="drift-demo-trigger" src="{{ asset('images/product/'.$product->productDetail->pro_image)}}"  data-zoom="{{URL::asset('images/product/'.$product->productDetail->pro_image)}}" title=" Swine shankle" alt=" Swine shankle" height="420" width="345"/>
+					<img itemprop="image" class="drift-demo-trigger" src="{{ asset('images/product/'.$product->productDetail->pro_image)}}"  data-zoom="{{URL::asset('images/product/'.$product->productDetail->pro_image)}}" title=" Swine shankle" alt=" Swine shankle" height="435" width="345"/>
 					<div class="box-label">
 						<!--New Label-->
 																																		
@@ -118,7 +118,7 @@
 						<!-- Quantity -->
 						<div class="form-group box-info-product">
 						    <div class="option quantity">
-						    	<label>Qty</label>
+						    	<label class="visible-lg visible-md">Qty</label>
 							  <div class="input-group quantity-control">
 								  
 								  <span class="input-group-addon product_quantity_down fa fa-minus"></span>

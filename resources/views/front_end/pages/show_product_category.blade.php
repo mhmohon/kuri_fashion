@@ -21,12 +21,12 @@
             {{ $page_title  }}</div>
         <ul class="breadcrumb">
             <li>
-                <a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=common/home">
+                <a href="{{ route('home') }}">
                     <i class="fa fa-home"></i>
                 </a>
             </li>
             <li>
-                <a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33">{{ $page_title }}</a>
+                <a href="#">{{ $page_title }}</a>
             </li>
         </ul>
     </div>
@@ -67,17 +67,6 @@
 				@endif
 		            <div class="short-by-show form-inline text-right col-md-10 col-sm-12">
 		                
-
-		                <div class="form-group">
-		                    <label class="control-label" for="input-limit">Show:</label>
-		                    <select id="input-limit" class="form-control" onchange="location = this.value;">
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=9" selected="selected">9</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=25">25</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=50">50</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=75">75</option>
-		                        <option value="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/category&amp;path=33&amp;limit=100">100</option>
-		                    </select>
-		                </div>
 
 		                <div class="product-compare form-group">
 		                    <a href="http://opencart.opencartworks.com/themes/so_jenzo/index.php?route=product/compare" id="compare-total" class="btn btn-default">

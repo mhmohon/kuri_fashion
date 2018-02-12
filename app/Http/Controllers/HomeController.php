@@ -67,11 +67,17 @@ class HomeController extends Controller
                             ->get();
 
         $product = Product::find($id);
-
+        $category_id = $product->category_id;
+        $related_products = Product::where('category_id', $category_id)
+                                    ->where('id', '!=', $id)
+                                    ->whereHas('productDetail', function ($query) {
+                                        $query->where('pro_status', 1);
+                                    })->limit(5)->get();
+                                    
         $product_colors = explode(",", $product->productDetail->pro_other_colors);
 
         $product_sizes = explode(",", $product->productDetail->pro_size);
-        return view('front_end.pages.single_product',compact('product','product_colors','product_sizes','reviews'));
+        return view('front_end.pages.single_product',compact('product','product_colors','product_sizes','reviews','related_products'));
     }
 
     public function productByCategory($id)

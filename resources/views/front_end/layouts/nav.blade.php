@@ -64,7 +64,7 @@
 						</a>
 					</li>
 					<li class=''><p class='close-menu'></p>
-						<a href='#' class='clearfix' >
+						<a href='{{ url('/contact-us') }}' class='clearfix' >
 							<strong>Contact us</strong>											 
 						</a>
 					</li>

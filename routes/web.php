@@ -37,19 +37,16 @@ require __DIR__ . '/web/backend_customer.php';
 
 
 
-
-
 Auth::routes();
 
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/about-us', function () {
-    return view('front_end.pages.about_us');
-});
+Route::get('/about-us', 'PageController@aboutUs')->name('aboutUs');
+Route::get('/contact-us', 'PageController@contactUs')->name('contactUs');
+Route::post('/contact-us', 'PageController@sendMail')->name('sendContactMail');
 
 Route::get('/all-product/view/','HomeController@allProductDetails')->name('viewAllProduct');
-
 //All product search and range
 Route::get('/all-product/view/sort_by={Name}&order={name}','HomeController@sort_order')->name('viewProductOrder');
 

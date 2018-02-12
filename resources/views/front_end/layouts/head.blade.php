@@ -5,7 +5,6 @@
 
 <link rel="stylesheet" href="/css/font-awesome.css">
 
-
 <link rel="stylesheet" media="screen, projection" href="/css/drift-basic.css">
 <link rel="stylesheet" href="{{ asset('css/easyzoom.css') }}" />
 
