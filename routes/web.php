@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+use App\Notifications\NewOrder;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +41,14 @@ require __DIR__ . '/web/backend_customer.php';
 
 Auth::routes();
 
+Route::get('/test', function () {
+
+	//$user = User::find(1);
+	User::find(1)->notify(new NewOrder);
+    return view('front_end.layouts.email.order_success_email');
+});
+
+Route::get('mark-as/read&notify_id={id}', 'dashboardController@notifyRead')->name('markAsRead');
 
 Route::get('/', 'HomeController@index')->name('home');
 

@@ -84,4 +84,9 @@ class DashboardController extends Controller
     {
         //
     }
+    public function notifyRead($notifyId)
+    {
+        auth()->user()->unreadNotifications->find($notifyId)->markAsRead();
+        return redirect()->back();
+    }
 }

@@ -35,11 +35,12 @@ class PageController extends Controller
         	'email' => request('email'),
         	'bodyMessage' => request('enquiry'),
         );
-        Mail::send('front_end.layouts.email.contact',$data,function($message) use($data){
-        	$message->from($data['email']);
-        	$message->to('mohon.diit33@gmail.com');
+        Mail::send(new sendMail());
+        //Mail::send('front_end.layouts.email.contact',$data,function($message) use($data){
+        	//$message->from($data['email']);
+        	//$message->to('mohon.diit33@gmail.com');
 
-        });
+        //});
         return redirect()->back()->with('msgsuccess','Your message send successfully');
     }
 }

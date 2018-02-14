@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notifications\NewOrder;
+use Mail;
+use App\mail\SendMail;
 use App\Address;
 use App\Customer;
+use App\User;
 use App\Order;
 use App\OrderItem;
 use App\Inventory;
@@ -51,7 +55,11 @@ class CheckoutController extends Controller
 
             
         $this->saveCartInfo($request, $user_id, $customer_id, $mytime, $addressChecked);
-      
+        $this->sendEmail($user_id);
+
+        $customer = Customer::find($customer_id);
+        
+        $this->sendNotifyAdmin($customer);
         return redirect()->route('checkoutSuccess');
     }
 
@@ -171,5 +179,18 @@ class CheckoutController extends Controller
             Cart::destroy();
             return true;
         }
+
+        User::find(1)->notify(new NewOrder($order));
+    }
+
+    // Send Confirm Email
+    public function sendEmail($user_id){
+        
+        Mail::send(new sendMail());
+    }
+
+    public function sendNotifyAdmin($customer){
+
+        User::find(1)->notify(new NewOrder($customer));
     }
 }

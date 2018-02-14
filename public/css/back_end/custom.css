@@ -12,6 +12,20 @@
 }
 /*END Other Component*/
 
+/*Start Top head bar*/
+
+.badge.up {
+	position: relative;
+    top: -10px;
+    margin: 0 -.8em;
+    border-radius: 15px;
+}
+.notify-icon{
+	padding-top: 11px;
+    color: #fff;
+    font-size: 18px;
+}
+	
 /*Start Footer*/
 .footer{
 	background-color: #fff;

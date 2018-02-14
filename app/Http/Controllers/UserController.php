@@ -58,7 +58,7 @@ class UserController extends Controller
     public function show_order($id)
     {
 
-        $orders = Order::where('user_id', $id)->get();
+        $orders = Order::where('user_id', $id)->paginate(10);
         
         if($id == Auth::user()->id){
             return view ('front_end.pages.account.order_all_show',compact('orders','orderItems'));

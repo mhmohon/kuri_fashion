@@ -44,7 +44,32 @@
 				<!-- Right(Notification) -->
 				<ul class="nav navbar-nav navbar-right">
 					
+					<li class="dropdown user-box">
+						<a href="" class="dropdown-toggle waves-effect waves-light user-link" data-toggle="dropdown" aria-expanded="true">
+							<i class="fa fa-bell-o notify-icon"></i>
+							@if(auth()->user()->unreadNotifications->count())
+							<span class="badge badge-light up">{{ auth()->user()->unreadNotifications->count() }}</span>
+							@endif
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right arrow-dropdown-menu arrow-menu-right user-list notify-list">
+							<li class="dropdown-header">All Notification</li>
+							<li class="divider"></li>
+							@foreach(auth()->user()->unreadNotifications as $notification)
+								<li style="background-color: #E5EAF2; margin-bottom: 2px;">
+									<a href="{{ route('markAsRead', $notification->id) }}">
+									@foreach($notification->data['user'] as $user)
+									
+										{{ $user->first_name }} Order a new Product.
+									@endforeach
+									</a>
+								</li>
+							@endforeach
+							@foreach(auth()->user()->readNotifications as $notification)
 
+								<li style="background-color: #FEFEFE; margin-bottom: 2px;"><a href="">{{ $notification->data['data'] }}</a></li>
+							@endforeach
+						</ul>
+					</li>
 					<li class="dropdown user-box">
 						<a href="" class="dropdown-toggle waves-effect waves-light user-link" data-toggle="dropdown" aria-expanded="true">
 							<img src="http://lily-tms.herokuapp.com/images/user.png" alt="user-img" class="img-circle user-img">

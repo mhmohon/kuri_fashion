@@ -6,7 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
+use Illuminate\Http\Request;
+use App\User;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -26,8 +27,9 @@ class SendMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(request $request)
     {
-        return $this->view('view.name');
+        $user = User::latest()->first();
+        return $this->view('front_end.layouts.email.order_success_email',['name'=>$user->customer->first_name])->to($user->email);
     }
 }

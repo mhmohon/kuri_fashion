@@ -3,6 +3,7 @@
 Route::group(['middleware'=>'auth'],function(){
 
 	Route::get('/dashboard', ['middleware'=>'check-role:superAdmin|admin|staff','uses'=>'DashboardController@index'])->name('dashboardHome');
+	
 
 	//For Add banner
 	Route::get('/dashboard/banner', ['middleware'=>'check-role:superAdmin|admin|staff','uses'=>'BannerController@index'])->name('bannerIndex');
